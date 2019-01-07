@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		function send_() {
+			var col_row = new Array(2);
+			col_row[0] = document.querySelector("#row").value;
+			col_row[1] = document.querySelector("#col").value;
+			window.opener.draw_tb(col_row);
+			window.close();
+		}
+	</script>
+</head>
+<body>
+	<p>1번 새창</p>
+	행 : <input type="text" id="row"/><br />
+	열 : <input type="text" id="col"/>
+	<input type="button" value="전달" onclick="send_()" />
+</body>
+</html>

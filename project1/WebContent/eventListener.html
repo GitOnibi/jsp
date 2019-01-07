@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+
+</head>
+<body>
+	글자색 : <input type="text" id="fcolor"/><br />
+	
+	<table border=1 style="border:1px solid red; border-collapse:collapse;">
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+		</tr>
+	</table>
+	<input type="button" id="apply" value="apply"/>
+	<input type="button" id="close" value="close"/>
+		<script type="text/javascript">
+	
+		var selectColor;
+		
+		window.addEventListener("load", function() {
+			var colorData = document.querySelectorAll("td");
+			for(var i = 0; i < colorData.length; i++) {
+				colorData.item(i).addEventListener("click", function() {
+					this.style.backgroundColor = selectColor;
+					document.querySelector("#fcolor").value = selectColor;
+				}, false);
+			}
+			document.querySelector("#apply").addEventListener("click", function() {
+				selectColor = "red";
+			}, false);
+			document.querySelector("#close").addEventListener("click", function() {
+				self.close();
+			}, false);
+		}, false);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		#myCanvas {
+			
+		}
+	</style>
+</head>
+<body>
+	 
+	월 : <select name="month" id="month">
+		<option value="0" selected="selected">1월</option>
+		<option value="1">2월</option>
+		<option value="2">3월</option>
+		<option value="3">4월</option>
+		<option value="4">5월</option>
+		<option value="5">6월</option>
+		<option value="6">7월</option>
+		<option value="7">8월</option>
+		<option value="8">9월</option>
+		<option value="9">10월</option>
+		<option value="10">11월</option>
+		<option value="11">12월</option>
+	</select>
+	<br />
+	수입 : <input type="text" id="inMoney" name="inMoney"/><br />
+	지출 : <input type="text" id="outMoney" name="outMoney"/><br />
+	분류 : <select name="sort" id="sort">
+		<option value="0">통신비</option>
+		<option value="1">교통비</option>
+		<option value="2">문화비</option>
+		<option value="3">식 비</option>
+	</select>
+	<br />
+	<span style="color:red">통신비</span>
+	<span style="color:green">교통비</span>
+	<span style="color:blue">문화비</span>
+	<span style="color:brown">식비</span>
+	<br />
+	<input type="button" id="okBtn" value="입력" onclick="drawGraph()"/>
+	<br /><br /><br />
+	<canvas id="myCanvas" width="1000" height="500"></canvas>
+	<div id="result"></div>
+	<script type="text/javascript">
+		
+		var myCanvas  = document.getElementById("myCanvas");
+	    var context   = myCanvas.getContext("2d");
+		
+	    for(var i = 0; i < 12; i++) {
+	    	context.font="15px Arial";
+	    	context.fillText(i + 1 + "월", (i * 60) + 10, 15);
+	    }
+		function drawGraph() {
+			var month		= document.querySelector("#month");
+			var inMoney 	= document.querySelector("#inMoney");
+			var outMoney 	= document.querySelector("#outMoney");
+			var sort 		= document.querySelector("#sort");
+			var sortName, str;
+			if(sort.value == 0) {
+				sortName = "통신비";
+				context.fillStyle = "rgb(255,0,0)";
+			} else if(sort.value == 1) {
+				sortName = "교통비";
+				context.fillStyle = "rgb(0,255,0)";
+			} else if(sort.value == 2) {
+				sortName = "문화비";
+				context.fillStyle = "rgb(0,0,255)";
+			} else if(sort.value == 3) {
+				sortName = "식비";
+				context.fillStyle = "rgb(86,17,45)";
+			}
+			context.fillRect(month.value * 60 + sort.value * 10, 50, 10, parseInt(outMoney.value / 1000) * 3);
+		}    
+
+	</script>
+</body>
+</html>

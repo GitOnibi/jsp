@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="ex04_sign_check.jsp" id="signInFrm" method="get">
+		이름 : <input type="text" name="userName" id="userName"/>
+		아이디 : <input type="text" namw="id" id="id" />
+		패스워드 : <input type="text" namw="pw" id="pw"/>
+		
+	</form>
+</body>
+</html>

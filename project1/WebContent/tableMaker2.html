@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		
+		function TableMaker() {
+			this.row;
+			this.column;
+			this.THwidth;
+			this.THheight
+			this.TDheight
+			this.lineColor;
+			this.getData = getData_;
+			this.setData = setData_;
+		}
+		
+		function getData_() {
+			this.row = document.querySelector("#row").value;
+			this.column = document.querySelector("#column").value;
+			this.THwidth = document.querySelector("#THwidth").value;
+			this.THheight = document.querySelector("#THheight").value;
+			this.TDheight = document.querySelector("#TDheight").value;
+			this.lineColor = document.querySelector("input[name='lineColor']:checked").value;
+		}
+		var tb_str = "";
+		function setData_() {
+			var result = document.querySelector("#result");
+			tb_str += "<table border = 1 style='border-collapse:collapse;border:1px solid " + this.lineColor + "';><tr>";
+			for(var z = 0; z < this.column; z++) {
+				tb_str += "<th sytle='width:" + this.THwidth + "px;height:" + this.THheight + "px;'>TH_Data</th>"
+			}
+			tb_str += "</tr>";
+			for(var x = 0; x < this.row; x++) {
+					tb_str += "<tr>";
+				for(var y = 0; y < this.column; y++) {
+					tb_str += "<td style='height:" + this.TDheight + "px;'>TD_Data</td>";
+				}
+				tb_str += "</tr>";
+			}
+			tb_str += "</table>";
+			result.innerHTML = tb_str;
+		}
+		
+		var tm = new Array();
+		var index = 0;
+	
+		function tb_make() {
+			tm[index] = new TableMaker();
+			tm[index].getData();
+			tm[index].setData();
+			index++;
+		}
+		
+	</script>
+</head>
+<body>
+	row : <input type="number" id="row" size="3" /> column : <input type="number" id="column" size="3" /><br />
+	THwidth : <input type="number" id="THwidth"/> THheight : <input type="number" id="THheight" /> TDheight : <input type="number" id="TDheight" /><br />
+	lineColor : <input type="radio" name="lineColor" value="red" />red
+	<input type="radio" name="lineColor" value="blue" />blue
+	<input type="radio" name="lineColor" value="green" />green<br />
+	<input type="button" value="만들기" onclick="tb_make()" />
+	<div id="result">
+		
+	</div>
+</body>
+</html>

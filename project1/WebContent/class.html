@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		/* table */
+		function table_() {
+			this.col;
+			this.row;
+			this.draw = draw_tb();
+		}
+		function draw_tb(arrObj) {
+			this.row = arrObj[0];
+			this.col = arrObj[1];
+			var str = "<table border=1 style='border-collapse:collapse; border:1px solid red;'>"
+			for(var i = 0; i < this.row; i++) {
+				str += "<tr>";
+				for(var j = 0; j < this.col; j++) {
+					str += "<td>Data</td>";
+				}
+				str += "</tr>"
+			}
+			str += "</table>";
+			document.querySelector("#result").innerHTML = str;
+		}
+		
+		/* font-size */
+		function fontSize_() {
+			this.fontSize;
+			this.color;
+			this.set = set_();
+		}
+		function set_(arrObj) {
+			this.fontSize = arrObj[0];
+			this.color = arrObj[1];
+			document.querySelector("#result").style.fontSize = fontSize + "px";
+			document.querySelector("#result").style.color = color;
+		}
+		
+		
+		function winopen(i) {
+			var doc_list = new Array("class2.html", "class3.html", "class4.html", "1번 새창", "2번 새창", "3번 새창");
+			window.open(doc_list[i], doc_list[i + 3], " width=350, height=300");
+		}
+		
+		function print_(num) {
+			document.querySelector("#result").innerHTML = num;
+		}
+		
+		function modal_() {
+			window.showModalDialog("class2.html", "modal", "dialogheight=200");
+		}
+		
+	</script>
+</head>
+<body>
+	<input type="button" value="테이블생성" onclick="winopen(0)"/>
+	<input type="button" value="폰트변경" onclick="winopen(1)" />
+	<input type="button" value="모달" onclick="modal_()" />
+	<div id="result">
+		
+	</div>
+</body>
+</html>

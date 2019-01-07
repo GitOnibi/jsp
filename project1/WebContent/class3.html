@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+	function send_() {
+		var font = new Array(2);
+		font[0] = document.querySelector("#fontSize").value;
+		font[1] = document.querySelector("#color").value;
+		window.opener.set_(font);
+		window.close();
+	}
+</script>
+</head>
+<body>
+	<p>2번 새창</p>
+	font-size : <input type="text" id="fontSize"/><br />
+	color : <input type="text" id="color"/>
+	<input type="button" value="전달" onclick="send_()" />
+</body>
+</html>

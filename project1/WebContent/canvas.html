@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		#myCanvas {
+			
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="500" height="300"></canvas>
+	<input type="button" value="rect" onclick="rect_draw()" />
+	<input type="button" value="arc" onclick="arc_draw()" />
+	
+	<script type="text/javascript">
+	    
+		var myCanvas  = document.getElementById("myCanvas");
+        var context   = myCanvas.getContext("2d");
+        
+        function rect_draw() {
+        	context.fillStyle = "rgb(255,0,0)"; // 색상
+        	context.fillRect(10, 10, 100, 100); // 점의 좌표 x1, y1, x2, y2
+        }
+        
+        function arc_draw() {
+        	context.beginPath();
+        	context.strokeStyle = "rgb(0,255,0)";
+        	context.fillStyle = "rgb(255,0,0)";
+        	context.fill();
+        	context.arc(100, 100, 20, 0, Math.PI*2, false); // (x, y, radius, startAngle, endAngle , 시계 true 반시계 false)
+        	context.stroke();
+        	context.closePath();
+        }
+        
+        /*	그라디언트
+        	gradient = context.createLinerGradient(x0,y0,x1,y1);
+        	gradient = context.createRadialGradient(x0,y0,x1,y1);
+        	gradient.addColorStop(offset, color);
+        	offset 0 시작지점 1 종료지점
+        	
+        	텍스트 색 채움
+        	fillText(text, x, y, [maxwidth]);
+        	
+        	텍스트 외곽선
+        	stroketext(text, x, y, [maxwidth]);
+        	
+        	그림자
+        	shadowColor = color;
+        	
+        	이미지
+        	context.drawImage()
+        */
+        
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		function readFile(fileName) {
+			var reader = new FileReader();
+			reader.readAsText(fileName);
+			reader.onload = function() {
+				var text = reader.result;
+				var out = document.querySelector("#printArea");
+				var list = text.split("-");
+				var result = " ";
+				for(var i = 0; i < list.length; i++) {
+					result += list[i] + "<br />";
+				}
+				out.innerHTML = result;
+			}
+		}
+		
+		function writeFile() {
+			var str = "save-writeFile-text-1111-2222-3333";
+			var fwrite = new ActiveXObject("Scripting.FileSystemObject");
+			var fileName = "C:\\test\\writeTest.txt";
+			var f = fwrite.openTextFile(fileName, 2, true); // 주소값을 리턴
+			f.Write(str);
+			f.Close();
+		}
+	</script>
+</head>
+<body>
+	<input type="file" onchange="readFile(this.files[0])" />
+	<input type="button" value="저장" onclick="writeFile()" />
+	<div id="printArea"></div>
+</body>
+</html>

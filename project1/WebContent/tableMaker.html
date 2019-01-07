@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		
+		function TableMaker() {
+			this.row;
+			this.column;
+			this.lineColor;
+			this.getData = getData_;
+			this.setData = setData_;
+		}
+		
+		function getData_() {
+			this.row = document.querySelector("#row").value;
+			this.column = document.querySelector("#column").value;
+			this.lineColor = document.querySelector("input[name='lineColor']:checked").value;
+		}
+		var tb_str = "";
+		function setData_() {
+			var result = document.querySelector("#result");
+			tb_str += "<table border = 1 style='border-collapse:collapse;border:1px solid " + this.lineColor + "';>";
+			for(var x = 0; x < this.row; x++) {
+					tb_str += "<tr>";
+				for(var y = 0; y < this.column; y++) {
+					tb_str += "<td>Data</td>";
+				}
+				tb_str += "</tr>";
+			}
+			tb_str += "</table>";
+			result.innerHTML = tb_str;
+		}
+		
+		var tm = new Array();
+		var index = 0;
+	
+		function tb_make() {
+			tm[index] = new TableMaker();
+			tm[index].getData();
+			tm[index].setData();
+			index++;
+		}
+		
+	</script>
+</head>
+<body>
+	row : <input type="number" id="row" size="3" /> column : <input type="number" id="column" size="3" /><br />
+	lineColor : <input type="radio" name="lineColor" value="red" />red
+	<input type="radio" name="lineColor" value="blue" />blue
+	<input type="radio" name="lineColor" value="green" />green<br />
+	<input type="button" value="만들기" onclick="tb_make()" />
+	<div id="result">
+		
+	</div>
+</body>
+</html>

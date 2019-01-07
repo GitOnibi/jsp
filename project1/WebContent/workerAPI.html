@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+		
+		var worker = new Worker("worker.js");
+		
+		function calc_() {
+			var num = {
+				num1 : document.querySelector("#num1").value,
+				num2 : document.querySelector("#num2").value
+				// 구분값을 주어 사용할 수도 있다
+			};
+			worker.postMessage(num);
+		}
+		
+		worker.onmessage = function(sum) {
+			var result = document.querySelector("#result");
+			result.innerHTML = sum.data;
+		}
+		
+		// 워커 중지시킴
+		// worker.terminate();
+		
+	</script>
+</head>
+<body>
+	시작 : <input type="text" id="num1" size="3"/>
+	끝 : <input type="text" id="num2" size="3"/>
+	<input type="button" value="계산" onclick="calc_()" />
+	<div id="result"></div>
+</body>
+</html>

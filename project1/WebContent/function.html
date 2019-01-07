@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script type="text/javascript">
+	
+	// 함수 선언식
+		function name(a, b) {
+			c = a + b;
+			return c;
+		}
+		document.write(name(10, 20)); // 호출
+	
+	// 함수 표현식(익명함수)
+		var tf = function() {
+			document.write("hello world!");
+		}
+		tf(); // 호출
+	
+	// 객체 생성	
+		var obj = new Object();
+		obj.x = 10;
+		obj.y = 20;
+		obj.tf = func;
+		function func() {
+			return obj.x + obj.y;
+		}
+		document.write(obj.tf());
+	
+	// 객체 생성 2
+		function test(a, b) {
+			this.a = a;
+			this.b = b;
+			this.num = 50;
+			this.fna = function() { // 익명함수형식
+				return this.b - this.a;
+			}
+		}
+		var test1 = new test(10, 20);
+		document.write("test1.fna() : " + test1.fna());
+		
+	// 객체 연습
+	var str = "";
+		function Student() {
+			this.name;
+			this.tell;
+			this.birth;
+			this.addr;
+			this.input = in_info;
+			this.output = disp;
+		}
+		function in_info() {
+			this.name = document.querySelector("#name").value;
+			this.tell = document.querySelector("#tell").value;
+			this.birth = document.querySelector("#birth").value;
+			this.addr = document.querySelector("#addr").value;
+		}
+		function disp() {
+			var dp = document.querySelector("#result");
+			str +=	"이름 : " + this.name + "<br />" + 
+					"전화번호 : " + this.tell + "<br />" +
+					"생년월일 : " + this.birth + "<br />" +
+					"주소 : " + this.addr + "<br />";
+			dp.innerHTML = str;
+		}
+		var std = new Array();
+		var index = 0;
+		function info() {
+			std[index] = new Student();
+			std[index].input();
+			std[index].output();
+			index++;
+		}
+	
+	</script>
+</head>
+<body>
+	<br />
+	이름 : <input type="text" id="name" /><br />
+	전화번호 : <input type="number" id="tell" /><br />
+	생년월일 : <input type="number" id="birth" /><br />
+	주소 : <input type="text" id="addr" /><br />
+	<input type="button" value="입력" onclick="info()" />
+	<div id="result">
+	
+	</div>
+</body>
+</html>

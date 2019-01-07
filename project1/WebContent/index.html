@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>가위바위보</title>
+	<link rel="stylesheet" href="./css/reset.css" />
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+		
+		var arr1 = new Array();
+		var arr2 = new Array();
+		var arr3 = new Array();
+		var tempArr = new Array();
+		var cnt = 0;
+		var arrs;
+
+		function input_() {
+			console.log("cnt : " + cnt);
+			if(cnt == 0) {
+				arrs = arr1;
+				arrs[0] = parseInt(document.querySelector("#num1").value);
+				arrs[1] = parseInt(document.querySelector("#num2").value);
+				arrs[2] = parseInt(document.querySelector("#num3").value);
+				arrs[3] = parseFloat((arr1[0] + arr1[1] + arr1[2]) / 3);
+			} else if(cnt == 1) {
+				arrs = arr2;
+				arrs[0] = parseInt(document.querySelector("#num1").value);
+				arrs[1] = parseInt(document.querySelector("#num2").value);
+				arrs[2] = parseInt(document.querySelector("#num3").value);
+				arrs[3] = parseFloat((arr2[0] + arr2[1] + arr2[2]) / 3);
+			} else {
+				arrs = arr3;
+				arrs[0] = parseInt(document.querySelector("#num1").value);
+				arrs[1] = parseInt(document.querySelector("#num2").value);
+				arrs[2] = parseInt(document.querySelector("#num3").value);
+				arrs[3] = parseFloat((arr3[0] + arr3[1] + arr3[2]) / 3);
+			}
+			cnt++;
+			console.log(arr1);
+			console.log(arr2);
+			console.log(arr3);
+		}
+		
+		function avg_() {
+			document.querySelector("#result").innerHTML = "평균 = A : " + arr1[3].toFixed(2) + " B : " + arr2[3].toFixed(2) + " C : " + arr3[3].toFixed(2);
+		}
+		
+		function sort_() {
+			var temp;
+			tempArr = [arr1[3], arr2[3], arr3[3]];
+			console.log(tempArr);
+			for(var x = 0; x < tempArr.length - 1; x++) {
+				for(var y = x + 1; y < tempArr.length; y++) {
+					if(tempArr[x] < tempArr[y]) {
+						temp 	= tempArr[x];
+						tempArr[x] 	= tempArr[y];
+						tempArr[y] 	= tempArr;
+					}
+				}
+			}
+			document.querySelector("#result").innerHTML = tempArr;		
+		}
+		
+		/*
+			for(var i = 0; i < 10; i++) {
+				if(!arr[i])(1) {
+					continue;
+				}
+			}
+		*/
+		var str = ["apple", "Desk", "table", "cat"];
+		str.sort(function(a, b) {
+			var aa = a.toLowerCase();
+			var bb = b.toLowerCase();
+			if(aa < bb) {
+				return -1;
+			} else if(aa > bb){
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+		document.write(str + "<br /><br /><br />");
+	</script>
+</head>
+<body>
+	국어: <input type="text" id="num1" /><br />
+	영어: <input type="text" id="num2" /><br />
+	수학: <input type="text" id="num3" /><br />
+	<input type="button" value="입력" onclick="input_()" />
+	<input type="button" value="평균" onclick="avg_()" />
+	<input type="button" value="정렬" onclick="sort_()" />
+	<div id="result">
+	
+	</div>
+</body>
+</html>
