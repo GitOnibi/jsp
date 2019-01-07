@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="arr" value="<%= new int[]{10,20,30,40,50} %>" />
+<c:forEach items="${ arr }" var="i" status="stat" begin="0" end="4">
+	${ stat.index } &nbsp; ${ i }
+</c:forEach>
+
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.btnWrap {
+	padding:20px;
+}
+.btn {
+	background-color:#efefef;
+	border-radius:5px;
+	padding:10px;	
+}
