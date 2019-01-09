@@ -9,7 +9,7 @@
 <sql:query var="rs" dataSource="jdbc/OracleDB">
 	SELECT max(num) AS mNum FROM test1
 </sql:query>
-<c:forEach items="${ rs.rows }" var="row">
+<c:forEach items="${ rs.rows }" var="row" varStatus="stat">
 	<c:set var="num" value="${ row.mNum + 1 }" />
 </c:forEach>
 <sql:update var="rs" dataSource="jdbc/OracleDB">
