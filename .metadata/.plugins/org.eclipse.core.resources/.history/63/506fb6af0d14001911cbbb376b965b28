@@ -6,7 +6,7 @@
 	<sql:param value="${ param.stu_num }" />
 </sql:query>
 <sql:query var="rs2" dataSource="jdbc/OracleDB">
-	SELECT * FROM SCHOOL_STUDENT WHERE STU_NUM = ?
+	SELECT DISTINCT FROM SCHOOL_STUDENT WHERE STU_NUM = ? LIMIT = 1
 	<sql:param value="${ param.stu_num }" />
 </sql:query>
 이름 :
@@ -16,5 +16,3 @@
 <c:forEach var="row" items="${ rs1.rows }" varStatus="stat">
 	과목 : ${ row.SUB_NUM } / 득점 : ${ row.SUB_SCORE }	<br />
 </c:forEach>
-
-SELECT B.*, A.* FROM school_score A, school_student B WHERE a.stu_num = b.stu_num AND a.sub_num = b.sub_num

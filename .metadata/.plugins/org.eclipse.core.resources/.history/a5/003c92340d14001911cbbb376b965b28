@@ -11,10 +11,9 @@
 </sql:query>
 이름 :
 <c:forEach var="row" items="${ rs2.rows }" varStatus="stat">
-	${ row.STU_NAME }
+	<c:set var="name" value="${ row.STU_NAME }" />
 </c:forEach>
+<c:out value="name">
 <c:forEach var="row" items="${ rs1.rows }" varStatus="stat">
 	과목 : ${ row.SUB_NUM } / 득점 : ${ row.SUB_SCORE }	<br />
 </c:forEach>
-
-SELECT B.*, A.* FROM school_score A, school_student B WHERE a.stu_num = b.stu_num AND a.sub_num = b.sub_num
