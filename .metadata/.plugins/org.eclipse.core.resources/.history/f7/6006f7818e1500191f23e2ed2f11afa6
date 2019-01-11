@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>write_form</title>
+</head>
+<body>
+	<form action="" id="writeFrm">
+		작성자 : <input type="text" name="user_id"/><br />
+		패스워드 : <input type="text" name="user_pw"/><br />
+		이메일 : <input type="text" name="user_email"/><br /><br /><br /><br />
+		제목 : <input type="text" name="title"/><br />
+		내용 : <textarea name="contents" id="" cols="30" rows="10"></textarea><br />
+		<input type="submit" value="저장"/>
+	</form>
+</body>
+</html>

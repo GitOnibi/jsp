@@ -1,0 +1,1 @@
+CREATE TABLE board(num number(5,0) primary key, name VARCHAR2(20), pw varchar2(20), email varchar2(20), title varchar(20), content long varchar, ref number(5,0), step number(5,0), b_order number(5,0));
