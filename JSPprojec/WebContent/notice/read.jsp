@@ -23,6 +23,8 @@
 	</c:forEach>
 	<a href="notice.jsp">목록</a> / 
 	<a href="write_form.jsp?mode=modify&idx=${ param.idx }">수정</a> / 
-	<a href="write_form.jsp?mode=delete&idx=${ param.idx }">삭제</a>
+	<a href="write_form.jsp?mode=delete&idx=${ param.idx }">삭제</a> /
+	<a href="reply.jsp?idx=${ param.idx }">댓글</a>
+	<br /><br /><br />
 </body>
 </html>

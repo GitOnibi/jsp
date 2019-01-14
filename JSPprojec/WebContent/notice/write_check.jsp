@@ -22,6 +22,6 @@
 	<sql:param value="${ param.email }" />
 	<sql:param value="${ param.title }" />
 	<sql:param value="${ param.content }" />
-	<sql:param value="${ param.ref }" />
+	<sql:param value="${ ref }" />
 </sql:update>
 <c:redirect url="notice.jsp" />

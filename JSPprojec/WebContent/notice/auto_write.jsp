@@ -23,7 +23,7 @@
 		<sql:param value="${ '이름0' }${ x }${ '@mail.com' }" />
 		<sql:param value="${ '제목0' }${ x }" />
 		<sql:param value="${ '내용내용내용내용내용0' }${ x }" />
-		<sql:param value="${ null }" />
+		<sql:param value="${ ref }" />
 	</sql:update>
 </c:forEach>
 <c:redirect url="notice.jsp" />
