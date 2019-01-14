@@ -18,11 +18,11 @@
 		INSERT INTO board(idx, name, pw, email, title, content, ref, step, b_order, hit)
 		 VALUES(?, ?, ?, ?, ?, ?, ?, 0, 0, 0)
 		<sql:param value="${ x }" />
-		<sql:param value="${ '이름 0' }${ x }" />
+		<sql:param value="${ '이름0' }${ x }" />
 		<sql:param value="${ 11 }" />
-		<sql:param value="${ '이름 0' }${ x }${ '@mail.com' }" />
-		<sql:param value="${ '제목 0' }${ x }" />
-		<sql:param value="${ '내용 0' }${ x }" />
+		<sql:param value="${ '이름0' }${ x }${ '@mail.com' }" />
+		<sql:param value="${ '제목0' }${ x }" />
+		<sql:param value="${ '내용내용내용내용내용0' }${ x }" />
 		<sql:param value="${ null }" />
 	</sql:update>
 </c:forEach>
