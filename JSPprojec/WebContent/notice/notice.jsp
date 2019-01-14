@@ -31,6 +31,6 @@
 		</tbody>
 	</table>
 	<br />
-	<a href="write_form.jsp">글쓰기</a>
+	<a href="write_form.jsp?mode=write">글쓰기</a>
 </body>
 </html>

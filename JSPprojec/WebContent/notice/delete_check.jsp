@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:requestEncoding value="UTF-8"/>>
+<fmt:requestEncoding value="UTF-8"/>
 <sql:query var="rs" dataSource="jdbc/OracleDB">
 	SELECT * FROM board WHERE idx = ?
 	<sql:param value="${ param.idx }" />
@@ -16,6 +16,7 @@
 			DELETE FROM board WHERE idx = ?
 			<sql:param value="${ param.idx }" />
 		</sql:update>
+		<c:redirect url="notice.jsp"/>
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
