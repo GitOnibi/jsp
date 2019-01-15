@@ -2,24 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<c:set var="pageSize"	value="3" />
+<c:set var="pageSize"	value="10" />
 <c:set var="grpSize"	value="5" />
 <c:set var="pageNum"	value="1" />
 <c:set var="pageCnt"	value="1" />
 <c:set var="skipRow"	value="1" />
-<c:set var="dbCnt" />
+<c:set var="rowCnt" />
 
 <sql:query var="rs" dataSource="jdbc/OracleDB">
 	SELECT * FROM board ORDER BY ref DESC, idx
 </sql:query>
-
-<c:set var="dbCnt" value="${ rs.rowCount }" />
+<c:set var="rowCnt" value="${ rs.rowCount }" />
 <c:choose>
-	<c:when test="${ dbCnt % pageSize == 0 }">
-		<c:set var="pageCnt" value="${ dbCnt / pageSize }" />
+	<c:when test="${ rowCnt % pageSize == 0 }">
+		<c:set var="pageCnt" value="${ rowCnt / pageSize }" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="pageCnt" value="${ dbCnt / pageSize + 1 }" />
+		<c:set var="pageCnt" value="${ rowCnt / pageSize + 1 }" />
 	</c:otherwise>
 </c:choose>
 
@@ -51,25 +50,16 @@
 				<th>조회수</th>
 			</tr>
 			<c:if test="${ reqNum != null }">
-				<c:set var="seqNum" value="${ dbCnt - (reqNum - 1) * pageSize }" />
+				<c:set var="seqNum" value="${ rowCnt - (reqNum - 1) * pageSize }" />
 			</c:if>
 			<c:forEach var="row" items="${ rs.rows }" varStatus="stat">
 				<tr>
 					<td>${ seqNum - (stat.count) + 1 }</td>
 					<td>
-						<a href="read.jsp?idx=${ row.idx }&hit=${ row.hit }">
-							<c:choose>
-								<c:when test="${ row.step > 0 }">
-									<c:forEach begin="0" end="${ row.step }" step="1">
-										&nbsp;
-									</c:forEach>
-									[답글]${ row.title }
-								</c:when>
-								<c:otherwise>
-									${ row.title }
-								</c:otherwise>
-							</c:choose>
-						</a>
+						<c:if test="${ row.step > 0 }">
+							<c:forEach begin="0" end="${ row.step }" step="1">&nbsp;</c:forEach>┗[댓]
+						</c:if>
+						<a href="read.jsp?idx=${ row.idx }&hit=${ row.hit }">${ row.title }</a>
 					</td>
 					<td>${ row.name }</td>
 					<td>${ row.hit }</td>

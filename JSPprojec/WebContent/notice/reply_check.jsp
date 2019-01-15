@@ -31,7 +31,7 @@
 </sql:update>
 
 <sql:update var="rs" dataSource="jdbc/OracleDB">
-	INSERT INTO board(idx, name, pw, email, title, content, ref, step, b_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	INSERT INTO board(idx, name, pw, email, title, content, ref, step, b_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 	<sql:param value="${ idx }" />
 	<sql:param value="${ param.re_name }" />
 	<sql:param value="${ param.re_pw }" />
@@ -41,5 +41,5 @@
 	<sql:param value="${ ref }" />
 	<sql:param value="${ step }" />
 	<sql:param value="${ b_order }" />
-	<sql:param value="0" />
 </sql:update>
+<c:redirect url="notice.jsp" />
