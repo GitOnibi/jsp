@@ -6,7 +6,7 @@
 <c:set var="pageView" value="10" />
 <c:set var="pageSkip" value="5" />
 <sql:query var="rs" dataSource="jdbc/OracleDB">
-	SELECT * FROM board ORDER BY idx DESC
+	SELECT * FROM board ORDER BY ref DESC, idx
 </sql:query>
 <c:set var="rowCnt" value="${ rs.rowCount }" />
 <c:choose>
@@ -29,7 +29,7 @@
 <fmt:parseNumber var="pageCnt" integerOnly="true" value="${ pages }"/>
 
 <sql:query var="rs" dataSource="jdbc/OracleDB" startRow="${ ((pageNum - 1) * pageView) }" maxRows="${ pageView }">
-	SELECT * FROM board ORDER BY idx DESC
+	SELECT * FROM board ORDER BY ref DESC, idx
 </sql:query>
 
 <!DOCTYPE html>

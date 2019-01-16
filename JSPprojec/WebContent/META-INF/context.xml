@@ -8,8 +8,6 @@
 	username="onigawara"
 	password="dbwls12"
 	maxActive="100"
-	maxIdle="20"
-	>
-	
+	maxIdle="20">
 	</Resource>
 </Context>

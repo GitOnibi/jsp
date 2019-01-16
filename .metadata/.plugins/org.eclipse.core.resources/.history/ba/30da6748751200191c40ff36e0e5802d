@@ -1,5 +1,0 @@
-@charset "UTF-8";
-.btn {
-	background-color:#efefef;
-	border-radius:5px;	
-}

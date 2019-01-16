@@ -1,0 +1,15 @@
+package com.test;
+
+import java.util.*;
+
+public class calc {
+	
+	public static int sum(List<Integer> num) {
+		int total;
+		for(int i = 0; i < num.size(); i++) {
+			total += num.get(i);
+		}
+		return total;
+	}
+	
+}

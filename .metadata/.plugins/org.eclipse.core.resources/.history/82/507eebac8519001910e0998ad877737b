@@ -1,0 +1,16 @@
+package com.test;
+
+import java.util.*;
+
+public class calc {
+	
+	public static int sum(List<Integer> num) {
+		int total, i;
+		for(int i = 0; i < num.size(); i++) {
+			
+		}
+		
+		return total;
+	}
+	
+}
