@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.test.Animal" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	List<Animal> aniList = new ArrayList<Animal>();
+	aniList.add( new Animal("개", 4) );
+	aniList.add( new Animal("문어", 8) );
+	aniList.add( new Animal("오징어", 10) );
+	aniList.add( new Animal("고양이", 4) );
+	aniList.add( new Animal("참새", 2) );
+	
+	request.setAttribute("aniList", aniList);
+%>
+
+${ list = aniList.stream().filter(a -> a.leg >= 4).map(a -> a.kind).toList();'' }
+${ list }
+${ list = aniList.stream().sorted((a,b) -> a.leg.compareTo(b.leg)).map(a -> a.kind).toList();'' }
+${ list }
