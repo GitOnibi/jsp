@@ -1,9 +1,0 @@
-package com.test;
-
-public class calc {
-	
-	public static int sum() {
-		return 1;
-	}
-	
-}
