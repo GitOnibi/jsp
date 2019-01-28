@@ -11,10 +11,12 @@
 </script>
 </head>
 <body>
-	<form action="mem_control" method="GET">
-		첫번째 숫자 : <input type="text" name="num1"/><br />
-		계산식 : <input type="text" name="op"/><br />
-		두번째 숫자 : <input type="text" name="num2"/><br />
+	<form action="Student" method="GET">
+		학과명 : <input type="text" name="dep_name"/><br />
+		학생이름 : <input type="text" name="stu_name"/><br />
+		첫번째 성적 : <input type="text" name="score1"/><br />
+		두번째 성적 : <input type="text" name="score2"/><br />
+		세번째 성적 : <input type="text" name="score3"/><br />
 		<input type="submit" value="제출"/>
 	</form>
 </body>
