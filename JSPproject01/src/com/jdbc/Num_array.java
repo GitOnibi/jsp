@@ -29,22 +29,26 @@ public class Num_array extends HttpServlet {
 		Random rand = new Random();
 		
 		int[] ranArray = new int[10];
+		
 		for(int i = 0; i < ranArray.length; i++) {
 			ranArray[i] = rand.nextInt(100) + 1;
 		}
+		
+		int cnt = 0;
+		
 		for(int i = 0; i < ranArray.length; i++) {
-			if(ranArray[i] % 2 == 0) {
-				continue;
-			} else {
-				i = 0;
+			if(ranArray[i] % 2 != 0) {
+				ranArray[i] = rand.nextInt(100) + 1;
+				i -= 1;
+				cnt += 1;
 			}
 		}
+		
 		out.print("배열의 모든 수가 짝수 입니다.");
 		request.setAttribute("ranArray", ranArray);
+		request.setAttribute("cnt", cnt);
 		RequestDispatcher dsp = request.getRequestDispatcher("view1.jsp");
 		dsp.forward(request, response);
-		
-		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

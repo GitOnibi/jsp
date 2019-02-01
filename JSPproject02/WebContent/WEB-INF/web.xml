@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>JSPproject02</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>company</param-name>
+    <param-value>기아</param-value>
+  </context-param>
+  <context-param>
+    <param-name>notebook</param-name>
+    <param-value>삼성</param-value>
+  </context-param>
+  <context-param>
+    <param-name>man</param-name>
+    <param-value>용지혁</param-value>
+  </context-param>
+  
+  <!-- 
+  <servlet>
+  	<servlet-name>InitParam</servlet-name>
+  	<servlet-class>com.svt.InitParam</servlet-class>
+  	<init-param>
+  		<param-name>title</param-name>
+  		<param-value>개미</param-value>
+  	</init-param>
+	<init-param>
+  		<param-name>writer</param-name>
+  		<param-value>베르베르</param-value>
+  	</init-param>
+	<init-param>
+  		<param-name>year</param-name>
+  		<param-value>2000</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>InitParam</servlet-name>
+  	<url-pattern>/param.do</url-pattern>
+  </servlet-mapping>
+   -->
+   
+  <servlet>
+    <servlet-name>ConnectPool</servlet-name>
+    <servlet-class>com.svt.CPinit</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>std</servlet-name>
+    <servlet-class>com.svt.Info_control</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>std</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>

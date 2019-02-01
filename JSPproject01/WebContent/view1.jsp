@@ -4,9 +4,12 @@
 	int[] arr = new int[10];	
 	arr = (int[])request.getAttribute("ranArray");
 	
+	int cnt = (int)request.getAttribute("cnt");
+	
 	for(int i = 0; i < 10; i++) {
 		out.println(arr[i] + "<br />");
 	}
+	out.println("cnt : " + cnt);
 %>
 
 <!DOCTYPE html>
