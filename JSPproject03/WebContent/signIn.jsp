@@ -6,7 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="Login_signIn.do" method="GET">
+	<form action="Login_check.do" method="POST">
+		<input type="hidden" name="cmd" value="signin"/>
 		사용할 아이디 : <input type="text" name="id"/><br />
 		사용할 패스워드 : <input type="text" name="pw"/>
 		<input type="submit" value="가입하기"/>
