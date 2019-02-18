@@ -9,6 +9,6 @@ public class BoardHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("part", "게시판입니다");
-		return "/board.jsp";
+		return "board.jsp";
 	}
 }

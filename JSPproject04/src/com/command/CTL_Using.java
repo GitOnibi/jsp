@@ -25,11 +25,11 @@ public class CTL_Using extends HttpServlet {
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		String file = getInitParameter("file");
 		Properties prop = new Properties();
-		String filepath = getServletContext().getRealPath(file);
+		//String file = getInitParameter("file");
+		//String filepath = getServletContext().getRealPath(file);
 		
-		try (FileReader fr = new FileReader(filepath)){
+		try (FileReader fr = new FileReader("C:\\Users\\105\\eclipse-workspace\\JSPproject04\\WebContent\\WEB-INF\\command.properties")){
 			prop.load(fr);
 		} catch(IOException e) {
 			throw new ServletException(e);
@@ -58,17 +58,15 @@ public class CTL_Using extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
+	
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cmd = request.getRequestURI();
-		if( cmd.indexOf(request.getContextPath()) == 0) {
-			cmd = cmd.substring(request.getContextPath().length());
-		}
-		Handler hd = HandlerMap.get(cmd);
-		if(hd == null) {
+		String cmd = request.getParameter("cmd");
+		Handler hd = HandlerMap.get(cmd); // cmd 를 키 값으로 랜들러를 가져와 넣음
+		if(hd == null) { // 값이 없으면 널핸들러를 넣어서 예외처리
 			hd = new NullHandler();
 		}
 		String view = null;
-		try {
+		try { // 오버라이된 추상메서드가 실행
 			view = hd.process(request, response);
 		} catch(Exception e) {
 			throw new ServletException(e);
