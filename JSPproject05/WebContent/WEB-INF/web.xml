@@ -10,12 +10,12 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
-  	<servlet-name>CTL</servlet-name>
-  	<servlet-class>com.command.Login_CTL</servlet-class>
-  	<load-on-startup>2</load-on-startup>
+    <servlet-name>CTL</servlet-name>
+    <servlet-class>com.command.Control_Servlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>CTL</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+    <servlet-name>CTL</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
 </web-app>

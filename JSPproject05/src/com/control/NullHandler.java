@@ -1,4 +1,4 @@
-package com.command;
+package com.control;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class NullHandler implements Handler {
 	@Override
-	public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		return null;
 	}
