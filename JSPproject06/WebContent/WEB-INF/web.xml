@@ -20,6 +20,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>notice</servlet-name>
-  	<url-pattern>/notice/*.do</url-pattern>
+  	<url-pattern>/notice/</url-pattern>
   </servlet-mapping>
 </web-app>
