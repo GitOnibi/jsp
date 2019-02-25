@@ -10,8 +10,8 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>member</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+    <servlet-name>member</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>notice</servlet-name>
@@ -19,7 +19,19 @@
     <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>notice</servlet-name>
-  	<url-pattern>/notice/*</url-pattern>
+    <servlet-name>notice</servlet-name>
+    <url-pattern>/notice/*</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>MyFilter</filter-name>
+    <filter-class>com.control.My_filter</filter-class>
+    <init-param>
+    	<param-name>encoding</param-name>
+    	<param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>MyFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
 </web-app>
