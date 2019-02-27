@@ -1,72 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%
-	String id = request.getParameter("id");
-	if(id != null) {
-		out.println(id);
-	} else {
-		out.println("비었어");
-	}
+	String msg = (String)request.getAttribute("msg");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<style>
-		* {margin:0; padding:0;}
-		a {text-decoration:none;}
-		li {list-style:none;}
-		
-		#wrap {
-			width:100%;
-			height:100%;
-		}
-		#header {
-			width:100%;
-			height:auto;
-		}
-		#login {
-			width:20%;
-			float:left;
-		}
-		#loginForem {
-			display:block;
-			width:100%;
-		}
-		#gnbWrap {
-			width:80%;
-			float:left;
-		}
-		#gnb {
-			width:100%;
-			overflow:hidden;
-		}
-		#gnb li {
-			width:25%;
-			float:left;
-		}
-	</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	* {margin:0; padding:0;}
+	html, body{width:100%; height:100%;}
+	a {text-decoration:none;}
+	ul {list-style:none;}
+	#hd {clear:both;width:100%;}
+	.gnb {clear:both; over-flow:hidden; width:100%;}
+	.gnb li {float:left; width:25%; text-align:center;}
+	
+	#member{with:25%; float:left; border:1px solid #efefef; box-sizing:border-box; height:600px;}
+	
+	#content{width:75%; float:right; border:1px solid #efefef; box-sizing:border-box; height:600px;}
+</style>
 </head>
 <body>
 	<div id="wrap">
-		<header id="header">
-			<div id="login">
-				<jsp:include page="loginForm.jsp" />
-			</div>
-			<nav id="gnbWrap">
-				<ul id="gnb">
-					<li><a href="index.jsp">home</a></li>
-					<li><a href="index.jsp?cmd='board'">게시판</a></li>
-					<li><a href="index.jsp?cmd='reference'">자료실</a></li>
-					<li><a href="index.jsp?cmd='service'">고객센터</a></li>
-				</ul>
-			</nav>
+		<header id="hd">
+			<jsp:include page="gnb.jsp" />
 		</header>
-		<div id="contentsWrap">
-			
+		<div id="member">
+			<jsp:include page="loginForm.jsp" />
+		</div>
+		<div id="contents">
+		<%
+			if( msg != null) {
+				out.println(msg);
+			} else {
+				out.println("msg 비어있음");
+			}
+		%>
 		</div>
 	</div>
 </body>
