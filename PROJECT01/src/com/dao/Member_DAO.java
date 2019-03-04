@@ -15,16 +15,17 @@ public class Member_DAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	private String driver = "jdbc:apache:commons:dbcp:pr01";
+	private String driver;
 	
 	public Member_DAO() {
 		
 	}
 	
 	public Member getMemberId(String id) throws SQLException, IOException {
+		System.out.println("ddd");
 		String sql = "SELECT * FROM member WHERE member_id = '" + id + "'";
 		try {
-			conn	= DriverManager.getConnection(driver);
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
 			pstmt	=  conn.prepareStatement(sql);
 			// SELECT * FROM member WHERE member_id = ?
 			// pstmt.setString(1, id);

@@ -45,6 +45,7 @@ public class Connection_Pool {
 			PoolingDriver driver = (PoolingDriver)DriverManager.getDriver("jdbc:apache:commons:dbcp:");
 			driver.registerPool("pr01", connpool);
 		} catch (Exception e) {
+			System.out.println(e);
 			e.printStackTrace();
 		}
 	}

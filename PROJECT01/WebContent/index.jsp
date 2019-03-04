@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function join_write() {
-		location.href = "join_write.jsp";
+		location.href = "join.do";
 	}
 </script>
 </head>

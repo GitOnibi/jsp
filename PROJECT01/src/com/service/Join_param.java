@@ -50,10 +50,10 @@ public class Join_param {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getCnf_pw() {
+	public String getPw_cnf() {
 		return cnf_pw;
 	}
-	public void setCnf_pw(String cnf_pw) {
+	public void setPw_cnf(String cnf_pw) {
 		this.cnf_pw = cnf_pw;
 	}
 	public String getBirth() {
