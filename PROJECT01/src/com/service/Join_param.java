@@ -14,13 +14,14 @@ public class Join_param {
 	}
 	
 	public void value_empty(Map<String, Boolean> empty) {
+		System.out.println("- Join_param value_empty");
 		check(empty, id, "id");
 		check(empty, name, "name");
 		check(empty, password, "password");
 		check(empty, cnf_pw, "cnf_pw");
 		if(empty.containsKey("cnf_pw")) {
 			if(!password_cnf()) {
-				empty.put("Not Match", Boolean.TRUE);
+				empty.put("NotMatch", Boolean.TRUE);
 			}
 		}
 		check(empty, birth, "birth");

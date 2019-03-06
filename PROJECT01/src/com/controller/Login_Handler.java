@@ -8,31 +8,45 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.service.User_param;
-import com.service.User_service;
+import com.model.User;
+import com.service.Login_service;
 
-public class Login_Handler implements Main_Handler {
-	private String view = "/WEB-INF/index.jsp";
-	User_service us = new User_service();
+public class Login_Handler implements Main_Handler{
+	private String view = "/WEB-INF/show/login.jsp";
+	private Login_service ls = new Login_service();
 	
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User_param up = new User_param();
-		up.setId(request.getParameter("id"));
-		up.setName(request.getParameter("name"));
-		
-		Map<String, Boolean> err = new HashMap<String, Boolean>();
-		request.setAttribute("err", err);
-		up.value_empty(err);
-		if(!err.isEmpty()) {
+		System.out.println("- Login_Handler action");
+		if(request.getMethod().equalsIgnoreCase("GET")) {
 			return view;
 		}
-		try {
-			us.login(up);
-			return "/WEB-INF/show/login_ok.jsp";
-		} catch(Exception e) {
-			err.put("dup", Boolean.TRUE);
-			return view;
+		if(request.getMethod().equalsIgnoreCase("POST")) {
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			
+			Map<String, Boolean> err = new HashMap<String, Boolean>();
+			request.setAttribute("err", err);
+			
+			if(id == null || id.isEmpty()) {
+				err.put("id", Boolean.TRUE);
+			}
+			if(password == null || password.isEmpty() ) {
+				err.put("password", Boolean.TRUE);
+			}
+			if(!err.isEmpty()) {
+				return view;
+			}
+			try {
+				User data = ls.login(id, password);
+				request.getSession().setAttribute("user", data);
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
+				return null;
+			} catch(RuntimeException e) {
+				err.put("NotMatch", Boolean.TRUE);
+				return view;
+			}
 		}
+		return view;
 	}
 }

@@ -8,28 +8,30 @@ import com.dao.Member_DAO;
 import com.model.Member;
 
 public class Join_service {
-	Member_DAO mdao = new Member_DAO();
+	private Member_DAO mdao = new Member_DAO();
 	
 	public void join(Join_param jp) {
+		System.out.println("- Join_service join");
 		try {
 			Member data = mdao.getMemberId(jp.getId());
 			if(data != null) {
-				// 아이디 중복 시
+				System.out.println("- id data not null");
+				throw new RuntimeException();
 			}
 			mdao.insert(
 				new Member(
-					jp.getId(),
-					jp.getName(),
-					jp.getPassword(),
-					new Date(),
-					jp.getBirth()
-				)
-			);
+						jp.getId(),
+						jp.getName(),
+						jp.getPassword(),
+						new Date(),
+						jp.getBirth()
+						)
+				);
+		System.out.println("- id insert complate");
 		} catch(SQLException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
 }

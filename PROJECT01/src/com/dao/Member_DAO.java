@@ -15,23 +15,16 @@ public class Member_DAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	private String driver;
-	
-	public Member_DAO() {
-		
-	}
 	
 	public Member getMemberId(String id) throws SQLException, IOException {
-		System.out.println("ddd");
+		System.out.println("- Member_DAO getMemberId");
 		String sql = "SELECT * FROM member WHERE member_id = '" + id + "'";
 		try {
-			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
-			pstmt	=  conn.prepareStatement(sql);
-			// SELECT * FROM member WHERE member_id = ?
-			// pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
+			conn		= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
+			pstmt		=  conn.prepareStatement(sql);
+			rs			= pstmt.executeQuery();
 			
-			Member data = null;
+			Member data	= null;
 			
 			if(rs.next()) {
 				data = new Member(
@@ -51,9 +44,10 @@ public class Member_DAO {
 	}
 	
 	public void insert(Member data) throws SQLException, IOException {
+		System.out.println("- Member_DAO insert");
 		String sql	= "INSERT INTO member(member_id, name, password, ndate, birth) VALUES(?, ?, ?, ?, ?)";
+		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
 		try {
-			conn = DriverManager.getConnection(driver);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(	1, data.getId());
 			pstmt.setString(	2, data.getName());

@@ -17,6 +17,7 @@ public class Join_Handler implements Main_Handler {
 	
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("- Join_Handler action");
 		Join_param jp = new Join_param();
 		jp.setId(request.getParameter("id"));
 		jp.setPassword(request.getParameter("pw"));

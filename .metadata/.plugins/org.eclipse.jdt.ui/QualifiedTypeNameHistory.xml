@@ -44,4 +44,6 @@
 <fullyQualifiedTypeName name="com.service.User_service"/>
 <fullyQualifiedTypeName name="org.apache.catalina.servlet4preview.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="com.service.Login_service"/>
+<fullyQualifiedTypeName name="com.model.User"/>
 </qualifiedTypeNameHistroy>
