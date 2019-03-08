@@ -20,13 +20,13 @@ public class Join_service {
 			}
 			mdao.insert(
 				new Member(
-						jp.getId(),
-						jp.getName(),
-						jp.getPassword(),
-						new Date(),
-						jp.getBirth()
-						)
-				);
+					jp.getId(),
+					jp.getName(),
+					jp.getPassword(),
+					new Date(),
+					jp.getBirth()
+				)
+			);
 		System.out.println("- id insert complate");
 		} catch(SQLException e) {
 			throw new RuntimeException(e);

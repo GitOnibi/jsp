@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="check" key="selection"/>
+		<item value="pw" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="user_pw"/>
+			<item value="user_id"/>
+			<item value="password"/>
 			<item value="check"/>
 			<item value="LoginCheck"/>
 			<item value="pooled"/>
@@ -20,11 +23,10 @@
 			<item value="font"/>
 			<item value="dataSource"/>
 			<item value="pr01"/>
-			<item value="pro01"/>
-			<item value="bingoArr"/>
-			<item value="ball"/>
 		</list>
 		<list key="replacehistory">
+			<item value="pw"/>
+			<item value="id"/>
 			<item value="p1"/>
 			<item value="pr"/>
 			<item value="pr01"/>
