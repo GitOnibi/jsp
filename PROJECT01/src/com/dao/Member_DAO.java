@@ -57,4 +57,15 @@ public class Member_DAO {
 			pstmt.executeQuery();
 		} finally {}
 	}
+	
+	public void update_pw(Member mem) throws SQLException, IOException {
+		System.out.println("- Member_DAO update_pw");
+		String sql = "UPDATE member SET password = '" + mem.getPassword()  + "' WHERE member_id = '" + mem.getId() + "'";
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
+			pstmt	=  conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+		} finally {}
+	}
 }

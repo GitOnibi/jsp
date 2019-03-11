@@ -21,6 +21,10 @@ public class Member {
 		return password.equals(pw);
 	}
 	
+	public void chg_password(String npwd) {
+		this.password = npwd;
+	}
+	
 	public String getId() {
 		return id;
 	}

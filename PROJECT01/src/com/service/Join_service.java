@@ -15,7 +15,6 @@ public class Join_service {
 		try {
 			Member data = mdao.getMemberId(jp.getId());
 			if(data != null) {
-				System.out.println("- id data not null");
 				throw new RuntimeException();
 			}
 			mdao.insert(
@@ -28,6 +27,20 @@ public class Join_service {
 				)
 			);
 		System.out.println("- id insert complate");
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void idCheck(Join_param jp) {
+		try {
+			Member data = mdao.getMemberId(jp.getId());
+			if(data != null) {
+				System.out.println("- id data not null");
+				throw new RuntimeException();
+			}
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		} catch(IOException e) {

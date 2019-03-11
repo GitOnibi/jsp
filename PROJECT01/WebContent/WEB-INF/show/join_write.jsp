@@ -7,14 +7,20 @@
 <meta charset="UTF-8">
 <title>join us!</title>
 <script type="text/javascript">
-	funtion check() {
-		location.href = "join.do";
+	function check() {
+		var id = document.getElementById("userId").value;
+		if(id == null) {
+			alert("id를 입력하세요");
+			return false;
+		} else {
+			location.href = "idcheck.do?id=" + id;
+		}
 	}
 </script>
 </head>
 <body>
 	<form action="join.do" method="post">
-		아이디 : <input type="text" name="id"/><input type="button" value="중복체크" onclick="check()"/>
+		아이디 : <input type="text" name="id" id="userId"/><input type="button" value="중복체크" onclick="check()"/>
 		<c:if test="${ err.id }" >아이디를 입력하세요!</c:if>
 		<c:if test="${ err.dup }" >이미 사용중인 아이디 입니다!</c:if>
 		<br />
