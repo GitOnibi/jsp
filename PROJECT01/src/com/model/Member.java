@@ -25,6 +25,11 @@ public class Member {
 		this.password = npwd;
 	}
 	
+	public void chg_info(String name, String birth) {
+		this.name = name;
+		this.birth = birth;
+	}
+	
 	public String getId() {
 		return id;
 	}

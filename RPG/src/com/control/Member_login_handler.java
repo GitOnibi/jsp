@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.service.Login_service;
 import com.bean.User;
 
-public class Login_handler implements Main_handler {
+public class Member_login_handler implements Main_handler {
 	private String view = "/WEB-INF/view/member_login.jsp";
 	Login_service ls = new Login_service();
 	

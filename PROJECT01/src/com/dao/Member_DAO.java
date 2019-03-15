@@ -46,8 +46,8 @@ public class Member_DAO {
 	public void insert(Member data) throws SQLException, IOException {
 		System.out.println("- Member_DAO insert");
 		String sql	= "INSERT INTO member(member_id, name, password, ndate, birth) VALUES(?, ?, ?, ?, ?)";
-		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
 		try {
+			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(	1, data.getId());
 			pstmt.setString(	2, data.getName());
@@ -66,6 +66,19 @@ public class Member_DAO {
 			pstmt	=  conn.prepareStatement(sql);
 			pstmt.executeUpdate();
 			
+		} finally {}
+	}
+	
+	public void update_info(Member mem) throws SQLException, IOException {
+		System.out.println("- Member_DAO update_info");
+		String sql = "UPDATE member SET name = ?, birth = ? WHERE member_id = ?";
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem.getName());
+			pstmt.setString(2, mem.getBirth());
+			pstmt.setString(3, mem.getId());
+			pstmt.executeUpdate();
 		} finally {}
 	}
 }

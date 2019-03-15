@@ -6,6 +6,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="wrap">
+		<header id="header">
+			<jsp:include page="gnb.jsp" />
+		</header>
+		<div id="contents">
 
+		</div>
+		<div id="footer">
+		
+		</div>
+	</div>
 </body>
 </html>

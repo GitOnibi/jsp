@@ -1,40 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.bean.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	User user	= (User)session.getAttribute("user");
-	String id	= (String)user.getId();
-%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/reset.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="wrap">
-		<header id="header">
-		
-		</header>
 		<div id="contents">
-			<c:choose>
-				<c:when test="${ id != null }">
-					${ id } 님 반갑습니다.
-					<a href="">게임시작</a>
-					<a href="">로그아웃</a>
-				</c:when>
-				<c:otherwise>
-					<form action="login.do">
-						아이디 : <input type="text" name="id"/>
-						패스워드 : <input type="text" name="pw"/>
-						<input type="submit" value="로그인"/><input type="button" value="회원가입"/>
-					</form>
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<div id="footer">
-		
+			<form action="member_login.do" method="POST">
+				<label for="user_id">아이디</label>
+				<input type="text" name="user_id" id="user_id" />
+				<label for="user_pw">패스워드</label>
+				<input type="text" name="user_pw" id="user_pw" />
+				<input type="submit" value="로그인" class="btn_m"/><a href="member_join.jsp" class="btn_m">회원가입</a>
+			</form>
 		</div>
 	</div>
 </body>

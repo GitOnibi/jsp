@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.service.Join_param;
 import com.service.Join_service;
 
-public class Join_handler implements Main_handler {
+public class Member_join_handler implements Main_handler {
 	private String view = "/WEB-INF/view/member_join.jsp";
 	Join_service js = new Join_service();
 	

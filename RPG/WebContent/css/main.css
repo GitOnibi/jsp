@@ -1,0 +1,27 @@
+/* button */
+.btn_s{box-sizing:border-box;padding:5px;border-radius:5px;background-color:lightblue;color:#fff;}
+.btn_m{box-sizing:border-box;padding:10px;border-radius:5px;background-color:lightblue;color:#fff;}
+.btn_l{box-sizing:border-box;padding:15px;border-radius:5px;background-color:lightblue;color:#fff;}
+
+/* background-color */
+.bg_r {background-color:red;}
+.bg_dr{background-color:darkred;}
+.bg_g{background-color:green;}
+.bg_b{background-color:blue;}
+.bg_lb{}
+
+/* margin */
+.m5{margin:5px;}
+.m10{margin:10px;}
+
+/* padding */
+.p5{padding:5px;}
+.p10{padding:10px;}
+
+/* text-align */
+.tac{text-align:center;}
+.tal{text-align:left;}
+.tar{text-align:right;}
+
+/* algin */
+.m0a{margin:0 auto;}

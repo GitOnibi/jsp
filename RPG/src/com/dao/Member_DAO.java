@@ -18,11 +18,13 @@ public class Member_DAO {
 	
 	public Member getMemberId(String id) throws SQLException, IOException {
 		System.out.println("- Member_DAO getMemberId");
-		String sql = "SELECT * FROM member WHERE member_id = '" + id + "'";
+		String sql = "SELECT * FROM member WHERE member_id = ?";
+		
 		try {
-			conn		= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
-			pstmt		=  conn.prepareStatement(sql);
-			rs			= pstmt.executeQuery();
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
 			
 			Member data	= null;
 			
@@ -35,6 +37,7 @@ public class Member_DAO {
 						rs.getString("birth")
 						);
 			}
+			
 			return data;
 		} finally {}
 	}
@@ -46,15 +49,19 @@ public class Member_DAO {
 	public void insert(Member data) throws SQLException, IOException {
 		System.out.println("- Member_DAO insert");
 		String sql	= "INSERT INTO member(member_id, name, password, ndate, birth) VALUES(?, ?, ?, ?, ?)";
-		conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(	1, data.getId());
-			pstmt.setString(	2, data.getName());
-			pstmt.setString(	3, data.getPw());
-			pstmt.setTimestamp(	4, new Timestamp(data.getDate().getTime()));
-			pstmt.setString(	5, data.getBirth());
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, data.getId());
+			pstmt.setString(2, data.getName());
+			pstmt.setString(3, data.getPw());
+			pstmt.setTimestamp(4, new Timestamp(data.getDate().getTime()));
+			pstmt.setString(5, data.getBirth());
 			pstmt.executeQuery();
 		} finally {}
+	}
+	
+	public void update() {
+		
 	}
 }

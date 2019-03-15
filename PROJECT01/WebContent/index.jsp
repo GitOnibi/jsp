@@ -18,8 +18,8 @@
 </head>
 <body>
 <l:has_login>
-	${user.id } 님 반갑습니다!<br /><a href="logout.do">로그아웃</a>
-	<a href="changePw.do">패스워드변경</a>
+	${user.id} 님 반갑습니다!<br /><a href="logout.do">로그아웃</a>
+	<a href="changePw.do">&lt;패스워드변경&gt;</a><a href="modify.do">&lt;개인정보변경&gt;</a>
 </l:has_login>
 <l:not_login>
 	<form action="login.do" method="post">

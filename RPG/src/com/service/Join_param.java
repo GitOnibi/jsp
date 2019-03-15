@@ -4,11 +4,11 @@ public class Join_param {
 	private String id;
 	private String name;
 	private String pw;
-	private String cnf_pw;
+	private String pw_cnf;
 	private String birth;
 	
 	public boolean  password_cnf() {
-		return pw != null && pw.equals(cnf_pw);
+		return pw != null && pw.equals(pw_cnf);
 	}
 
 	public String getId() {
@@ -35,12 +35,12 @@ public class Join_param {
 		this.pw = pw;
 	}
 
-	public String getCnf_pw() {
-		return cnf_pw;
+	public String getPw_cnf() {
+		return pw_cnf;
 	}
 
-	public void setCnf_pw(String cnf_pw) {
-		this.cnf_pw = cnf_pw;
+	public void setPw_cnf(String pw_cnf) {
+		this.pw_cnf = pw_cnf;
 	}
 
 	public String getBirth() {
