@@ -13,13 +13,8 @@
 <body>
 	<div id="wrap">
 		<div id="contents">
-			<form action="member_login.do" method="POST">
-				<label for="user_id">아이디</label>
-				<input type="text" name="user_id" id="user_id" />
-				<label for="user_pw">패스워드</label>
-				<input type="text" name="user_pw" id="user_pw" />
-				<input type="submit" value="로그인" class="btn_m"/><a href="member_join.jsp" class="btn_m">회원가입</a>
-			</form>
+			<a href="goto_login.do">게임시작하기</a><br />
+			<a href="goto_join.do">회원가입하기</a>
 		</div>
 	</div>
 </body>

@@ -8,27 +8,23 @@ import com.bean.User;
 import com.dao.Member_DAO;
 
 public class Login_service {
-	Member_DAO mdao = new Member_DAO();
+	private Member_DAO mdao = new Member_DAO();
 	
-	public User login(String id, String pw) throws IOException {
+	public com.bean.User login(String id, String pw) throws IOException {
 		System.out.println("- Login_service login");
 		try {
-			User user		= new User();
-			Member member	= mdao.getMemberId(id);
-			
-			if(member == null) {
+			User data = new User();
+			Member mb = mdao.getMemberId(id);
+			if(mb == null) {
 				throw new RuntimeException();
 			}
-			
-			if(!member.matchPW(pw)) {
+			if(!mb.matchPW(pw)) {
 				throw new RuntimeException();
 			}
-			
-			user.setId(id);
-			user.setName(member.getName());
-			
-			return user;
-		} catch (SQLException e) {
+			data.setId(id);
+			data.setName(mb.getName());
+			return data;
+		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

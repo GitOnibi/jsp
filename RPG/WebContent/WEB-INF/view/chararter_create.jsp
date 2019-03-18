@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<a href="character_select.do">돌아가기</a>
 </body>
 </html>

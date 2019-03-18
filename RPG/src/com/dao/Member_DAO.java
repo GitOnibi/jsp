@@ -18,13 +18,12 @@ public class Member_DAO {
 	
 	public Member getMemberId(String id) throws SQLException, IOException {
 		System.out.println("- Member_DAO getMemberId");
-		String sql = "SELECT * FROM member WHERE member_id = ?";
+		String sql = "SELECT * FROM member WHERE member_id = '" + id + "'";
 		
 		try {
-			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
-			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeQuery();
+			conn		= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt		= conn.prepareStatement(sql);
+			rs			= pstmt.executeQuery();
 			
 			Member data	= null;
 			
@@ -50,7 +49,7 @@ public class Member_DAO {
 		System.out.println("- Member_DAO insert");
 		String sql	= "INSERT INTO member(member_id, name, password, ndate, birth) VALUES(?, ?, ?, ?, ?)";
 		try {
-			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:pr01");
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
 			pstmt.setString(1, data.getId());
 			pstmt.setString(2, data.getName());

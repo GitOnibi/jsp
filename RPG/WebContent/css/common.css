@@ -1,0 +1,24 @@
+/* button */
+
+/* background-color */
+.bg_r {background-color:red;}
+.bg_dr{background-color:darkred;}
+.bg_g{background-color:green;}
+.bg_b{background-color:blue;}
+.bg_lb{}
+
+/* margin */
+.m5{margin:5px;}
+.m10{margin:10px;}
+
+/* padding */
+.p5{padding:5px;}
+.p10{padding:10px;}
+
+/* text-align */
+.tac{text-align:center;}
+.tal{text-align:left;}
+.tar{text-align:right;}
+
+/* algin */
+.m0a{margin:0 auto;}

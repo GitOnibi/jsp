@@ -13,7 +13,13 @@
 <body>
 	<div id="wrap">
 		<div id="contents">
-		
+			<form action="member_login.do" method="POST">
+				<label for="user_id">아이디</label>
+				<input type="text" name="id" id="id" />
+				<label for="user_pw">패스워드</label>
+				<input type="text" name="pw" id="pw" />
+				<input type="submit" value="로그인"/><a href="goto_join.do">회원가입</a>
+			</form>
 		</div>
 	</div>
 </body>

@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="pw_cnf" key="selection"/>
+		<item value="dh" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ah"/>
+			<item value="Admin_handler"/>
+			<item value="mh"/>
+			<item value="Main_handler"/>
 			<item value="cnf_pw"/>
 			<item value="user_pw"/>
 			<item value="user_id"/>
@@ -19,12 +23,13 @@
 			<item value="pageSize"/>
 			<item value="startPage"/>
 			<item value="begin"/>
-			<item value="reqNum =="/>
-			<item value="num"/>
-			<item value="font"/>
-			<item value="dataSource"/>
 		</list>
 		<list key="replacehistory">
+			<item value="dh"/>
+			<item value="Dev_handler"/>
+			<item value="ah"/>
+			<item value=""/>
+			<item value="Admin_handler"/>
 			<item value="pw_cnf"/>
 			<item value="pw"/>
 			<item value="id"/>
@@ -32,7 +37,6 @@
 			<item value="pr"/>
 			<item value="pr01"/>
 			<item value="ball"/>
-			<item value=""/>
 			<item value="node"/>
 			<item value="ch"/>
 		</list>

@@ -13,7 +13,8 @@
 <body>
 	<div id="wrap">
 		<div id="contents">
-		
+			<a href="">개발자로그인</a><br />
+			<a href="">통계보기</a>
 		</div>
 	</div>
 </body>

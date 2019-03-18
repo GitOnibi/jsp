@@ -62,7 +62,7 @@ public class Member_join_handler implements Main_handler {
 			jp.setId(id);
 			jp.setName(name);
 			jp.setPw(pw);
-			jp.setCnf_pw(cnf_pw);
+			jp.setPw_cnf(cnf_pw);
 			jp.setBirth(birth);
 			
 			try {

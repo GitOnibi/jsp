@@ -16,9 +16,25 @@
     <filter-name>CharEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>LoginCheckFilter</filter-name>
+    <filter-class>com.filter.LoginCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginCheckFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>AdminCheckFilter</filter-name>
+    <filter-class>com.filter.AdminCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminCheckFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <servlet>
     <servlet-name>Main_servlet</servlet-name>
-    <servlet-class>com.controller.Main_servlet</servlet-class>
+    <servlet-class>com.control.Main_servlet</servlet-class>
     <init-param>
       <param-name>ConfigFile</param-name>
       <param-value>C:\Users\105\eclipse-workspace\RPG\WebContent\WEB-INF\cmd.properties</param-value>
@@ -26,12 +42,26 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Main_servlet</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+    <servlet-name>Main_servlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Dev_servlet</servlet-name>
+    <servlet-class>com.dev.Admin_servlet</servlet-class>
+    <init-param>
+      <param-name>DevConfigFile</param-name>
+      <param-value>C:\Users\105\eclipse-workspace\RPG\WebContent\WEB-INF\dev.properties</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dev_servlet</servlet-name>
+    <url-pattern>*.dev</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ConnectionPool</servlet-name>
-    <servlet-class>com.control.Connection_Pool</servlet-class>
-    <load-on-startup>2</load-on-startup>
+    <servlet-class>com.dao.Connection_Pool</servlet-class>
+    <load-on-startup>3</load-on-startup>
   </servlet>
+  
 </web-app>
