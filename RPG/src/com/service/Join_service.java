@@ -13,37 +13,18 @@ public class Join_service {
 	public void join(Join_param jp) {
 		System.out.println("- Join_service join");
 		try {
-			Member data = mdao.getMemberId(jp.getId());
+			Member data = mdao.getMemberId(jp.getUser_id());
 			if(data != null) {
 				throw new RuntimeException();
 			}
 			mdao.insert(
 				new Member(
-					jp.getId(),
-					jp.getName(),
-					jp.getPw(),
+					jp.getUser_id(),
+					jp.getUser_pw(),
 					new Date(),
-					jp.getBirth()
+					jp.getUser_email()
 				)
 			);
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void idCheck(Join_param jp) {
-		try {
-			Member data = mdao.getMemberId(jp.getId());
-			if(data != null) {
-				System.out.println("- id data not null");
-				throw new RuntimeException();
-			}
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		} catch(SQLException e) { throw new RuntimeException(e);} catch(IOException e) { throw new RuntimeException(e); }
 	}
 }

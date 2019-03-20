@@ -18,22 +18,18 @@ public class Member_login_handler implements Main_handler {
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("- Member_login_handler action");
 		
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			return view;
-		}
+		if(request.getMethod().equalsIgnoreCase("GET"))  return view;
 		
 		if(request.getMethod().equalsIgnoreCase("POST")) {
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
+			String user_id = request.getParameter("user_id");
+			String user_pw = request.getParameter("user_pw");
 			
 			try {
-				User user = ls.login(id, pw);
+				User user = ls.login(user_id, user_pw);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("character_select.do");
 				return null;
-			} catch(RuntimeException e) {
-				return view;
-			}
+			} catch(RuntimeException e) { return view; }
 		}
 		return view;
 	}

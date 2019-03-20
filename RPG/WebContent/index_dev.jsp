@@ -13,7 +13,7 @@
 <body>
 	<div id="wrap">
 		<div id="contents">
-			<a href="">개발자로그인</a><br />
+			<a href="goto_dev_login.dev">개발자로그인</a><br />
 			<a href="">통계보기</a>
 		</div>
 	</div>

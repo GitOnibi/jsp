@@ -15,12 +15,14 @@
 		<div id="contents">
 			<form action="member_join.do" method="POST">
 				<label for="user_id">아이디</label>
-				<input type="text" name="user_id" id="user_id" /><a href="member_check.do">중복체크</a><br />
+				<input type="text" name="user_id" /><a href="member_check.do">중복체크</a><br />
 				<label for="user_pw">패스워드</label>
-				<input type="text" name="user_pw" id="user_pw" /><br />
-				<label for="user_pw">패스워드확인</label>
-				<input type="text" name="user_pw2" id="user_pw2" /><br /><br />
-				<input type="submit" value="가입하기"/>
+				<input type="password" name="user_pw" /><br />
+				<label for="user_pw_cnf">패스워드확인</label>
+				<input type="password" name="user_pw_cnf" /><br /><br />
+				<label for="user_email">이메일</label>
+				<input type="text" name="user_email" /><br /><br />
+				<input type="submit" value="가입하기"/><a href="member_login.do">돌아가기</a>
 			</form>
 		</div>
 	</div>

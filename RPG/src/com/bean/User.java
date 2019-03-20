@@ -1,18 +1,19 @@
 package com.bean;
 
 public class User {
-	private String id;
-	private String name;
-	public String getId() {
-		return id;
+	private String user_id;
+	private String user_email;
+	
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getName() {
-		return name;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 }

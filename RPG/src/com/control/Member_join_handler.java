@@ -24,52 +24,21 @@ public class Member_join_handler implements Main_handler {
 		}
 		
 		if(request.getMethod().equalsIgnoreCase("POST")) {
-			String id		= request.getParameter("id");
-			String pw		= request.getParameter("pw");
-			String name		= request.getParameter("name");
-			String cnf_pw	= request.getParameter("cnf_pw");
-			String birth	= request.getParameter("birth");
-			
-			Map<String, Boolean> empty_ck = new HashMap<>();
-			
-			if(id == null || id.isEmpty()) {
-				empty_ck.put("empty_id", Boolean.TRUE);
-			}
-			
-			if(pw == null || pw.isEmpty()) {
-				empty_ck.put("empty_pw", Boolean.TRUE);
-			}
-			
-			if(name == null || name.isEmpty()) {
-				empty_ck.put("empty_name", Boolean.TRUE);
-			}
-			
-			if(cnf_pw == null || cnf_pw.isEmpty()) {
-				empty_ck.put("empty_cnf_pw", Boolean.TRUE);
-			}
-			
-			if(birth == null || birth.isEmpty()) {
-				empty_ck.put("empty_birth", Boolean.TRUE);
-			}
-			
-			if(empty_ck.isEmpty()) {
-				return view;
-			}
-			
-			request.setAttribute("empty_ck", empty_ck);
+			String user_id		= request.getParameter("user_id");
+			String user_pw		= request.getParameter("user_pw");
+			String user_pw_cnf	= request.getParameter("user_pw_cnf");
+			String user_email	= request.getParameter("user_email");
 			
 			Join_param jp = new Join_param();
-			jp.setId(id);
-			jp.setName(name);
-			jp.setPw(pw);
-			jp.setPw_cnf(cnf_pw);
-			jp.setBirth(birth);
+			jp.setUser_id(user_id);
+			jp.setUser_pw(user_pw);
+			jp.setUser_pw_cnf(user_pw_cnf);
+			jp.setUser_email(user_email);
 			
 			try {
 				js.join(jp);
 				return "/WEB-INF/view/member_join_ok.jsp";
 			} catch(RuntimeException e) {
-				empty_ck.put("exception", Boolean.TRUE);
 				return view;
 			}
 		}

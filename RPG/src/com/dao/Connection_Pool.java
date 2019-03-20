@@ -26,7 +26,7 @@ public class Connection_Pool extends HttpServlet {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch(ClassNotFoundException e ) {
-			throw new RuntimeException("driver 로드실패", e); 
+			throw new RuntimeException("driver load fail", e); 
 		}
 	}
 	

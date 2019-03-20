@@ -20,15 +20,17 @@ public class LoginCheckFilter implements Filter {
 	public void destroy() {}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest req	= (HttpServletRequest)request;
 		HttpSession session		= req.getSession();
 		
 		if(session == null || session.getAttribute("user") == null) {
 			HttpServletResponse res = (HttpServletResponse)response;
-			res.sendRedirect(req.getContextPath() + "/login.do");
+			res.sendRedirect(req.getContextPath() + "/index.jsp");
 		} else {
 			chain.doFilter(request, response);
 		}
+		
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {}

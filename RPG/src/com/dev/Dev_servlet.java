@@ -55,7 +55,7 @@ public class Dev_servlet extends HttpServlet {
 	}
 	
 	private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("- Admin_servlet action");
+		System.out.println("- Dev_servlet action");
 		String uri = request.getRequestURI();
 		String path = request.getContextPath();
 		String str = uri.substring(path.length() + 1);

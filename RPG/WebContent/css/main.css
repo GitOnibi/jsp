@@ -6,6 +6,18 @@
 #header, #contents, #footer {
 	width:100%;
 	height:auto;
+	postion:relative;
+}
+
+#titleWrap {
+	overflow:hidden;
+	width:100%;
+	height:150px;
+	background-image:url(../images/witcher_01.jpg);
+	background-size:100% auto;
+	background-position:center top;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
 }
 
 #gnbWrap {
@@ -32,4 +44,12 @@
 	color:#fff;
 	border:1px solid #efefef;
 	box-sizing:border-box;
+}
+
+/* item page */
+
+.item_insert, .item_modify, .item_delete {
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.3);
 }

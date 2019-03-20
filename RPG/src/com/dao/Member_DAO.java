@@ -18,49 +18,37 @@ public class Member_DAO {
 	
 	public Member getMemberId(String id) throws SQLException, IOException {
 		System.out.println("- Member_DAO getMemberId");
-		String sql = "SELECT * FROM member WHERE member_id = '" + id + "'";
-		
+		String sql = "SELECT * FROM member WHERE user_id = '" + id + "'";
 		try {
-			conn		= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
-			pstmt		= conn.prepareStatement(sql);
-			rs			= pstmt.executeQuery();
-			
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			rs		= pstmt.executeQuery();
 			Member data	= null;
-			
 			if(rs.next()) {
 				data = new Member(
-						rs.getString("member_id"),
-						rs.getString("name"),
-						rs.getString("password"),
+						rs.getString("user_id"),
+						rs.getString("user_pw"),
 						toDate(rs.getTimestamp("ndate")),
-						rs.getString("birth")
-						);
+						rs.getString("user_email")
+				);
 			}
-			
 			return data;
 		} finally {}
 	}
 	
-	public Date toDate(Timestamp date) {
-		return date == null? null:new Date(date.getTime());
-	}
+	public Date toDate(Timestamp date) { return date == null? null:new Date(date.getTime()); }
 	
 	public void insert(Member data) throws SQLException, IOException {
 		System.out.println("- Member_DAO insert");
-		String sql	= "INSERT INTO member(member_id, name, password, ndate, birth) VALUES(?, ?, ?, ?, ?)";
+		String sql	= "INSERT INTO member(user_id, user_pw, ndate, user_email) VALUES(?, ?, ?, ?)";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1, data.getId());
-			pstmt.setString(2, data.getName());
-			pstmt.setString(3, data.getPw());
-			pstmt.setTimestamp(4, new Timestamp(data.getDate().getTime()));
-			pstmt.setString(5, data.getBirth());
+			pstmt.setString(	1, data.getUser_id());
+			pstmt.setString(	2, data.getUser_pw());
+			pstmt.setTimestamp(	3, new Timestamp(data.getDate().getTime()));
+			pstmt.setString(	4, data.getUser_email());
 			pstmt.executeQuery();
 		} finally {}
-	}
-	
-	public void update() {
-		
 	}
 }

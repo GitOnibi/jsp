@@ -3,52 +3,52 @@ package com.bean;
 import java.util.Date;
 
 public class Member {
-	private String id;
-	private String name;
-	private String pw;
+	private String user_id;
+	private String user_pw;
 	private Date date;
-	private String birth;
+	private String user_email;
 	
-	public Member(String id, String name, String pw, Date date, String birth) {
-		this.id = id;
-		this.name = name;
-		this.pw = pw;
+	public Member(String user_id, String user_pw, Date date, String user_email) {
+		this.user_id = user_id;
+		this.user_pw = user_pw;
 		this.date = date;
-		this.birth = birth;
+		this.user_email = user_email;
 	}
 	
-	public boolean matchPW(String pw) {
-		return pw.equals(pw);
+	public boolean match_pw(String user_pw) {
+		return this.user_pw.equals(user_pw);
 	}
-	
-	public String getId() {
-		return id;
+
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getName() {
-		return name;
+
+	public String getUser_pw() {
+		return user_pw;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
-	public String getPw() {
-		return pw;
-	}
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getBirth() {
-		return birth;
+
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setBirth(String birth) {
-		this.birth = birth;
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
+	
 }
