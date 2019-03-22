@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="false" key="isRegEx"/>
-		<item value="dh" key="selection"/>
+		<item value="true" key="isRegEx"/>
+		<item value="getMob_atk() {" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="get.+()"/>
+			<item value="get.+)"/>
+			<item value="[^mob_.+]"/>
+			<item value="[^&quot;mob_.+&quot;]"/>
+			<item value="&lt;span.+n&gt;"/>
+			<item value="&lt;span"/>
+			<item value="ins_"/>
+			<item value="item_"/>
 			<item value="ah"/>
 			<item value="Admin_handler"/>
 			<item value="mh"/>
@@ -15,20 +23,13 @@
 			<item value="cnf_pw"/>
 			<item value="user_pw"/>
 			<item value="user_id"/>
-			<item value="password"/>
-			<item value="check"/>
-			<item value="LoginCheck"/>
-			<item value="pooled"/>
-			<item value="person"/>
-			<item value="pageSize"/>
-			<item value="startPage"/>
-			<item value="begin"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="mob_"/>
 			<item value="dh"/>
 			<item value="Dev_handler"/>
 			<item value="ah"/>
-			<item value=""/>
 			<item value="Admin_handler"/>
 			<item value="pw_cnf"/>
 			<item value="pw"/>
