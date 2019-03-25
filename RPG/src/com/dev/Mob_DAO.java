@@ -57,7 +57,7 @@ public class Mob_DAO {
 	
 	public void setMob(Mob_bean mb) {
 		System.out.println("- Item_DAO setItem");
-		String sql = "INSERT INTO mob(item_code, item_name, item_atk, item_def, item_opt1, item_opt2, item_opt3, item_opt4, item_opt5, item_sub, item_prop, item_price) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO mob(mob_code, mob_name, mob_lv, mob_str, mob_dex, mob_prop, mob_opt1, mob_opt2, mob_opt3, mob_opt4, mob_opt5, mob_sk1, mob_sk2, mob_sk3, mob_sk4, mob_sk5, mob_sub, mob_atk, mob_def, mob_hp) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
@@ -77,7 +77,7 @@ public class Mob_DAO {
 			pstmt.setInt(	14,	mb.getMob_sk3()		);
 			pstmt.setInt(	15,	mb.getMob_sk4()		);
 			pstmt.setInt(	16,	mb.getMob_sk5()		);
-			pstmt.setString(17,	mb.getMob_sub()	);
+			pstmt.setString(17,	mb.getMob_sub()		);
 			pstmt.setInt(	18,	mb.getMob_atk()		);
 			pstmt.setInt(	19,	mb.getMob_def()		);
 			pstmt.setInt(	20,	mb.getMob_hp()		);
@@ -87,33 +87,41 @@ public class Mob_DAO {
 		}
 	}
 	
-	public void modifyItem(Item_bean ib) {
-		System.out.println("- Item_DAO modifyItem");
-		String sql = "UPDATE item SET item_name = ?, item_atk = ?, item_def = ?, item_opt1 = ?, item_opt2 = ?, item_opt3 = ?, item_opt4 = ?, item_opt5 = ?, item_sub = ?, item_prop = ?, item_price = ? WHERE item_code = ?";
+	public void modifyMob(Mob_bean mb) {
+		System.out.println("- Item_DAO modifyMob");
+		String sql = "UPDATE mob SET mob_name = ?, mob_lv = ?, mob_str = ?, mob_dex = ?, mob_prop = ?, mob_opt1 = ?, mob_opt2 = ?, mob_opt3 = ?, mob_opt4 = ?, mob_opt5 = ?, mob_sk1 = ?, mob_sk2 = ?, mob_sk3 = ?, mob_sk4 = ?, mob_sk5 = ?, mob_sub = ?, mob_atk = ?, mob_def = ?, mob_hp = ? WHERE mob_code = ?";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1,	ib.getItem_name()	);
-			pstmt.setInt(	2,	ib.getItem_atk()	);
-			pstmt.setInt(	3,	ib.getItem_def()	);
-			pstmt.setInt(	4,	ib.getItem_opt1()	);
-			pstmt.setInt(	5,	ib.getItem_opt2()	);
-			pstmt.setInt(	6,	ib.getItem_opt3()	);
-			pstmt.setInt(	7,	ib.getItem_opt4()	);
-			pstmt.setInt(	8,	ib.getItem_opt5()	);
-			pstmt.setString(9,	ib.getItem_sub()	);
-			pstmt.setInt(	10,	ib.getItem_prop()	);
-			pstmt.setInt(	11,	ib.getItem_price()	);
-			pstmt.setInt(	12,	ib.getItem_code()	);
-			pstmt.executeUpdate();
+			pstmt.setString(1,	mb.getMob_name()	);
+			pstmt.setInt(	2,	mb.getMob_lv() 		);
+			pstmt.setInt(	3,	mb.getMob_str()		);
+			pstmt.setInt(	4,	mb.getMob_dex()		);
+			pstmt.setInt(	5,	mb.getMob_prop()	);
+			pstmt.setInt(	6,	mb.getMob_opt1()	);
+			pstmt.setInt(	7,	mb.getMob_opt2()	);
+			pstmt.setInt(	8,	mb.getMob_opt3()	);
+			pstmt.setInt(	9,	mb.getMob_opt4()	);
+			pstmt.setInt(	10,	mb.getMob_opt5()	);
+			pstmt.setInt(	11,	mb.getMob_sk1()		);
+			pstmt.setInt(	12,	mb.getMob_sk2()		);
+			pstmt.setInt(	13,	mb.getMob_sk3()		);
+			pstmt.setInt(	14,	mb.getMob_sk4()		);
+			pstmt.setInt(	15,	mb.getMob_sk5()		);
+			pstmt.setString(16,	mb.getMob_sub()		);
+			pstmt.setInt(	17,	mb.getMob_atk()		);
+			pstmt.setInt(	18,	mb.getMob_def()		);
+			pstmt.setInt(	19,	mb.getMob_hp()		);
+			pstmt.setInt(	20,	mb.getMob_code()	);
+			rs		= pstmt.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void deleteItem(String item_code) {
+	public void deleteMob(String mob_code) {
 		System.out.println("- Item_DAO deleteItem");
-		String sql = "DELETE FROM item WHERE item_code = '" + item_code + "'";
+		String sql = "DELETE FROM mob WHERE mob_code = '" + mob_code + "'";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);

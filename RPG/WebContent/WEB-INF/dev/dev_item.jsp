@@ -17,7 +17,7 @@
 			<div class="insert">
 				<h3>신규등록</h3>
 				<button class="closeBtn">닫기</button>
-				<form action="item_insert.dev" method="POST">
+				<form action="item_insert.dev" method="POST" id="insFrm">
 					<span>코드</span>
 					<input type="text" name="item_code" class="ins_"/>
 					<span>이름</span>
@@ -40,6 +40,7 @@
 					<textarea rows="4" cols="50" name="item_sub" class="ins_"></textarea><br />
 					<span>장착속성</span>
 					<select name="item_prop" class="ins_">
+						<option value="0">없음</option>
 						<option value="1">무기</option>
 						<option value="2">갑옷</option>
 						<option value="3">장갑</option>
@@ -48,13 +49,13 @@
 					</select>
 					<span>가격</span>
 					<input type="text" name="item_price" class="ins_"/>
-					<input type="submit" value="등록"/>
+					<input type="button" value="등록" onclick="do_insert();"/>
 				</form>
 			</div>
 			<div class="modify">
 				<h3>수정하기</h3>
 				<button class="closeBtn">닫기</button>
-				<form action="item_modify.dev" method="POST">
+				<form action="item_modify.dev" method="POST" id="modFrm">
 					<span>코드</span>
 					<input type="text" name="item_code" class="mod_" readonly="readonly"/>
 					<span>이름</span>
@@ -77,6 +78,7 @@
 					<textarea rows="4" cols="50" name="item_sub" class="mod_"></textarea><br />
 					<span>장착속성</span>
 					<select name="item_prop" class="mod_">
+						<option value="0">없음</option>
 						<option value="1">무기</option>
 						<option value="2">갑옷</option>
 						<option value="3">장갑</option>
@@ -85,7 +87,7 @@
 					</select>
 					<span>가격</span>
 					<input type="text" name="item_price" class="mod_"/>
-					<input type="submit" value="수정"/>
+					<input type="button" value="수정"  onclick="do_modify();"/>
 				</form>
 			</div>
 			<table border="1px">
@@ -107,7 +109,7 @@
 				</tr>
 				<c:forEach items="${list}" var="row">
 				<tr class="r_${row.item_code}">
-					<td>${row.item_code}</td>
+					<td class="item">${row.item_code}</td>
 					<td>${row.item_name}</td>
 					<td>${row.item_atk}</td>
 					<td>${row.item_def}</td>
@@ -117,6 +119,7 @@
 					<td>${row.item_opt4}</td>
 					<td>${row.item_opt5}</td>
 					<td>${row.item_sub}</td>
+					<c:if test="${row.item_prop == 0}"><td>없음</td></c:if>
 					<c:if test="${row.item_prop == 1}"><td>무기</td></c:if>
 					<c:if test="${row.item_prop == 2}"><td>갑옷</td></c:if>
 					<c:if test="${row.item_prop == 3}"><td>장갑</td></c:if>

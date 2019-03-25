@@ -11,6 +11,8 @@ public class Intro_handler implements Main_handler {
 	
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String char_name = request.getParameter("char_name");
+		request.getSession().setAttribute("char_name", char_name);
 		return view;
 	}
 }

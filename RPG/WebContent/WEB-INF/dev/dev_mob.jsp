@@ -18,7 +18,7 @@
 			<div class="insert">
 				<h3>신규등록</h3>
 				<button class="closeBtn">닫기</button>
-				<form action="mob_insert.dev" method="POST">
+				<form action="mob_insert.dev" method="POST" id="insFrm">
 					<span>코드</span>
 					<input type="text" name="mob_code" class="ins_"/>
 					<span>이름</span>
@@ -31,6 +31,7 @@
 					<input type="text" name="mob_dex" class="ins_"/>
 					<span>속성</span>
 					<select name="mob_prop" class="ins_">
+						<option value="0">없음</option>
 						<option value="1">곤충</option>
 						<option value="2">네크로파지</option>
 						<option value="3">악령</option>
@@ -72,13 +73,13 @@
 					<input type="text" name="mob_def" class="ins_"/>
 					<span>체력</span>
 					<input type="text" name="mob_hp" class="ins_"/>
-					<input type="submit" value="등록"/>
+					<input type="button" value="등록" onclick="do_insert();"/>
 				</form>
 			</div>
 			<div class="modify">
 				<h3>수정하기</h3>
 				<button class="closeBtn">닫기</button>
-				<form action="mob_modify.dev" method="POST">
+				<form action="mob_modify.dev" method="POST" id="modFrm">
 					<span>코드</span>
 					<input type="text" name="mob_code" class="mod_" readonly="readonly"/>
 					<span>이름</span>
@@ -91,6 +92,7 @@
 					<input type="text" name="mob_dex" class="mod_"/>
 					<span>속성</span>
 					<select name="mob_prop" class="mod_">
+						<option value="0">없음</option>
 						<option value="1">곤충</option>
 						<option value="2">네크로파지</option>
 						<option value="3">악령</option>
@@ -132,41 +134,42 @@
 					<input type="text" name="mob_def" class="mod_"/>
 					<span>체력</span>
 					<input type="text" name="mob_hp" class="mod_"/>
-					<input type="submit" value="수정"/>
+					<input type="button" value="수정" onclick="do_modify();"/>
 				</form>
 			</div>
 			<table border="1px">
 				<tr>
-					<td>코드</td>
-					<td>이름</td>
-					<td>레벨</td>
-					<td>완력</td>
-					<td>민첩</td>
-					<td>속성</td>
-					<td>옵션1	</td>
-					<td>옵션2	</td>
-					<td>옵션3	</td>
-					<td>옵션4	</td>
-					<td>옵션5	</td>
-					<td>스킬1	</td>
-					<td>스킬2	</td>
-					<td>스킬3	</td>
-					<td>스킬4	</td>
-					<td>스킬5	</td>
-					<td>설명</td>
-					<td>공격력</td>
-					<td>방어력</td>
-					<td>체력</td>
+					<th>코드</th>
+					<th>이름</th>
+					<th>레벨</th>
+					<th>완력</th>
+					<th>민첩</th>
+					<th>속성</th>
+					<th>옵션1	</th>
+					<th>옵션2	</th>
+					<th>옵션3	</th>
+					<th>옵션4	</th>
+					<th>옵션5	</th>
+					<th>스킬1	</th>
+					<th>스킬2	</th>
+					<th>스킬3	</th>
+					<th>스킬4	</th>
+					<th>스킬5	</th>
+					<th>설명</th>
+					<th>공격력</th>
+					<th>방어력</th>
+					<th>체력</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
 				<c:forEach items="${list}" var="row">
 				<tr class="r_${row.mob_code}">
-					<td>${row.mob_code}</td>
+					<td class="mob">${row.mob_code}</td>
 					<td>${row.mob_name}</td>
 					<td>${row.mob_lv}</td>
 					<td>${row.mob_str}</td>
 					<td>${row.mob_dex}</td>
+					<c:if test="${row.mob_prop == 0}"><td>없음</td></c:if>
 					<c:if test="${row.mob_prop == 1}"><td>곤충</td></c:if>      
 					<c:if test="${row.mob_prop == 2}"><td>네크로파지</td></c:if>
 					<c:if test="${row.mob_prop == 3}"><td>악령</td></c:if>      

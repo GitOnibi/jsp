@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.bean.Member;
 
@@ -46,9 +48,34 @@ public class Member_DAO {
 			pstmt	= conn.prepareStatement(sql);
 			pstmt.setString(	1, data.getUser_id());
 			pstmt.setString(	2, data.getUser_pw());
-			pstmt.setTimestamp(	3, new Timestamp(data.getDate().getTime()));
+			pstmt.setTimestamp(	3, new Timestamp(data.getNdate().getTime()));
 			pstmt.setString(	4, data.getUser_email());
 			pstmt.executeQuery();
 		} finally {}
+	}
+	
+	public List<Member> getMemberList() {
+		System.out.println("- Member_DAO getMemberId");
+		String sql = "SELECT * FROM member";
+		List<Member> list = new ArrayList<>();
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			rs		= pstmt.executeQuery();
+			Member data	= null;
+			while(rs.next()) {
+				data = new Member(
+						rs.getString("user_id"),
+						rs.getString("user_pw"),
+						toDate(rs.getTimestamp("ndate")),
+						rs.getString("user_email")
+				);
+				list.add(data);
+			}
+			return list;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

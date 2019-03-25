@@ -16,7 +16,7 @@
     <filter-name>CharEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <!-- 
+<!-- 
   <filter>
     <filter-name>LoginCheckFilter</filter-name>
     <filter-class>com.filter.LoginCheckFilter</filter-class>
@@ -25,21 +25,22 @@
     <filter-name>LoginCheckFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
   <filter>
     <filter-name>AdminCheckFilter</filter-name>
     <filter-class>com.filter.AdminCheckFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AdminCheckFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/dev</url-pattern>
   </filter-mapping>
-   -->
+-->
   <servlet>
     <servlet-name>Main_servlet</servlet-name>
     <servlet-class>com.control.Main_servlet</servlet-class>
     <init-param>
       <param-name>ConfigFile</param-name>
-      <param-value>C:\Users\105\eclipse-workspace\RPG\WebContent\WEB-INF\cmd.properties</param-value>
+      <param-value>C:\users\105\eclipse-workspace\RPG\WebContent\WEB-INF\cmd.properties</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -52,7 +53,7 @@
     <servlet-class>com.dev.Dev_servlet</servlet-class>
     <init-param>
       <param-name>DevConfigFile</param-name>
-      <param-value>C:\Users\105\eclipse-workspace\RPG\WebContent\WEB-INF\dev.properties</param-value>
+      <param-value>C:\users\105\eclipse-workspace\RPG\WebContent\WEB-INF\dev.properties</param-value>
     </init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>

@@ -11,7 +11,7 @@
 <body>
 	<div id="wrap">
 		<div id="contents">
-			<p>${sessionScope.id} 는 모험을 시작 하는데...</p>
+			<p>${sessionScope.char_name} 은(는) 모험을 시작 하는데...</p>
 			<br /><br />
 			<a href="main_inventory.do">시작하기</a>
 		</div>

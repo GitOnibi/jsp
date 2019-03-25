@@ -5,20 +5,16 @@ import java.util.Date;
 public class Member {
 	private String user_id;
 	private String user_pw;
-	private Date date;
+	private Date ndate;
 	private String user_email;
 	
-	public Member(String user_id, String user_pw, Date date, String user_email) {
+	public Member(String user_id, String user_pw, Date ndate, String user_email) {
 		this.user_id = user_id;
 		this.user_pw = user_pw;
-		this.date = date;
+		this.ndate = ndate;
 		this.user_email = user_email;
 	}
 	
-	public boolean match_pw(String user_pw) {
-		return this.user_pw.equals(user_pw);
-	}
-
 	public String getUser_id() {
 		return user_id;
 	}
@@ -35,12 +31,12 @@ public class Member {
 		this.user_pw = user_pw;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getNdate() {
+		return ndate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setNdate(Date ndate) {
+		this.ndate = ndate;
 	}
 
 	public String getUser_email() {
@@ -50,5 +46,8 @@ public class Member {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	
+
+	public boolean match_pw(String user_pw) {
+		return this.user_pw.equals(user_pw);
+	}	
 }
