@@ -2,6 +2,7 @@ package com.control;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,8 @@ public class Character_delete_handler implements Main_handler {
 				cdao.deleteChar(user_id, char_name);
 				String msg = "케릭터가 삭제되었습니다.";
 				request.setAttribute("msg", msg);
-				response.sendRedirect("character_select.do");
+				RequestDispatcher dsp = request.getRequestDispatcher("character_select.do");
+				dsp.forward(request, response);
 				return null;
 			} catch(RuntimeException e) {
 				return view;

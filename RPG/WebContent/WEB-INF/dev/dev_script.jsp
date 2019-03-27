@@ -2,78 +2,74 @@
 <script type="text/javascript">
 	var insert = document.querySelector(".insert");
 	var modify = document.querySelector(".modify");
-	var mods = document.querySelectorAll(".mod_");
-	var inss = document.querySelectorAll(".ins_");
-	
-	// close button
-	var cbtn = document.querySelectorAll(".closeBtn");
-	cbtn.forEach(function(item, index) {
-		item.addEventListener("click", function() {
-			item.parentNode.classList.remove("on");
-		});
-	});
-	
-	// modify
-	var mBtn = document.querySelectorAll(".modifyBtn");
-	mBtn.forEach(function(item, index) {
-		item.addEventListener("click", function() {
-			insert.classList.remove("on");
-			modify.classList.add("on");
-			var tar = item.parentNode.parentNode.className;
-			var el = document.querySelectorAll("." + tar + " td");
-			for(i = 0; i < el.length - 2; i++) {
-				mods[i].value = el[i].innerHTML;
-			}
-			
-		});
-	});
-	
-	// delete
-	var dBtn = document.querySelectorAll(".deleteBtn");
-	dBtn.forEach(function(item, index) {
-		item.addEventListener("click", function() {
-			insert.classList.remove("on");
-			modify.classList.remove("on");
-			var tar = item.parentNode.parentNode.className;
-			var el = document.querySelectorAll("." + tar + " td");
-			if(confirm(tar + " 행을 삭제 하시겠습니까?")) {
-				var form = document.createElement("form");
-				form.setAttribute("charset", "UTF-8");
-				form.setAttribute("method", "POST");
-				form.setAttribute("action", el[0].className + "_delete.dev");
-				
-				var child = document.createElement("input");
-				child.setAttribute("type", "hidden");
-				child.setAttribute("name", el[0].className + "_code");
-				child.setAttribute("value", el[0].innerHTML);
-				
-				form.appendChild(child);
-				document.body.appendChild(form);
-				form.submit();
-			} else {
-				alert("취소되었습니다");
-			}
-		});
-	});
-	
-	
+
+/* ----- insert form ----- */
 	function show_insert() {
 		modify.classList.remove("on");
 		insert.classList.add("on");
 	}
 	
-	function do_insert() {
-		inss.forEach(function(item, index) {
-			if(item.value == "" || item.value == null) { item.value = 0; }
-		});
-		document.querySelector("#insFrm").submit();
+	function do_insert(event) {
+		if(confirm(event.target.value + " 하시겠습니까?")) {
+			var form = document.querySelector("#insFrm");
+			var inss = document.querySelectorAll(".ins_");
+			inss.forEach(function(item, index) {
+				if(item.value == null || item.value == "") {
+					item.value = 0;
+				}
+			});
+			form.submit();
+		} else {
+			return false;
+		}
 	}
 	
-	function do_modify() {
-		mods.forEach(function(item, index) {
-			if(item.value == "" || item.value == null) { item.value = 0;}
-		});
-		document.querySelector("#modFrm").submit();
+/* ----- modify form ----- */
+	function show_modify(event, str) {
+		insert.classList.remove("on");
+		modify.classList.add("on");
+		var mods = document.querySelectorAll(".mod_");
+		var vals = document.querySelectorAll(".li_" + str);
+		for(i = 0; i < vals.length; i++) {
+			mods[i].value = vals[i].value;
+		}
+	}
+	
+	function do_modify(event) {
+		if(confirm(event.target.value + " 하시겠습니까?")) {
+			var form = document.querySelector("#modFrm");
+			var mods = document.querySelectorAll(".mod_");
+			mods.forEach(function(item, index) {
+				if(item.value == null || item.value == "") {
+					item.value = 0;
+				}
+			});
+			form.submit();
+		} else {
+			return false;
+		}
+	}
+	
+	function do_delete(event, str) {
+		if(confirm(event.target.value + " 하시겠습니까?")) {
+			var form = document.querySelector(str);
+			form.submit();
+		} else {
+			return false;
+		}
+	}
+	
+/* ----- common ----- */
+	function closeParent(event) {
+		event.target.parentNode.classList.remove("on");
+	}
+	
+	function do_submit(event) {
+		if(confirm(event.target.value + " 하시겠습니까?")) {
+				event.target.parentNode.submit();
+		} else {
+			return false;
+		}
 	}
 	
 	var msg = "${msg}";

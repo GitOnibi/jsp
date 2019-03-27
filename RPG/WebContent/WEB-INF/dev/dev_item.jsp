@@ -16,7 +16,7 @@
 			<button onclick="show_insert();">신규등록</button>
 			<div class="insert">
 				<h3>신규등록</h3>
-				<button class="closeBtn">닫기</button>
+				<button onclick="closeParent(event);">닫기</button>
 				<form action="item_insert.dev" method="POST" id="insFrm">
 					<span>코드</span>
 					<input type="text" name="item_code" class="ins_"/>
@@ -26,16 +26,6 @@
 					<input type="text" name="item_atk" class="ins_"/>
 					<span>방어력</span>
 					<input type="text" name="item_def" class="ins_"/><br />
-					<span>옵션1</span>
-					<input type="text" name="item_opt1" class="ins_"/>
-					<span>옵션2</span>
-					<input type="text" name="item_opt2" class="ins_"/>
-					<span>옵션3</span>
-					<input type="text" name="item_opt3" class="ins_"/>
-					<span>옵션4</span>
-					<input type="text" name="item_opt4" class="ins_"/>
-					<span>옵션5</span>
-					<input type="text" name="item_opt5" class="ins_"/><br />
 					<span>설명</span>
 					<textarea rows="4" cols="50" name="item_sub" class="ins_"></textarea><br />
 					<span>장착속성</span>
@@ -49,31 +39,21 @@
 					</select>
 					<span>가격</span>
 					<input type="text" name="item_price" class="ins_"/>
-					<input type="button" value="등록" onclick="do_insert();"/>
+					<input type="button" value="등록" onclick="do_insert(event);"/>
 				</form>
 			</div>
 			<div class="modify">
 				<h3>수정하기</h3>
-				<button class="closeBtn">닫기</button>
+				<button onclick="closeParent(event);">닫기</button>
 				<form action="item_modify.dev" method="POST" id="modFrm">
 					<span>코드</span>
-					<input type="text" name="item_code" class="mod_" readonly="readonly"/>
+					<input type="text" name="item_code" class="mod_" readonly/>
 					<span>이름</span>
 					<input type="text" name="item_name" class="mod_"/>
 					<span>공격력</span>
 					<input type="text" name="item_atk" class="mod_"/>
 					<span>방어력</span>
 					<input type="text" name="item_def" class="mod_"/><br />
-					<span>옵션1</span>
-					<input type="text" name="item_opt1" class="mod_"/>
-					<span>옵션2</span>
-					<input type="text" name="item_opt2" class="mod_"/>
-					<span>옵션3</span>
-					<input type="text" name="item_opt3" class="mod_"/>
-					<span>옵션4</span>
-					<input type="text" name="item_opt4" class="mod_"/>
-					<span>옵션5</span>
-					<input type="text" name="item_opt5" class="mod_"/><br />
 					<span>설명</span>
 					<textarea rows="4" cols="50" name="item_sub" class="mod_"></textarea><br />
 					<span>장착속성</span>
@@ -87,51 +67,49 @@
 					</select>
 					<span>가격</span>
 					<input type="text" name="item_price" class="mod_"/>
-					<input type="button" value="수정"  onclick="do_modify();"/>
+					<input type="button" value="수정"  onclick="do_modify(event);"/>
 				</form>
 			</div>
-			<table border="1px">
-				<tr>
-					<th>코드</th>
-					<th>이름</th>
-					<th>공격력</th>
-					<th>방어력</th>
-					<th>옵션1</th>
-					<th>옵션2</th>
-					<th>옵션3</th>
-					<th>옵션4</th>
-					<th>옵션5</th>
-					<th>설명</th>
-					<th>장착위치</th>
-					<th>가격</th>
-					<th>수정</th>
-					<th>삭제</th>
-				</tr>
-				<c:forEach items="${list}" var="row">
-				<tr class="r_${row.item_code}">
-					<td class="item">${row.item_code}</td>
-					<td>${row.item_name}</td>
-					<td>${row.item_atk}</td>
-					<td>${row.item_def}</td>
-					<td>${row.item_opt1}</td>
-					<td>${row.item_opt2}</td>
-					<td>${row.item_opt3}</td>
-					<td>${row.item_opt4}</td>
-					<td>${row.item_opt5}</td>
-					<td>${row.item_sub}</td>
-					<c:if test="${row.item_prop == 0}"><td>없음</td></c:if>
-					<c:if test="${row.item_prop == 1}"><td>무기</td></c:if>
-					<c:if test="${row.item_prop == 2}"><td>갑옷</td></c:if>
-					<c:if test="${row.item_prop == 3}"><td>장갑</td></c:if>
-					<c:if test="${row.item_prop == 4}"><td>신발</td></c:if>
-					<c:if test="${row.item_prop == 5}"><td>보조</td></c:if>
-					<td>${row.item_price}</td>
-					<td><button class="modifyBtn">수정</button></td>
-					<td><button class="deleteBtn">삭제</button></td>
-				</tr>
-				</c:forEach>
-			</table>
-		</div>
+			<div>
+				<table border="1px" class="data_tbl">
+					<tr>
+						<th>코드</th>
+						<th>이름</th>
+						<th>공격력</th>
+						<th>방어력</th>
+						<th>설명</th>
+						<th>장착위치</th>
+						<th>가격</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+					<c:forEach items="${list}" var="row">
+					<tr>
+						<form action="item_delete.dev" method="POST" id="li_${row.item_code}">
+						<td><input type="text" value="${row.item_code}" name="item_code" readonly class="li_${row.item_code}"/></td>
+						<td><input type="text" value="${row.item_name}" name="item_name" readonly class="li_${row.item_code}"/></td>
+						<td><input type="text" value="${row.item_atk}" name="item_atk" readonly class="li_${row.item_code}"/></td>
+						<td><input type="text" value="${row.item_def}" name="item_def" readonly class="li_${row.item_code}"/></td>
+						<td><textarea name="item_sub" readonly class="li_${row.item_code}">${row.item_sub}</textarea></td>
+						<td>
+							<select name="item_prop" class="li_${row.item_code}">
+								<c:if test="${row.item_prop == 0}"><option value="${row.item_prop}">없음</option></c:if>
+								<c:if test="${row.item_prop == 1}"><option value="${row.item_prop}">무기</option></c:if>
+								<c:if test="${row.item_prop == 2}"><option value="${row.item_prop}">갑옷</option></c:if>
+								<c:if test="${row.item_prop == 3}"><option value="${row.item_prop}">장갑</option></c:if>
+								<c:if test="${row.item_prop == 4}"><option value="${row.item_prop}">신발</option></c:if>
+								<c:if test="${row.item_prop == 5}"><option value="${row.item_prop}">보조</option></c:if>
+							</select>
+						</td>
+						<td><input type="text" value="${row.item_price}" name="item_price" readonly class="li_${row.item_code}"/></td>
+						<td><input type="button" value="수정" onclick="show_modify(event, '${row.item_code}');"/></td>
+						<td><input type="button" value="삭제" onclick="do_delete(event, '#li_${row.item_code}');"/></td>
+						</form>
+					</tr>
+					</c:forEach>
+					</table>
+				</div>
+			</div>
 		<footer id="footer">
 			<jsp:include page="dev_script.jsp" />
 		</footer>

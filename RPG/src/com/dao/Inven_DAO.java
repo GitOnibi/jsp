@@ -16,7 +16,7 @@ public class Inven_DAO {
 	private ResultSet rs;
 	
 	public List<Inven> getInvenList(String char_name) {
-		System.out.println("- Character_DAO getInvenList");
+		System.out.println("- Inven_DAO getInvenList");
 		String sql = "SELECT * FROM inventory, item WHERE inventory.item_code = item.item_code AND char_name = ?";
 		List<Inven> list = new ArrayList<>();
 		
@@ -32,12 +32,7 @@ public class Inven_DAO {
 						rs.getInt(		"item_code"	),
 						rs.getString(	"item_name"	),
 						rs.getInt(		"item_atk"	), 
-						rs.getInt(		"item_def"	), 
-						rs.getInt(		"item_opt1"	),
-						rs.getInt(		"item_opt2"	),
-						rs.getInt(		"item_opt3"	),
-						rs.getInt(		"item_opt4"	),
-						rs.getInt(		"item_opt5"	),
+						rs.getInt(		"item_def"	),
 						rs.getString(	"item_sub"	), 
 						rs.getInt(		"item_prop"	),
 						rs.getInt(		"item_price")

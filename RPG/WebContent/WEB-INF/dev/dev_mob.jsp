@@ -17,7 +17,7 @@
 			<button onclick="show_insert();">신규등록</button>
 			<div class="insert">
 				<h3>신규등록</h3>
-				<button class="closeBtn">닫기</button>
+				<button onclick="closeParent(event);">닫기</button>
 				<form action="mob_insert.dev" method="POST" id="insFrm">
 					<span>코드</span>
 					<input type="text" name="mob_code" class="ins_"/>
@@ -45,16 +45,6 @@
 						<option value="11">저주받은존재</option>
 						<option value="12">인간</option>
 					</select>
-					<span>옵션1</span>
-					<input type="text" name="mob_opt1" class="ins_"/>
-					<span>옵션2</span>
-					<input type="text" name="mob_opt2" class="ins_"/>
-					<span>옵션3</span>
-					<input type="text" name="mob_opt3" class="ins_"/><br />
-					<span>옵션4</span>
-					<input type="text" name="mob_opt4" class="ins_"/><br />
-					<span>옵션5</span>
-					<input type="text" name="mob_opt5" class="ins_"/><br />
 					<span>스킬1</span>
 					<input type="text" name="mob_sk1" class="ins_"/>
 					<span>스킬2</span>
@@ -73,15 +63,15 @@
 					<input type="text" name="mob_def" class="ins_"/>
 					<span>체력</span>
 					<input type="text" name="mob_hp" class="ins_"/>
-					<input type="button" value="등록" onclick="do_insert();"/>
+					<input type="button" value="등록" onclick="do_insert(event);"/>
 				</form>
 			</div>
 			<div class="modify">
 				<h3>수정하기</h3>
-				<button class="closeBtn">닫기</button>
+				<button onclick="closeParent(event);">닫기</button>
 				<form action="mob_modify.dev" method="POST" id="modFrm">
 					<span>코드</span>
-					<input type="text" name="mob_code" class="mod_" readonly="readonly"/>
+					<input type="text" name="mob_code" class="mod_" readonly/>
 					<span>이름</span>
 					<input type="text" name="mob_name" class="mod_"/>
 					<span>레벨</span>
@@ -90,6 +80,12 @@
 					<input type="text" name="mob_str" class="mod_"/><br />
 					<span>민첩</span>
 					<input type="text" name="mob_dex" class="mod_"/>
+					<span>공격력</span>
+					<input type="text" name="mob_atk" class="mod_"/>
+					<span>방어력</span>
+					<input type="text" name="mob_def" class="mod_"/>
+					<span>체력</span>
+					<input type="text" name="mob_hp" class="mod_"/>
 					<span>속성</span>
 					<select name="mob_prop" class="mod_">
 						<option value="0">없음</option>
@@ -106,16 +102,8 @@
 						<option value="11">저주받은존재</option>
 						<option value="12">인간</option>
 					</select>
-					<span>옵션1</span>
-					<input type="text" name="mob_opt1" class="mod_"/>
-					<span>옵션2</span>
-					<input type="text" name="mob_opt2" class="mod_"/>
-					<span>옵션3</span>
-					<input type="text" name="mob_opt3" class="mod_"/><br />
-					<span>옵션4</span>
-					<input type="text" name="mob_opt4" class="mod_"/><br />
-					<span>옵션5</span>
-					<input type="text" name="mob_opt5" class="mod_"/><br />
+					<span>설명</span>
+					<textarea rows="4" cols="50" name="mob_sub" class="mod_"></textarea><br />
 					<span>스킬1</span>
 					<input type="text" name="mob_sk1" class="mod_"/>
 					<span>스킬2</span>
@@ -126,78 +114,66 @@
 					<input type="text" name="mob_sk4" class="mod_"/><br />
 					<span>스킬5</span>
 					<input type="text" name="mob_sk5" class="mod_"/><br />
-					<span>설명</span>
-					<textarea rows="4" cols="50" name="mob_sub" class="mod_"></textarea><br />
-					<span>공격력</span>
-					<input type="text" name="mob_atk" class="mod_"/>
-					<span>방어력</span>
-					<input type="text" name="mob_def" class="mod_"/>
-					<span>체력</span>
-					<input type="text" name="mob_hp" class="mod_"/>
-					<input type="button" value="수정" onclick="do_modify();"/>
+					<input type="button" value="수정" onclick="do_modify(event);"/>
 				</form>
 			</div>
-			<table border="1px">
+			<table border="1px" class="data_tbl">
 				<tr>
 					<th>코드</th>
 					<th>이름</th>
 					<th>레벨</th>
 					<th>완력</th>
 					<th>민첩</th>
+					<th>공격력</th>
+					<th>방어력</th>
+					<th>체력</th>
 					<th>속성</th>
-					<th>옵션1	</th>
-					<th>옵션2	</th>
-					<th>옵션3	</th>
-					<th>옵션4	</th>
-					<th>옵션5	</th>
+					<th>설명</th>
 					<th>스킬1	</th>
 					<th>스킬2	</th>
 					<th>스킬3	</th>
 					<th>스킬4	</th>
 					<th>스킬5	</th>
-					<th>설명</th>
-					<th>공격력</th>
-					<th>방어력</th>
-					<th>체력</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
 				<c:forEach items="${list}" var="row">
-				<tr class="r_${row.mob_code}">
-					<td class="mob">${row.mob_code}</td>
-					<td>${row.mob_name}</td>
-					<td>${row.mob_lv}</td>
-					<td>${row.mob_str}</td>
-					<td>${row.mob_dex}</td>
-					<c:if test="${row.mob_prop == 0}"><td>없음</td></c:if>
-					<c:if test="${row.mob_prop == 1}"><td>곤충</td></c:if>      
-					<c:if test="${row.mob_prop == 2}"><td>네크로파지</td></c:if>
-					<c:if test="${row.mob_prop == 3}"><td>악령</td></c:if>      
-					<c:if test="${row.mob_prop == 4}"><td>뱀파이어</td></c:if>     
-					<c:if test="${row.mob_prop == 5}"><td>드라코니드</td></c:if>
-					<c:if test="${row.mob_prop == 6}"><td>오그로이드</td></c:if>
-					<c:if test="${row.mob_prop == 7}"><td>정령</td></c:if>      
-					<c:if test="${row.mob_prop == 8}"><td>잔존생물</td></c:if>   
-					<c:if test="${row.mob_prop == 9}"><td>야수</td></c:if>      
-					<c:if test="${row.mob_prop == 10}"><td>잡종</td></c:if>     
-					<c:if test="${row.mob_prop == 11}"><td>저주받은존재</td></c:if>
-					<c:if test="${row.mob_prop == 12}"><td>인간</td></c:if>
-					<td>${row.mob_opt1}</td>
-					<td>${row.mob_opt2}</td>
-					<td>${row.mob_opt3}</td>
-					<td>${row.mob_opt4}</td>
-					<td>${row.mob_opt5}</td>
-					<td>${row.mob_sk1}</td>
-					<td>${row.mob_sk2}</td>
-					<td>${row.mob_sk3}</td>
-					<td>${row.mob_sk4}</td>
-					<td>${row.mob_sk5}</td>
-					<td>${row.mob_sub}</td>
-					<td>${row.mob_atk}</td>
-					<td>${row.mob_def}</td>
-					<td>${row.mob_hp}</td>
-					<td><button class="modifyBtn">수정</button></td>
-					<td><button class="deleteBtn">삭제</button></td>
+				<tr>
+					<form action="mob_delete.dev" method="POST" id="li_${row.mob_code}">
+					<td><input type="text" value="${row.mob_code}" name="mob_code" readonly class="li_${row.mob_code}"/></td>
+					<td><input type="text" value="${row.mob_name}" name="mob_name" readonly class="li_${row.mob_code}"/></td>
+					<td><input type="text" value="${row.mob_lv}" name="mob_lv" readonly class="li_${row.mob_code}"/></td>
+					<td><input type="text" value="${row.mob_str}" name="mob_str" readonly class="li_${row.mob_code}"/></td>
+					<td><input type="text" value="${row.mob_dex}" name="mob_dex" readonly class="li_${row.mob_code}"/></td>
+					<td><input type="text" value="${row.mob_atk}" name="mob_atk" readonly class="li_${row.mob_atk}" /></td>
+					<td><input type="text" value="${row.mob_def}" name="mob_def" readonly class="li_${row.mob_def}" /></td>
+					<td><input type="text" value="${row.mob_hp}" name="mob_hp" readonly class="li_${row.mob_hp}" /></td>
+					<td>
+						<select name="mob_prop" class="li_${row.mob_code}">
+							<c:if test="${row.mob_prop == 0}"><option value="0">없음</option></c:if>
+							<c:if test="${row.mob_prop == 1}"><option value="1">곤충</option></c:if>      
+							<c:if test="${row.mob_prop == 2}"><option value="2">네크로파지</option></c:if>
+							<c:if test="${row.mob_prop == 3}"><option value="3">악령</option></c:if>      
+							<c:if test="${row.mob_prop == 4}"><option value="4">뱀파이어</option></c:if>     
+							<c:if test="${row.mob_prop == 5}"><option value="5">드라코니드</option></c:if>
+							<c:if test="${row.mob_prop == 6}"><option value="6">오그로이드</option></c:if>
+							<c:if test="${row.mob_prop == 7}"><option value="7">정령</option></c:if>      
+							<c:if test="${row.mob_prop == 8}"><option value="8">잔존생물</option></c:if>   
+							<c:if test="${row.mob_prop == 9}"><option value="9">야수</option></c:if>      
+							<c:if test="${row.mob_prop == 10}"><option value="10">잡종</option></c:if>     
+							<c:if test="${row.mob_prop == 11}"><option value="11">저주받은존재</option></c:if>
+							<c:if test="${row.mob_prop == 12}"><option value="12">인간</option></c:if>
+						</select>
+					</td>
+					<td><textarea name="mob_sub" readonly class="li_${row.mob_sub}">${row.mob_sub}</textarea></td>
+					<td><input type="text" value="${row.mob_sk1}" name="mob_sk1" readonly class="li_${row.mob_sk1}" /></td>
+					<td><input type="text" value="${row.mob_sk2}" name="mob_sk2" readonly class="li_${row.mob_sk2}" /></td>
+					<td><input type="text" value="${row.mob_sk3}" name="mob_sk3" readonly class="li_${row.mob_sk3}" /></td>
+					<td><input type="text" value="${row.mob_sk4}" name="mob_sk4" readonly class="li_${row.mob_sk4}" /></td>
+					<td><input type="text" value="${row.mob_sk5}" name="mob_sk5" readonly class="li_${row.mob_sk5}" /></td>
+					<td><input type="button" value="수정" onclick="show_modify(event, '${row.mob_code}');"/></td>
+					<td><input type="button" value="삭제" onclick="do_delete(event, '#li_${row.mob_code}');"/></td>
+					</form>
 				</tr>
 				</c:forEach>
 			</table>

@@ -7,11 +7,6 @@ public class Mob_bean {
 	private int mob_str;
 	private int mob_dex;
 	private int mob_prop;
-	private int mob_opt1;
-	private int mob_opt2;
-	private int mob_opt3;
-	private int mob_opt4;
-	private int mob_opt5;
 	private int mob_sk1;
 	private int mob_sk2;
 	private int mob_sk3;
@@ -22,18 +17,13 @@ public class Mob_bean {
 	private int mob_def;
 	private int mob_hp;
 	
-	public Mob_bean(int mob_code, String mob_name, int mob_lv, int mob_str, int mob_dex, int mob_prop, int mob_opt1, int mob_opt2, int mob_opt3, int mob_opt4, int mob_opt5, int mob_sk1, int mob_sk2, int mob_sk3, int mob_sk4, int mob_sk5, String mob_sub, int mob_atk, int mob_def, int mob_hp) {
+	public Mob_bean(int mob_code, String mob_name, int mob_lv, int mob_str, int mob_dex, int mob_prop, int mob_sk1, int mob_sk2, int mob_sk3, int mob_sk4, int mob_sk5, String mob_sub, int mob_atk, int mob_def, int mob_hp) {
 		this.mob_code	= mob_code;   
 		this.mob_name	= mob_name;
 		this.mob_lv		= mob_lv;     
 		this.mob_str	= mob_str;    
 		this.mob_dex	= mob_dex;    
-		this.mob_prop	= mob_prop;   
-		this.mob_opt1	= mob_opt1;   
-		this.mob_opt2	= mob_opt2;   
-		this.mob_opt3	= mob_opt3;   
-		this.mob_opt4	= mob_opt4;   
-		this.mob_opt5	= mob_opt5;   
+		this.mob_prop	= mob_prop;      
 		this.mob_sk1	= mob_sk1;    
 		this.mob_sk2	= mob_sk2;    
 		this.mob_sk3	= mob_sk3;    
@@ -91,46 +81,6 @@ public class Mob_bean {
 
 	public void setMob_prop(int mob_prop) {
 		this.mob_prop = mob_prop;
-	}
-
-	public int getMob_opt1() {
-		return mob_opt1;
-	}
-
-	public void setMob_opt1(int mob_opt1) {
-		this.mob_opt1 = mob_opt1;
-	}
-
-	public int getMob_opt2() {
-		return mob_opt2;
-	}
-
-	public void setMob_opt2(int mob_opt2) {
-		this.mob_opt2 = mob_opt2;
-	}
-
-	public int getMob_opt3() {
-		return mob_opt3;
-	}
-
-	public void setMob_opt3(int mob_opt3) {
-		this.mob_opt3 = mob_opt3;
-	}
-
-	public int getMob_opt4() {
-		return mob_opt4;
-	}
-
-	public void setMob_opt4(int mob_opt4) {
-		this.mob_opt4 = mob_opt4;
-	}
-
-	public int getMob_opt5() {
-		return mob_opt5;
-	}
-
-	public void setMob_opt5(int mob_opt5) {
-		this.mob_opt5 = mob_opt5;
 	}
 
 	public int getMob_sk1() {

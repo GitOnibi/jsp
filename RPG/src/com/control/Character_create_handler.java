@@ -2,6 +2,7 @@ package com.control;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,9 +49,10 @@ public class Character_create_handler implements Main_handler {
 			try {
 				Character_DAO cdao = new Character_DAO();
 				cdao.setChar(ch);
-				String msg = "케릭터를 생성하였습니다.";
+				String msg = "케릭터가 생성되었습니다.";
 				request.setAttribute("msg", msg);
-				response.sendRedirect("character_select.do");
+				RequestDispatcher dsp = request.getRequestDispatcher("character_select.do");
+				dsp.forward(request, response);
 				return null;
 			} catch(RuntimeException e) {
 				return view;
