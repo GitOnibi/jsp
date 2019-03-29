@@ -28,8 +28,44 @@ public class Character_DAO {
 			Character data	= null;
 			while(rs.next()) {
 				data = new Character(
+						rs.getString("user_id"),
 						rs.getString("char_name"),
 						rs.getInt("char_lv")
+				);
+				list.add(data);
+			}
+			return list;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Character> getChar(String user_id, String char_name) {
+		System.out.println("- Character_DAO getChar");
+		String sql = "SELECT * FROM character WHERE user_id = ? AND char_name = ?";
+		List<Character> list = new ArrayList<>();
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, char_name);
+			rs		= pstmt.executeQuery();
+			Character data	= null;
+			while(rs.next()) {
+				data = new Character(
+						rs.getString("user_id"),
+						rs.getString("char_name"),
+						rs.getInt("char_lv"),
+						rs.getInt("char_str"),
+						rs.getInt("char_dex"),
+						rs.getInt("char_hp"),
+						rs.getInt("char_atk"),
+						rs.getInt("char_def"),
+						rs.getInt("char_agi"),
+						rs.getInt("char_crt"),
+						rs.getInt("char_exp")
 				);
 				list.add(data);
 			}

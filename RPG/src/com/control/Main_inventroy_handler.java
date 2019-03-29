@@ -1,15 +1,16 @@
 package com.control;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Character;
 import com.bean.Equip;
 import com.bean.Inven;
+import com.dao.Character_DAO;
 import com.dao.Equip_DAO;
 import com.dao.Inven_DAO;
 
@@ -20,9 +21,14 @@ public class Main_inventroy_handler implements Main_handler {
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("- Main_inventroy_handler action");
 		
-		String char_name = (String)request.getSession().getAttribute("char_name");
+		String user_id		= (String)request.getSession().getAttribute("user_id");
+		String char_name	= (String)request.getSession().getAttribute("char_name");
 		
 		try {
+			// 케릭터 정보
+			Character_DAO cdao = new Character_DAO();
+			List<Character> char_info = cdao.getChar(user_id, char_name);
+			request.setAttribute("char_info", char_info);
 			
 			// 소지하고 있는 아이템 리스트
 			Inven_DAO idao = new Inven_DAO();
@@ -30,8 +36,8 @@ public class Main_inventroy_handler implements Main_handler {
 			request.setAttribute("inven_list", inven_list);
 			
 			// 착용중인 장비 리스트
-			Equip_DAO edao = new Equip_DAO();
-			List<Equip> equip_list = edao.getEquipList(char_name);
+			Equip_DAO edao0 = new Equip_DAO();
+			List<Equip> equip_list = edao0.getEquipList(char_name);
 			request.setAttribute("equip_list", equip_list);
 			
 			// 장착 가능한 무기 리스트

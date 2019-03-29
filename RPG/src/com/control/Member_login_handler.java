@@ -27,6 +27,7 @@ public class Member_login_handler implements Main_handler {
 			try {
 				User user = ls.login(user_id, user_pw);
 				request.getSession().setAttribute("user", user);
+				request.getSession().setAttribute("user_id", user_id);
 				response.sendRedirect("character_select.do");
 				return null;
 			} catch(RuntimeException e) { return view; }

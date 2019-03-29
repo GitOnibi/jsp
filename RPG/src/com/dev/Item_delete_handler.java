@@ -11,7 +11,7 @@ public class Item_delete_handler implements Dev_handler {
 	private String view = "/WEB-INF/dev/dev_item.jsp";
 	
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String item_code = request.getParameter("item_code");
+		int item_code = Integer.parseInt(request.getParameter("item_code"));
 		
 		Item_DAO idao = new Item_DAO();
 		

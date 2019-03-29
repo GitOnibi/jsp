@@ -5,8 +5,8 @@
 
 
 	function show_insert() {
-		modify.classList.remove("on");
 		insert.classList.add("on");
+		modify.classList.remove("on");
 	}
 	
 	function do_insert(event) {
@@ -47,6 +47,25 @@
 		} else {
 			return false;
 		}
+	}
+	
+	function equip_dup_ck(event) {
+		var mods = document.querySelectorAll(".mod_");
+		var temp = new Array();
+		for(i = 0; i < mods.length; i++) {
+			if(mods[i].value != 0) {
+				temp.push(mods[i].value);
+			}
+		}
+		for(j = 0; j < temp.length - 1; j++) {
+			for(k = j + 1; k < temp.length; k++) {
+				if(temp[j] == temp[k]) {
+					alert("중복하여 착용할 수 업습니다");
+					return false;
+				}
+			}
+		}
+		do_modify(event);
 	}
 /* ----- common ----- */
 	function closeParent(event) {

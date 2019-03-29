@@ -4,13 +4,11 @@
 	width:100%;
 	height:100%;
 }
-
 #header, #contents, #footer {
 	width:100%;
 	height:auto;
 	postion:relative;
 }
-
 #titleWrap {
 	overflow:hidden;
 	width:100%;
@@ -31,13 +29,11 @@
 	width:100%;
 	height:auto;
 }
-
 .gnb li {
-	width:20%;
+	width:16.66%;
 	height:auto;
 	float:left;
 }
-
 .gnb li a {
 	display:block;
 	line-height:60px;
@@ -48,17 +44,63 @@
 	background-color:#000;
 }
 
-/* item page */
+/* content */
 
 .insert, .modify, .delete {
 	width:0;
 	height:0;
 	overflow:hidden;
 }
-
 .insert.on, .modify.on, .delete.on {
 	width:100%;
-	height:100%;
+	height:auto;
 	overflow:auto;
-	background-color:rgba(0,0,0,0.3);
+}
+.data_tbl {
+	width:100%;
+	height:auto;
+}
+.data_tbl input[type="text"] {
+	display:block;
+	width:100%;
+}
+
+/* inventory */
+.hoverable {
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.hoverTarget {
+	display:block;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0);
+	
+}
+.hoverable:hover .hoverBox {
+	display:block;
+}
+.hoverBox {
+	display:none;
+	position:absolute;
+	left:0px;
+	top:50px;
+	width:200px;
+	height:auto;
+	color:#fff;
+	background-color:rgba(0,0,0,0.7);
+}
+.ueser_inven {
+	width:100%;
+	height:auto;
+}
+.ueser_inven table tr {
+	width:100%;
+	height:auto;
+}
+.ueser_inven table tr td {
+	display:inline-block;
+	width:50px;
+	height:50px;
 }

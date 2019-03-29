@@ -1,32 +1,31 @@
 package com.bean;
 
 public class Equip {
-	private String char_name;
-	private String weapon_Name;
-	private int weapon_code;
-	private String amor_name;
-	private int amor_code;
-	private String gloves_name;
-	private int gloves_code;
-	private String boots_name;
-	private int boots_code;
-	private String sub1_name;
-	private int sub1_code;
-	private String sub2_name;
-	private int sub2_code;
-	private String sub3_name;
-	private int sub3_code;
-	private String sk1_name;
-	private int sk1_code;
-	private String sk2_name;
-	private int sk2_code;
-	public Equip(String char_name, String weapon_Name, int weapon_code, String amor_name, int amor_code,
+	private String	char_name;
+	private String	weapon_name;
+	private int		weapon_code;
+	private String	amor_name;
+	private int		amor_code;
+	private String	gloves_name;
+	private int		gloves_code;
+	private String	boots_name;
+	private int		boots_code;
+	private String	sub1_name;
+	private int		sub1_code;
+	private String	sub2_name;
+	private int		sub2_code;
+	private String	sub3_name;
+	private int		sub3_code;
+	private String	sk1_name;
+	private int		sk1_code;
+	private String	sk2_name;
+	private int		sk2_code;
+	public Equip(String char_name, String weapon_name, int weapon_code, String amor_name, int amor_code,
 			String gloves_name, int gloves_code, String boots_name, int boots_code, String sub1_name, int sub1_code,
 			String sub2_name, int sub2_code, String sub3_name, int sub3_code, String sk1_name, int sk1_code,
 			String sk2_name, int sk2_code) {
-		super();
 		this.char_name = char_name;
-		this.weapon_Name = weapon_Name;
+		this.weapon_name = weapon_name;
 		this.weapon_code = weapon_code;
 		this.amor_name = amor_name;
 		this.amor_code = amor_code;
@@ -51,11 +50,11 @@ public class Equip {
 	public void setChar_name(String char_name) {
 		this.char_name = char_name;
 	}
-	public String getWeapon_Name() {
-		return weapon_Name;
+	public String getWeapon_name() {
+		return weapon_name;
 	}
-	public void setWeapon_Name(String weapon_Name) {
-		this.weapon_Name = weapon_Name;
+	public void setWeapon_name(String weapon_name) {
+		this.weapon_name = weapon_name;
 	}
 	public int getWeapon_code() {
 		return weapon_code;

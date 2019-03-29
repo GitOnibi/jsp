@@ -22,5 +22,32 @@
 .tal{text-align:left;}
 .tar{text-align:right;}
 
-/* algin */
+/* align */
 .m0a{margin:0 auto;}
+
+.icon_0 {
+	background-image:url("../images/icon_set01.jpg");
+	background-size:500% 400%;
+	background-position:left top;
+	background-repeat:no-repeat;
+}
+
+.icon_1 {
+	background-image:url("../images/icon_set02.jpg");
+	background-size:500% 400%;
+	background-position:left top;
+	background-repeat:no-repeat;
+}
+
+.icon_2, .icon_3, .icon_4 {
+	background-image:url("../images/icon_set02.jpg");
+	background-size:500% 400%;
+	background-position:0 66.66%;
+	background-repeat:no-repeat;
+}
+.icon_5 {
+	background-image:url("../images/icon_set01.jpg");
+	background-size:500% 400%;
+	background-position:25% top;
+	background-repeat:no-repeat;
+}

@@ -1,6 +1,5 @@
 package com.dev;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -80,15 +79,63 @@ public class Item_DAO {
 		}
 	}
 	
-	public void deleteItem(String item_code) {
+	public void deleteItem(int item_code) {
 		System.out.println("- Item_DAO deleteItem");
-		String sql = "DELETE FROM item WHERE item_code = '" + item_code + "'";
+		String sql = "DELETE FROM item WHERE item_code = ?";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1,	item_code);
 			pstmt.executeQuery();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getItemName(int item_code) {
+		System.out.println("- Item_DAO getItemName");
+		String sql = "SELECT item_name FROM item WHERE item_code = ?";
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1,	item_code);
+			rs = pstmt.executeQuery();
+			String item_name = null;
+			while(rs.next()) {
+				item_name = rs.getString("item_name");
+			}
+			return item_name;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Item_bean getItemStatus(int item_code) {
+		System.out.println("- Item_DAO getItemStatus");
+		String sql = "SELECT * FROM item WHERE item_code = ?";
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1,	item_code);
+			rs = pstmt.executeQuery();
+			Item_bean temp = null;
+			while(rs.next()) {
+				temp = new Item_bean(
+					rs.getInt(		"item_code"	),
+					rs.getString(	"item_name"	),
+					rs.getInt(		"item_atk"	),
+					rs.getInt(		"item_def"	),
+					rs.getString(	"item_sub"	),
+					rs.getInt(		"item_prop"	),
+					rs.getInt(		"item_price")
+				);
+			}
+			return temp;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

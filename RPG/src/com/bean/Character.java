@@ -15,9 +15,25 @@ public class Character {
 	
 	public Character() {}
 	
-	public Character(String char_name, int char_lv) {
-		this.char_name	= char_name;
-		this.char_lv	= char_lv;
+	public Character(String user_id, String char_name, int char_lv) {
+		this.user_id = user_id;
+		this.char_name = char_name;
+		this.char_lv = char_lv;
+	}
+	
+	public Character(String user_id, String char_name, int char_lv, int char_str, int char_dex, int char_hp,
+			int char_atk, int char_def, int char_agi, int char_crt, int char_exp) {
+		this.user_id = user_id;
+		this.char_name = char_name;
+		this.char_lv = char_lv;
+		this.char_str = char_str;
+		this.char_dex = char_dex;
+		this.char_hp = char_hp;
+		this.char_atk = char_atk;
+		this.char_def = char_def;
+		this.char_agi = char_agi;
+		this.char_crt = char_crt;
+		this.char_exp = char_exp;
 	}
 
 	public String getUser_id() {
