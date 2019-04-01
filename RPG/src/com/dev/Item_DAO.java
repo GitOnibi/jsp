@@ -92,26 +92,7 @@ public class Item_DAO {
 		}
 	}
 	
-	public String getItemName(int item_code) {
-		System.out.println("- Item_DAO getItemName");
-		String sql = "SELECT item_name FROM item WHERE item_code = ?";
-		try {
-			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
-			pstmt	= conn.prepareStatement(sql);
-			pstmt.setInt(1,	item_code);
-			rs = pstmt.executeQuery();
-			String item_name = null;
-			while(rs.next()) {
-				item_name = rs.getString("item_name");
-			}
-			return item_name;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public Item_bean getItemStatus(int item_code) {
+	public Item_bean getItemInfo(int item_code) {
 		System.out.println("- Item_DAO getItemStatus");
 		String sql = "SELECT * FROM item WHERE item_code = ?";
 		

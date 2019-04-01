@@ -13,7 +13,9 @@ public class Character {
 	private int char_crt;
 	private int char_exp;
 	
-	public Character() {}
+	public Character() {
+		
+	}
 	
 	public Character(String user_id, String char_name, int char_lv) {
 		this.user_id = user_id;

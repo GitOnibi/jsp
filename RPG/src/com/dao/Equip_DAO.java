@@ -6,47 +6,45 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.bean.Equip;
 import com.bean.Inven;
+import com.dev.Item_DAO;
+import com.dev.Item_bean;
 
 public class Equip_DAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public List<Equip> getEquipList(String char_name) {
+	public List<Equip> getEquipList(String user_id, String char_name) {
 		System.out.println("- Equip_DAO getEquipList");
-		String sql	= "SELECT * FROM equip WHERE char_name = ?";
+		String sql	= "SELECT * FROM equip WHERE user_id = ? AND char_name = ?";
 		List<Equip> list = new ArrayList<>();
 		
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1, char_name);
+			pstmt.setString(1, user_id	);
+			pstmt.setString(2, char_name);
 			rs		= pstmt.executeQuery();
 			Equip data	= null;
 			while(rs.next()) {
 				data = new Equip(
+						rs.getString(	"user_id"		),
 						rs.getString(	"char_name"		),
-						rs.getString(	"weapon_name"	),
 						rs.getInt(		"weapon_code"	),
-						rs.getString(	"amor_name"  	),
 						rs.getInt(		"amor_code"  	),
-						rs.getString(	"gloves_name"	),
 						rs.getInt(		"gloves_code"	),
-						rs.getString(	"boots_name" 	),
 						rs.getInt(		"boots_code" 	),
-						rs.getString(	"sub1_name"  	),
 						rs.getInt(		"sub1_code"  	),
-						rs.getString(	"sub2_name"  	),
 						rs.getInt(		"sub2_code"  	),
-						rs.getString(	"sub3_name"		),
 						rs.getInt(		"sub3_code"		),
-						rs.getString(	"sk1_name"   	),
 						rs.getInt(		"sk1_code"   	),
-						rs.getString(	"sk2_name"		),
 						rs.getInt(		"sk2_code"		)
 				);
 				list.add(data);
@@ -58,16 +56,15 @@ public class Equip_DAO {
 		return null;
 	}
 	
-	public void initEquip(String char_name) {
+	public void initEquip(String user_id, String char_name) {
 		System.out.println("- Equip_DAO initEquip");
-		String sql	= "INSERT INTO equip(char_name, weapon_name, weapon_code, amor_name, amor_code, " 
-					+ "gloves_name, gloves_code, boots_name, boots_code, sub1_name, sub1_code, "
-					+ "sub2_name, sub2_code, sub3_name, sub3_code, sk1_name, sk1_code, sk2_name, sk2_code) "
+		String sql	= "INSERT INTO equip(user_id, char_name, weapon_code, amor_code, gloves_code, boots_code, sub1_code, sub2_code, sub3_code, sk1_code, sk2_code) "
 					+ "VALUES(?, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0)";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1,	char_name);
+			pstmt.setString(1, user_id	);
+			pstmt.setString(2, char_name);
 			pstmt.executeQuery();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -109,35 +106,53 @@ public class Equip_DAO {
 	public void updateEquipList(Equip equip) {
 		System.out.println("- Equip_DAO updateEquipList");
 		String sql	= "UPDATE equip SET "
-					+ "weapon_name = ?, weapon_code = ?, amor_name = ?, amor_code = ?, gloves_name = ?, gloves_code = ?, boots_name = ?, boots_code = ? ,"
-					+ "sub1_name = ?, sub1_code = ?, sub2_name = ?, sub2_code = ?, sub3_name = ?, sub3_code = ?, sk1_name = ?, sk1_code = ?, sk2_name = ?, sk2_code = ? "
-					+ "WHERE char_name = ?";
+					+ "weapon_code = ?, amor_code = ?, gloves_code = ?, boots_code = ? , sub1_code = ?, sub2_code = ?, sub3_code = ?, sk1_code = ?, sk2_code = ? "
+					+ "WHERE user_id = ? AND char_name = ?";
 		
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1,	equip.getWeapon_name()	);
-			pstmt.setInt(	2,	equip.getWeapon_code()	);
-			pstmt.setString(3,	equip.getAmor_name()  	);
-			pstmt.setInt(	4,	equip.getAmor_code()  	);
-			pstmt.setString(5,	equip.getGloves_name()	);
-			pstmt.setInt(	6,	equip.getGloves_code()	);
-			pstmt.setString(7,	equip.getBoots_name() 	);
-			pstmt.setInt(	8,	equip.getBoots_code() 	);
-			pstmt.setString(9,	equip.getSub1_name()  	);
-			pstmt.setInt(	10,	equip.getSub1_code()  	);
-			pstmt.setString(11,	equip.getSub2_name()  	);
-			pstmt.setInt(	12,	equip.getSub2_code()  	);
-			pstmt.setString(13,	equip.getSub3_name()	);
-			pstmt.setInt(	14,	equip.getSub3_code()	);
-			pstmt.setString(15,	equip.getSk1_name()   	);
-			pstmt.setInt(	16,	equip.getSk1_code()   	);
-			pstmt.setString(17,	equip.getSk2_name()		);
-			pstmt.setInt(	18,	equip.getSk2_code()		);
-			pstmt.setString(19,	equip.getChar_name()	);
+			pstmt.setInt(	1,	equip.getWeapon_code()	);
+			pstmt.setInt(	2,	equip.getAmor_code()  	);
+			pstmt.setInt(	3,	equip.getGloves_code()	);
+			pstmt.setInt(	4,	equip.getBoots_code() 	);
+			pstmt.setInt(	5,	equip.getSub1_code()  	);
+			pstmt.setInt(	6,	equip.getSub2_code()  	);
+			pstmt.setInt(	7,	equip.getSub3_code()	);
+			pstmt.setInt(	8,	equip.getSk1_code()   	);
+			pstmt.setInt(	9,	equip.getSk2_code()		);
+			pstmt.setString(10,	equip.getUser_id()		);
+			pstmt.setString(11,	equip.getChar_name()	);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Map<String, Integer> getEquipStatus(Equip equip) {
+		List<Integer> list = new ArrayList<>();
+		list.add(equip.getWeapon_code()	);
+		list.add(equip.getAmor_code()  	);
+		list.add(equip.getGloves_code()	);
+		list.add(equip.getBoots_code() 	);
+		list.add(equip.getSub1_code()  	);
+		list.add(equip.getSub2_code()  	);
+		list.add(equip.getSub3_code()	);
+		list.add(equip.getSk1_code()   	);
+		list.add(equip.getSk2_code()	);
+		
+		Map<String, Integer> map = new HashMap<>();
+		Item_DAO idao = new Item_DAO();
+		Item_bean ib = null;
+		int	sum_atk = 0,
+			sum_def = 0;
+		for(int i = 0; i < 9; i ++) {
+			ib = idao.getItemInfo(list.get(i));
+			sum_atk += ib.getItem_atk();
+			sum_def += ib.getItem_def();
+		}
+		map.put("sum_atk", sum_atk);
+		map.put("sum_def", sum_def);
+		return map;
 	}
 }

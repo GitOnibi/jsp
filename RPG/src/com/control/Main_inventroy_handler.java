@@ -1,6 +1,7 @@
 package com.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -26,8 +27,9 @@ public class Main_inventroy_handler implements Main_handler {
 		
 		try {
 			// 케릭터 정보
+			List<Character> char_info = new ArrayList<>();
 			Character_DAO cdao = new Character_DAO();
-			List<Character> char_info = cdao.getChar(user_id, char_name);
+			char_info.add(cdao.getChar(user_id, char_name));
 			request.setAttribute("char_info", char_info);
 			
 			// 소지하고 있는 아이템 리스트
@@ -37,7 +39,7 @@ public class Main_inventroy_handler implements Main_handler {
 			
 			// 착용중인 장비 리스트
 			Equip_DAO edao0 = new Equip_DAO();
-			List<Equip> equip_list = edao0.getEquipList(char_name);
+			List<Equip> equip_list = edao0.getEquipList(user_id, char_name);
 			request.setAttribute("equip_list", equip_list);
 			
 			// 장착 가능한 무기 리스트

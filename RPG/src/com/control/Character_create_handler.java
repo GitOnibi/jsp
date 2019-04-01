@@ -27,12 +27,11 @@ public class Character_create_handler implements Main_handler {
 			try {
 				// 케릭터 초기 능력치
 				Character_DAO cdao = new Character_DAO();
-				Character ch	= new Character(user_id, char_name, 1, 10, 10, 100, 10, 0, 1, 1, 0);
-				cdao.setChar(ch);
+				cdao.initChar(user_id, char_name);
 				
 				// 케릭터 초기 장비
 				Equip_DAO edao	= new Equip_DAO();
-				edao.initEquip(char_name);
+				edao.initEquip(user_id, char_name);
 				
 				String msg = "케릭터가 생성되었습니다.";
 				request.setAttribute("msg", msg);

@@ -41,10 +41,9 @@ public class Character_DAO {
 		return null;
 	}
 	
-	public List<Character> getChar(String user_id, String char_name) {
+	public Character getChar(String user_id, String char_name) {
 		System.out.println("- Character_DAO getChar");
 		String sql = "SELECT * FROM character WHERE user_id = ? AND char_name = ?";
-		List<Character> list = new ArrayList<>();
 		
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
@@ -67,33 +66,24 @@ public class Character_DAO {
 						rs.getInt("char_crt"),
 						rs.getInt("char_exp")
 				);
-				list.add(data);
 			}
-			return list;
+			return data;
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public void setChar(Character ch) {
+	public void initChar(String user_id, String char_name) {
 		System.out.println("- Character_DAO setChar");
-		String sql = "INSERT INTO character(user_id, char_name, char_lv, char_str, char_dex, char_hp, char_atk, char_def, char_agi, char_crt, char_exp) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String 	sql = "INSERT INTO character(user_id, char_name, char_lv, char_str, char_dex, char_hp, char_atk, char_def, char_agi, char_crt, char_exp) "
+					+ "VALUES(?,?,1,10,10,100,10,0,1,1,0)";
 		
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1, 	ch.getUser_id()		);
-			pstmt.setString(2, 	ch.getChar_name()	);
-			pstmt.setInt(	3, 	ch.getChar_lv()		);
-			pstmt.setInt(	4, 	ch.getChar_str()	);
-			pstmt.setInt(	5, 	ch.getChar_dex()	);
-			pstmt.setInt(	6, 	ch.getChar_hp()		);
-			pstmt.setInt(	7, 	ch.getChar_atk()	);
-			pstmt.setInt(	8, 	ch.getChar_def()	);
-			pstmt.setInt(	9, 	ch.getChar_agi()	);
-			pstmt.setInt(	10, ch.getChar_crt()	);
-			pstmt.setInt(	11, ch.getChar_exp()	);
+			pstmt.setString(1, user_id	);
+			pstmt.setString(2, char_name);
 			pstmt.executeQuery();
 		} catch(SQLException e) {
 			e.printStackTrace();

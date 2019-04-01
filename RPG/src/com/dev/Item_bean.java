@@ -9,6 +9,8 @@ public class Item_bean {
 	private int item_prop;
 	private int item_price;
 	
+	public Item_bean() {}
+	
 	public Item_bean(int item_code, String item_name, int item_atk, int item_def, String item_sub, int item_prop, int item_price) {
 		this.item_code	= item_code;
 		this.item_name	= item_name;
