@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,13 +25,14 @@ public class Notice_handler implements Main_handler {
 		
 		String user_id = (String)request.getSession().getAttribute("user_id");
 		Write_param wp = new Write_param(user_id, request.getParameter("title"), request.getParameter("cont"));
-		wp.validate(error);
-		if(error.isEmpty()) {
-			return view;
-			
-		}
+		//wp.validate(error);
+		//if(error.isEmpty()) {
+		//	return view;
+		//}
 		int num = ns.write(wp);
 		request.setAttribute("num", num);
-		return view;
+		RequestDispatcher dsp = request.getRequestDispatcher("main_board.do");
+		dsp.forward(request, response);
+		return null;
 	}
 }

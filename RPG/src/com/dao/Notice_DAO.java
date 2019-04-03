@@ -55,7 +55,7 @@ public class Notice_DAO {
 			int insert_cnt = pstmt.executeUpdate(); // 업데이트가 실행되면 0보다 큰 값을 반환 
 			if(insert_cnt > 0) {
 				Statement stmt = conn.createStatement();
-				String sql2 = "SELECT * FROM notice";
+				String sql2 = "SELECT * FROM notice ORDER BY num DESC";
 				rs = stmt.executeQuery(sql2);
 				if(rs.next()) {
 					int number = rs.getInt("num");
@@ -76,14 +76,17 @@ public class Notice_DAO {
 		return null;
 	}
 	
-	public List<Notice> getTitleList() {
-		System.out.println("- Notice_DAO getTitleList");
-		String	sql	= "SELECT * FROM notice";
+	public List<Notice> select_notice(int start, int size) throws SQLException {
+		System.out.println("- Notice_DAO select_notice");
+		String	sql	= "SELECT * FROM (SELECT ROWNUM AS rn, a.* FROM (SELECT * FROM notice ORDER BY num DESC) a) "
+					+ "WHERE rn BETWEEN ? AND ?";
 		List<Notice> list = new ArrayList<>();
 		
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, size);
 			rs		= pstmt.executeQuery();
 			Notice temp = null;
 			while(rs.next()) {
@@ -99,8 +102,26 @@ public class Notice_DAO {
 			}
 			return list;
 		} catch(SQLException e) {
-			new RuntimeException(e);
+			throw new RuntimeException(e);
+		} finally { conn.close(); }
+	}
+	
+	public int select_cnt() throws SQLException{
+		Statement stmt = null;
+		String sql = "SELECT COUNT(*) AS cnt FROM notice";
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			stmt	= conn.createStatement();
+			rs		= stmt.executeQuery(sql);
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+			return 0;
+		} catch(SQLException e) {
+			throw new RuntimeException("select_cnt SQLException!" + e);
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 }

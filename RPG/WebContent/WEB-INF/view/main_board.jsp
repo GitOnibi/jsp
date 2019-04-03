@@ -24,21 +24,44 @@
 						<th>글번호</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>최조작성일</th>
-						<th>최종수정일</th>
 						<th>조회수</th>
 					</tr>
+					<c:choose>
+					<c:when test="${notice_page.total == 0}" >
 					<tr>
-						<c:forEach items="${content_list}" var="row">
+						<td colspan="4">글이 없습니다.</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+					<c:forEach items="${notice_page.cont}" var="row">
+					<tr>
 						<td>${row.number}</td>
+						<td>
+							<a href="notice_read.do?no=${row.number}&page_no=${notice_page.curpage}">${row.title}</a>
+						</td>
 						<td>${row.user_id}</td>
-						<td>${row.title}</td>
-						<td>${row.regdate}</td>
-						<td>${row.moddate}</td>
 						<td>${row.read_cnt}</td>
-						</c:forEach>
+					</tr>
+					</c:forEach>
+					</c:otherwise>
+					</c:choose>
+					<tr>
+						<td colspan="4">
+							<c:if test="${notice_page.startpage > 5}">
+							<a href="main_board.do?page_no=${notice_page.startpage - 5}">&nbsp;&lt;&lt;이전&nbsp;</a>
+							</c:if>
+							<c:forEach items="pn" begin="${notice_page.startpage}" end="${notice_page.endpage}">
+							<a href="main_board.do?page_no=?${pn}">&nbsp;&nbsp;${pn}&nbsp;&nbsp;</a>
+							</c:forEach>
+							<c:if test="${notice_page.endpage < notice_page.totalpage}">
+							<a href="main_board.do?page_no=${notice_page.startpage + 5}">&nbsp;다음&gt;&gt;&nbsp;</a>
+							</c:if>
+						</td>
 					</tr>
 				</table>
+				<c:if test="${sessionScope.user_id != null}">
+					<a href="goto_write.do">글쓰기</a>
+				</c:if>
 			</div>
 		</div>
 		<div id="footer">
