@@ -41,6 +41,40 @@ public class Item_DAO {
 		return null;
 	}
 	
+	public List<Item_bean> getInvenList(String user_id, String char_name) {
+		System.out.println("- Item_DAO getInvenList");
+		String sql	= "SELECT * FROM inventory, item "
+					+ "WHERE inventory.item_code = item.item_code "
+					+ "AND inventory.user_id = ? "
+					+ "AND inventory.char_name = ? "
+					+ "ORDER BY inventory.item_code";
+		List<Item_bean> list = new ArrayList<>();
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, char_name);
+			rs		= pstmt.executeQuery();
+			while(rs.next()) {
+				Item_bean temp = new Item_bean(
+						rs.getInt(		"item_code"	),
+						rs.getString(	"item_name"	),
+						rs.getInt(		"item_atk"	), 
+						rs.getInt(		"item_def"	), 
+						rs.getString(	"item_sub"	), 
+						rs.getInt(		"item_prop"	),
+						rs.getInt(		"item_price")
+				);
+				list.add(temp);
+			}
+			return list;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void setItem(Item_bean ib) {
 		System.out.println("- Item_DAO setItem");
 		String sql = "INSERT INTO item(item_code, item_name, item_atk, item_def, item_sub, item_prop, item_price) VALUES(?,?,?,?,?,?,?)";

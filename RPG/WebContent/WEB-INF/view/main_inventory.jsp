@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.bean.Character" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -18,6 +17,51 @@
 			<jsp:include page="gnb.jsp" />
 		</header>
 		<div id="contents">
+ 			<div class="char_status">
+				<h1>케릭터</h1>
+				<table border="1px">
+					<tr>
+						<th>이름</th>
+						<th>체력</th>
+						<th>공격력</th>
+						<th>방어력</th>
+						<th>완력</th>
+						<th>민첩</th>
+						<th>회피율</th>
+						<th>치명타율</th>
+						<th>경험치</th>
+					</tr>
+					<tr>
+						<c:forEach items="${char_info}" var="row">
+						<td>Lv.${row.char_lv} ${row.char_name}(${row.user_id})</td>
+						<td>
+							${row.char_hp}
+						</td>
+						<td>
+							${row.char_atk}
+						</td>
+						<td>
+							${row.char_def}
+						</td>
+						<td>
+							${row.char_str}
+						</td>
+						<td>
+							${row.char_dex}
+						</td>
+						<td>
+							${row.char_agi}
+						</td>
+						<td>
+							${row.char_crt}
+						</td>
+						<td>
+							${row.char_exp}
+						</td>
+						</c:forEach>
+					</tr>
+				</table>
+			</div>
 			<div class="insert on">
 				<h1>착용중 아이템</h1>
 				<table border="1px" class="data_tbl">
@@ -36,117 +80,21 @@
 					<tr>
 						<c:forEach items="${equip_list}" var="row">
 						<td>
-							<select name="weapon" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.weapon_code == 0 || row.weapon_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.weapon_code}">${row.weapon_name}</option>
-									</c:otherwise>
-								</c:choose>
+							<select name="equip_code" class="li_${sessionScope.char_name}">
+							<c:choose>
+							<c:when test="${row.item_code == 0 || row.item_code == null}">
+								<option value="0">없음</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${row.item_code}">${row.item_name}</option>
+							</c:otherwise>
+							</c:choose>
 							</select>
-						</td>
-						<td>
-							<select name="amor" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.amor_code == 0 || row.amor_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.amor_code}">${row.amor_name}</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</td>
-						<td>
-							<select name="gloves" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.gloves_code == 0 || row.gloves_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.gloves_code}">${row.gloves_name}</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</td>
-						<td>
-							<select name="boots" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.boots_code == 0 || row.boots_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.boots_code}">${row.boots_name}</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</td>
-						<td>
-							<select name="sub1" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.sub1_code == 0 || row.sub1_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.sub1_code}">${row.sub1_name}</option>
-									</c:otherwise>
-								</c:choose>								
-							</select>
-						</td>
-						<td>
-							<select name="sub2" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.sub2_code == 0 || row.sub2_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.sub2_code}">${row.sub2_name}</option>
-									</c:otherwise>
-								</c:choose>								
-							</select>
-						</td>
-						<td>
-							<select name="sub3" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.sub3_code == 0 || row.sub3_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.sub3_code}">${row.sub3_name}</option>
-									</c:otherwise>
-								</c:choose>								
-							</select>
-						</td>
-						<td>
-							<select name="sk1" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.sk1_code == 0 || row.sk1_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.sk1_code}">${row.sk1_name}</option>
-									</c:otherwise>
-								</c:choose>								
-							</select>
-						</td>
-						<td>
-							<select name="sk2" class="li_${row.char_name}">
-								<c:choose>
-									<c:when test="${row.sk2_code == 0 || row.sk2_code == null}">
-										<option value="0">없음</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${row.sk2_code}">${row.sk2_name}</option>
-									</c:otherwise>
-								</c:choose>								
-							</select>
-						</td>
-						<td>
-							<input type="button" value="장비변경" onclick="show_modify(event, '${row.char_name}');"/>
 						</td>
 						</c:forEach>
+						<td>
+							<input type="button" value="장비변경" onclick="show_modify(event, '${sessionScope.char_name}');"/>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -168,7 +116,7 @@
 					</tr>
 					<tr>
 						<td>
-							<select name="weapon_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${weapon_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -176,7 +124,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="amor_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${amor_list}" var="row">
 									<option value="${row.item_code}">${row.item_name}</option>
@@ -184,7 +132,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="gloves_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${gloves_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -192,7 +140,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="boots_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${boots_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -200,7 +148,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="sub1_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${sub_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -208,7 +156,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="sub2_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${sub_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -216,7 +164,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="sub3_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 								<c:forEach items="${sub_list}" var="row">
 								<option value="${row.item_code}">${row.item_name}</option>
@@ -224,12 +172,12 @@
 							</select>
 						</td>
 						<td>
-							<select name="sk1_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 							</select>
 						</td>
 						<td>
-							<select name="sk2_code" class="mod_">
+							<select name="modify_code" class="mod_">
 								<option value="0">없음</option>
 							</select>
 						</td>
@@ -239,35 +187,6 @@
 					</tr>
 				</table>
 				</form>
-			</div>
-			<div class="char_status">
-				<h1>케릭터</h1>
-				<table border="1px">
-					<tr>
-						<th>이름</th>
-						<th>체력</th>
-						<th>공격력</th>
-						<th>방어력</th>
-						<th>완력</th>
-						<th>민첩</th>
-						<th>회피율</th>
-						<th>치명타율</th>
-						<th>경험치</th>
-					</tr>
-					<tr>
-						<c:forEach items="${char_info}" var="row">
-						<td>Lv.${row.char_lv} ${row.char_name}(${row.user_id})</td>
-						<td>${row.char_hp}</td>
-						<td>${row.char_atk}</td>
-						<td>${row.char_def}</td>
-						<td>${row.char_str}</td>
-						<td>${row.char_dex}</td>
-						<td>${row.char_agi}</td>
-						<td>${row.char_crt}</td>
-						<td>${row.char_exp}</td>
-						</c:forEach>
-					</tr>
-				</table>
 			</div>
 			<div class="ueser_inven">
 				<h1>소지아이템</h1>

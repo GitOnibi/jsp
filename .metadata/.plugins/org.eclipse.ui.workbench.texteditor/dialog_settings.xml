@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="isRegEx"/>
-		<item value="cnt" key="selection"/>
+		<item value="Item_DAO" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Inven_DAO"/>
+			<item value="mod_code"/>
+			<item value="modify_code"/>
 			<item value="cnd"/>
 			<item value="itdao"/>
 			<item value="Char_item"/>
@@ -20,15 +23,14 @@
 			<item value="ins_"/>
 			<item value="item_"/>
 			<item value="ah"/>
-			<item value="Admin_handler"/>
-			<item value="mh"/>
-			<item value="Main_handler"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Item_DAO"/>
+			<item value="modify_code"/>
+			<item value=""/>
 			<item value="cnt"/>
 			<item value="idao"/>
 			<item value="Inven"/>
-			<item value=""/>
 			<item value="mob_"/>
 			<item value="dh"/>
 			<item value="Dev_handler"/>
@@ -38,8 +40,6 @@
 			<item value="pw"/>
 			<item value="id"/>
 			<item value="p1"/>
-			<item value="pr"/>
-			<item value="pr01"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -39,7 +39,6 @@
 <fullyQualifiedTypeName name="com.bean.Skill"/>
 <fullyQualifiedTypeName name="com.bean.Equip"/>
 <fullyQualifiedTypeName name="com.dao.Equip_DAO"/>
-<fullyQualifiedTypeName name="com.dev.Item_bean"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="com.service.Notice_list_service"/>
 <fullyQualifiedTypeName name="com.dao.Notice_cont_DAO"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="com.dev.Item_bean"/>
 </qualifiedTypeNameHistroy>
