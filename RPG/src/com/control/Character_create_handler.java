@@ -31,7 +31,9 @@ public class Character_create_handler implements Main_handler {
 				
 				// 케릭터 초기 장비
 				Equip_DAO edao	= new Equip_DAO();
-				edao.initEquip(user_id, char_name);
+				for(int i = 1; i < 10; i++) {
+					edao.initEquip(i, user_id, char_name);
+				}
 				
 				String msg = "케릭터가 생성되었습니다.";
 				request.setAttribute("msg", msg);

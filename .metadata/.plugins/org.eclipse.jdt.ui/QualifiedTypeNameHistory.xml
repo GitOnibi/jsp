@@ -37,15 +37,12 @@
 <fullyQualifiedTypeName name="com.bean.Inven"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="com.bean.Skill"/>
-<fullyQualifiedTypeName name="com.bean.Equip"/>
 <fullyQualifiedTypeName name="com.dao.Equip_DAO"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.beans.Statement"/>
-<fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="com.bean.Notice_content"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
@@ -57,7 +54,10 @@
 <fullyQualifiedTypeName name="com.service.Notice_service"/>
 <fullyQualifiedTypeName name="com.bean.Notice_page"/>
 <fullyQualifiedTypeName name="com.service.Notice_list_service"/>
+<fullyQualifiedTypeName name="com.dev.Item_bean"/>
 <fullyQualifiedTypeName name="com.dao.Notice_cont_DAO"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
-<fullyQualifiedTypeName name="com.dev.Item_bean"/>
+<fullyQualifiedTypeName name="com.bean.Notice_content"/>
+<fullyQualifiedTypeName name="com.bean.Equip"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
 </qualifiedTypeNameHistroy>

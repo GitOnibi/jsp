@@ -14,7 +14,7 @@ public class Notice_list_service {
 	public Notice_page getPage(int pageNum) throws SQLException {
 		try {
 			int total = ndao.select_cnt();
-			List<Notice> cont = ndao.select_notice((pageNum - 1) * size, size);
+			List<Notice> cont = ndao.select_notice((pageNum - 1) * size + (pageNum > 1 ? 1 : 0), size);
 			return new Notice_page(total, pageNum, size, cont);
 		} catch(SQLException e) {
 			throw new RuntimeException(e);

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,15 +51,16 @@ public class Equip_DAO {
 		return null;
 	}
 	
-	public void initEquip(String user_id, String char_name) {
+	public void initEquip(int idx, String user_id, String char_name) {
 		System.out.println("- Equip_DAO initEquip");
-		String sql	= "INSERT INTO equip(user_id, char_name, weapon_code, amor_code, gloves_code, boots_code, sub1_code, sub2_code, sub3_code, sk1_code, sk2_code) "
-					+ "VALUES(?, ?, 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0, '0', 0)";
+		String sql	= "INSERT INTO equip(idx, item_code, char_name, user_id) "
+					+ "VALUES(?, 0, ?, ?)";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
-			pstmt.setString(1, user_id	);
+			pstmt.setInt(1, idx);
 			pstmt.setString(2, char_name);
+			pstmt.setString(3, user_id	);
 			pstmt.executeQuery();
 		} catch(SQLException e) {
 			e.printStackTrace();

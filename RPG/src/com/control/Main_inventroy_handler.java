@@ -39,6 +39,18 @@ public class Main_inventroy_handler implements Main_handler {
 			List<Item_bean> equip_list = edao0.getEquipList(user_id, char_name);
 			request.setAttribute("equip_list", equip_list);
 			
+			// 스텟
+			int sum_atk = 0;
+			int sum_def = 0;
+			for(int i = 0; i < equip_list.size(); i++) {
+				sum_atk += equip_list.get(i).getItem_atk();
+				sum_def += equip_list.get(i).getItem_def();
+			}
+			List<Integer> stat_list = new ArrayList<Integer>();
+			stat_list.add(sum_atk);
+			stat_list.add(sum_def);
+			request.setAttribute("stat_list", stat_list);
+			
 			// 소지하고 있는 아이템 리스트
 			Item_DAO idao = new Item_DAO();
 			List<Item_bean> inven_list = idao.getInvenList(user_id, char_name);

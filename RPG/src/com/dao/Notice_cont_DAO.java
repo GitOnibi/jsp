@@ -59,4 +59,18 @@ public class Notice_cont_DAO {
 			conn.close();
 		}
 	}
+	
+	public void modifyCont(Notice_content data) throws SQLException {
+		System.out.println("- Notice_cont_DAO modifyCont");
+		String	sql	= "UPDATE notice_content SET cont = ? WHERE num = ?";
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, data.getContent());
+			pstmt.setInt(2, data.getNumber());
+			pstmt.executeUpdate();
+		} finally {
+			conn.close();
+		}
+	}
 }

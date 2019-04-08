@@ -38,10 +38,10 @@
 							${row.char_hp}
 						</td>
 						<td>
-							${row.char_atk}
+							${row.char_atk} + ${stat_list[0]}
 						</td>
 						<td>
-							${row.char_def}
+							${row.char_def} + ${stat_list[1]}
 						</td>
 						<td>
 							${row.char_str}

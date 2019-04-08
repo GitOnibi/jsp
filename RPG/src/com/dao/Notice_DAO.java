@@ -86,7 +86,7 @@ public class Notice_DAO {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
-			pstmt.setInt(2, size);
+			pstmt.setInt(2, size + start);
 			rs		= pstmt.executeQuery();
 			Notice temp = null;
 			while(rs.next()) {

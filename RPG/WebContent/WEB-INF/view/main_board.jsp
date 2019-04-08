@@ -4,6 +4,9 @@
 	${epath = pageContext.request.contextPath; ''}
 	<a href="${epath}/디렉토리명/***.do">이동</a>
  --%>
+ total : ${notice_page.total}<br />
+ curpage : ${notice_page.curpage}<br />
+ startpage : ${notice_page.startpage}
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +53,8 @@
 							<c:if test="${notice_page.startpage > 5}">
 							<a href="main_board.do?page_no=${notice_page.startpage - 5}">&nbsp;&lt;&lt;이전&nbsp;</a>
 							</c:if>
-							<c:forEach items="pn" begin="${notice_page.startpage}" end="${notice_page.endpage}">
-							<a href="main_board.do?page_no=?${pn}">&nbsp;&nbsp;${pn}&nbsp;&nbsp;</a>
+							<c:forEach var="pn" begin="${notice_page.startpage}" end="${notice_page.endpage}">
+							<a href="main_board.do?page_no=${pn}">&nbsp;&nbsp;${pn}&nbsp;&nbsp;</a>
 							</c:forEach>
 							<c:if test="${notice_page.endpage < notice_page.totalpage}">
 							<a href="main_board.do?page_no=${notice_page.startpage + 5}">&nbsp;다음&gt;&gt;&nbsp;</a>
