@@ -25,17 +25,16 @@ public class Mob_insert_handler implements Dev_handler {
 			int mob_sk1		= Integer.parseInt(request.getParameter("mob_sk1"));
 			int mob_sk2		= Integer.parseInt(request.getParameter("mob_sk2"));
 			int mob_sk3		= Integer.parseInt(request.getParameter("mob_sk3"));
-			int mob_sk4		= Integer.parseInt(request.getParameter("mob_sk4"));
-			int mob_sk5		= Integer.parseInt(request.getParameter("mob_sk5"));
 			String mob_sub	= request.getParameter("mob_sub");
 			int mob_atk		= Integer.parseInt(request.getParameter("mob_atk"));
 			int mob_def		= Integer.parseInt(request.getParameter("mob_def"));
 			int mob_hp		= Integer.parseInt(request.getParameter("mob_hp"));
+			int mob_exp		= Integer.parseInt(request.getParameter("mob_exp"));
 			
 			Mob_DAO mdao = new Mob_DAO();
 			
 			try {
-				Mob_bean mb = new Mob_bean(mob_code, mob_name, mob_lv, mob_str, mob_dex, mob_prop, mob_sk1, mob_sk2, mob_sk3, mob_sk4, mob_sk5, mob_sub, mob_atk, mob_def, mob_hp);
+				Mob_bean mb = new Mob_bean(mob_code, mob_name, mob_lv, mob_str, mob_dex, mob_prop, mob_sk1, mob_sk2, mob_sk3, mob_sub, mob_atk, mob_def, mob_hp, mob_exp);
 				mdao.setMob(mb);
 				String msg = "정상적으로 등록되었습니다";
 				request.setAttribute("msg", msg);

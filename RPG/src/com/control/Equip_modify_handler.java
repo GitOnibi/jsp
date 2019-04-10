@@ -1,21 +1,20 @@
 package com.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Equip;
-import com.bean.Character;
-import com.dao.Character_DAO;
 import com.dao.Equip_DAO;
 
 public class Equip_modify_handler implements Main_handler {
 	private String view = "/WEB-INF/view/main_inventory.jsp";
 	
 	@Override
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("- Equip_modify_handler action");
 		
 		String user_id		= (String)request.getSession().getAttribute("user_id");

@@ -30,6 +30,7 @@
 						<th>회피율</th>
 						<th>치명타율</th>
 						<th>경험치</th>
+						<th>골드</th>
 					</tr>
 					<tr>
 						<c:forEach items="${char_info}" var="row">
@@ -57,6 +58,9 @@
 						</td>
 						<td>
 							${row.char_exp}
+						</td>
+						<td>
+							${row.char_money}
 						</td>
 						</c:forEach>
 					</tr>
@@ -209,6 +213,11 @@
 									<c:if test="${row.item_atk != 0}"><p>공격력 : ${row.item_atk}</p></c:if>
 									<c:if test="${row.item_def != 0}"><p>방어력 : ${row.item_def}</p></c:if>
 									<p>설명 : ${row.item_sub}</p>
+									<form action="item_sell.do" method="POST">
+										<input type="hidden" name="item_code" value="${row.item_code}"/>
+										<input type="hidden" name="item_price" value="${row.item_price}"/>
+										<input type="submit" value="판매"/>
+									</form>
 								</div>
 							</div>
 						</td>

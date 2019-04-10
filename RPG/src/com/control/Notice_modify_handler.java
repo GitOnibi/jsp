@@ -17,11 +17,12 @@ public class Notice_modify_handler implements Main_handler {
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("- Notice_modify_handler action");
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+		int no = Integer.parseInt(request.getParameter("num"));
 		String cont = request.getParameter("cont");
 		
 		Notice_cont_DAO ncdao = new Notice_cont_DAO();
-		Notice_content nc = new Notice_content(num, cont);
+		Notice_content nc = new Notice_content(no, cont);
+		
 		try {
 			ncdao.modifyCont(nc);
 			return "main_board.do";

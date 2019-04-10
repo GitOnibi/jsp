@@ -11,7 +11,7 @@ public class Dev_login_handler implements Dev_handler {
 	private String view = "/WEB-INF/dev/dev_login.jsp";
 	Dev_DAO ddao = new Dev_DAO();
 	
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("- Dev_login_handler action");
 		if(request.getMethod().equalsIgnoreCase("GET")) return view;
 		

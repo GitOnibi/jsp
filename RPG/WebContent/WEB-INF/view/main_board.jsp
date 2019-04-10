@@ -4,9 +4,7 @@
 	${epath = pageContext.request.contextPath; ''}
 	<a href="${epath}/디렉토리명/***.do">이동</a>
  --%>
- total : ${notice_page.total}<br />
- curpage : ${notice_page.curpage}<br />
- startpage : ${notice_page.startpage}
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,5 +1,6 @@
 package com.dev;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ public class Item_DAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	
-	public List<Item_bean> getItemList() {
+	public List<Item_bean> getItemList() throws SQLException, IOException {
 		System.out.println("- Item_DAO getItemList");
 		String sql = "SELECT * FROM item ORDER BY item_code";
 		List<Item_bean> list = new ArrayList<>();
@@ -35,13 +36,12 @@ public class Item_DAO {
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 	
-	public List<Item_bean> getInvenList(String user_id, String char_name) {
+	public List<Item_bean> getInvenList(String user_id, String char_name) throws SQLException, IOException {
 		System.out.println("- Item_DAO getInvenList");
 		String sql	= "SELECT * FROM inventory, item "
 					+ "WHERE inventory.item_code = item.item_code "
@@ -69,13 +69,12 @@ public class Item_DAO {
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 	
-	public void setItem(Item_bean ib) {
+	public void setItem(Item_bean ib) throws SQLException, IOException {
 		System.out.println("- Item_DAO setItem");
 		String sql = "INSERT INTO item(item_code, item_name, item_atk, item_def, item_sub, item_prop, item_price) VALUES(?,?,?,?,?,?,?)";
 		try {
@@ -89,12 +88,12 @@ public class Item_DAO {
 			pstmt.setInt(	6, ib.getItem_prop()	);
 			pstmt.setInt(	7, ib.getItem_price()	);
 			rs		= pstmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public void modifyItem(Item_bean ib) {
+	public void modifyItem(Item_bean ib) throws SQLException, IOException {
 		System.out.println("- Item_DAO modifyItem");
 		String sql = "UPDATE item SET item_name = ?, item_atk = ?, item_def = ?, item_sub = ?, item_prop = ?, item_price = ? WHERE item_code = ?";
 		try {
@@ -108,12 +107,12 @@ public class Item_DAO {
 			pstmt.setInt(	6,	ib.getItem_price()	);
 			pstmt.setInt(	7,	ib.getItem_code()	);
 			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public void deleteItem(int item_code) {
+	public void deleteItem(int item_code) throws SQLException, IOException {
 		System.out.println("- Item_DAO deleteItem");
 		String sql = "DELETE FROM item WHERE item_code = ?";
 		try {
@@ -121,12 +120,12 @@ public class Item_DAO {
 			pstmt	= conn.prepareStatement(sql);
 			pstmt.setInt(1,	item_code);
 			pstmt.executeQuery();
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public Item_bean getItemInfo(int item_code) {
+	public Item_bean getItemInfo(int item_code) throws SQLException, IOException {
 		System.out.println("- Item_DAO getItemStatus");
 		String sql = "SELECT * FROM item WHERE item_code = ?";
 		
@@ -148,9 +147,8 @@ public class Item_DAO {
 				);
 			}
 			return temp;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 }

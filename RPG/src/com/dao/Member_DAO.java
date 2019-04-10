@@ -35,7 +35,9 @@ public class Member_DAO {
 				);
 			}
 			return data;
-		} finally {}
+		} finally {
+			conn.close();
+		}
 	}
 	
 	public Date toDate(Timestamp date) { return date == null? null:new Date(date.getTime()); }
@@ -51,10 +53,12 @@ public class Member_DAO {
 			pstmt.setTimestamp(	3, new Timestamp(data.getNdate().getTime()));
 			pstmt.setString(	4, data.getUser_email());
 			pstmt.executeQuery();
-		} finally {}
+		} finally {
+			conn.close();
+		}
 	}
 	
-	public List<Member> getMemberList() {
+	public List<Member> getMemberList() throws SQLException, IOException {
 		System.out.println("- Member_DAO getMemberId");
 		String sql = "SELECT * FROM member";
 		List<Member> list = new ArrayList<>();
@@ -73,9 +77,8 @@ public class Member_DAO {
 				list.add(data);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ public class Notice_cont_DAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public Notice_content insert(Notice_content data) throws SQLException {
+	public Notice_content insert(Notice_content data) throws SQLException, IOException {
 		System.out.println("- Notice_cont_DAO insert");
 		String	sql	= "INSERT INTO notice_content(num, cont) VALUES(?,?)";
 		try {
@@ -34,7 +35,7 @@ public class Notice_cont_DAO {
 		}
 	}
 	
-	public List<Notice_content> getCont(int no) throws SQLException {
+	public List<Notice_content> getCont(int no) throws SQLException, IOException {
 		System.out.println("- Notice_cont_DAO getCont");
 		String	sql	= "SELECT * FROM notice_content WHERE num = ?";
 		List<Notice_content> list = new ArrayList<>();
@@ -53,14 +54,12 @@ public class Notice_cont_DAO {
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			conn.close();
 		}
 	}
 	
-	public void modifyCont(Notice_content data) throws SQLException {
+	public void modifyCont(Notice_content data) throws SQLException, IOException {
 		System.out.println("- Notice_cont_DAO modifyCont");
 		String	sql	= "UPDATE notice_content SET cont = ? WHERE num = ?";
 		try {

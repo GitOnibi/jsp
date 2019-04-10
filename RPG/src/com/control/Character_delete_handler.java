@@ -1,6 +1,7 @@
 package com.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ public class Character_delete_handler implements Main_handler {
 	private String view = "/WEB-INF/view/character_select.jsp";
 	
 	@Override
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("- Character_delete_handler action");
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {

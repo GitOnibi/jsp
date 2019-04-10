@@ -23,7 +23,7 @@ public class Notice_DAO {
 		return new Timestamp(date.getTime());
 	}
 	
-	public int getNum() {
+	public int getNum() throws SQLException, IOException {
 		int num = 1;
 		String sql = "SELECT MAX(num) AS mnum FROM notice";
 		try {
@@ -34,8 +34,8 @@ public class Notice_DAO {
 				num = rs.getInt("mnum") + 1;
 				return num;
 			}
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
+		} finally {
+			conn.close();
 		}
 		return num;
 	}
@@ -76,7 +76,7 @@ public class Notice_DAO {
 		return null;
 	}
 	
-	public List<Notice> select_notice(int start, int size) throws SQLException {
+	public List<Notice> select_notice(int start, int size) throws SQLException, IOException {
 		System.out.println("- Notice_DAO select_notice");
 		String	sql	= "SELECT * FROM (SELECT ROWNUM AS rn, a.* FROM (SELECT * FROM notice ORDER BY num DESC) a) "
 					+ "WHERE rn BETWEEN ? AND ?";
@@ -101,12 +101,12 @@ public class Notice_DAO {
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		} finally { conn.close(); }
+		} finally {
+			conn.close();
+		}
 	}
 	
-	public int select_cnt() throws SQLException{
+	public int select_cnt() throws SQLException, IOException {
 		Statement stmt = null;
 		String sql = "SELECT COUNT(*) AS cnt FROM notice";
 		
@@ -118,8 +118,32 @@ public class Notice_DAO {
 				return rs.getInt("cnt");
 			}
 			return 0;
-		} catch(SQLException e) {
-			throw new RuntimeException("select_cnt SQLException!" + e);
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public Notice getNotice(int num) throws SQLException, IOException {
+		System.out.println("- Notice_DAO getNotice");
+		String	sql	= "SELECT * FROM notice WHERE num = ?";
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs		= pstmt.executeQuery();
+			Notice temp = null;
+			while(rs.next()) {
+				temp = new Notice(
+					rs.getInt("num"),
+					rs.getString("user_id"),
+					rs.getString("title"),
+					rs.getDate("regdate"),
+					rs.getDate("moddate"),
+					rs.getInt("read_cnt")
+				);
+			}
+			return temp;
 		} finally {
 			conn.close();
 		}

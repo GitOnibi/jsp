@@ -1,6 +1,7 @@
 package com.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,14 @@ import com.bean.Character;
 import com.dao.Character_DAO;
 import com.dao.Equip_DAO;
 import com.dev.Item_bean;
+import com.dev.Mob_DAO;
+import com.dev.Mob_bean;
 
 public class Main_map_detail_handler implements Main_handler {
 	private String view = "/WEB-INF/view/main_map_detail.jsp";	
 	
 	@Override
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		
 		String user_id		= (String)request.getSession().getAttribute("user_id");
 		String char_name	= (String)request.getSession().getAttribute("char_name");
@@ -44,6 +47,11 @@ public class Main_map_detail_handler implements Main_handler {
 		stat_list.add(sum_atk);
 		stat_list.add(sum_def);
 		request.setAttribute("stat_list", stat_list);
+		
+		// 몹정보
+		Mob_DAO mdao = new Mob_DAO();
+		List<Mob_bean> mob_list = mdao.getMobList();
+		request.setAttribute("mob_list", mob_list);
 		
 		return view;
 	}

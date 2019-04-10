@@ -33,7 +33,7 @@ public class Notice_service {
 		}
 	}
 	
-	public Notice toNotice(Write_param wp) {
+	public Notice toNotice(Write_param wp) throws SQLException, IOException {
 		Date now = new Date();
 		return new Notice(
 			ndao.getNum(),

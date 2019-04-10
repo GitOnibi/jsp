@@ -1,6 +1,7 @@
 package com.dev;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ public class Goto_dev_mob_handler implements Dev_handler {
 	private String view = "/WEB-INF/dev/dev_mob.jsp";
 	
 	@Override
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("- Goto_dev_mob_handler action");
 		Mob_DAO mdao = new Mob_DAO();
 		List<Mob_bean> list = mdao.getMobList();

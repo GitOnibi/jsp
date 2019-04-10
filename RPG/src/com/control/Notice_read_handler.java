@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Notice;
+import com.dao.Notice_DAO;
 import com.dao.Notice_cont_DAO;
 
 public class Notice_read_handler implements Main_handler {
@@ -20,7 +22,10 @@ public class Notice_read_handler implements Main_handler {
 		String page_no	= request.getParameter("page_no");
 		
 		try {
+			Notice_DAO ndao = new Notice_DAO();			
 			Notice_cont_DAO ncdao = new Notice_cont_DAO();
+			
+			request.setAttribute("nt", ndao.getNotice(no));
 			request.setAttribute("cont", ncdao.getCont(no));
 			return view;
 		} catch(SQLException e) {

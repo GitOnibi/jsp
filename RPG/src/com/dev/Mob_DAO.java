@@ -14,9 +14,9 @@ public class Mob_DAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public List<Mob_bean> getMobList() {
+	public List<Mob_bean> getMobList() throws SQLException, IOException {
 		System.out.println("- Mob_DAO getMobList");
-		String sql = "SELECT * FROM mob";
+		String sql = "SELECT * FROM mob ORDER BY mob_code ASC";
 		List<Mob_bean> list = new ArrayList<>();
 		
 		try {
@@ -33,26 +33,24 @@ public class Mob_DAO {
 						rs.getInt(		"mob_prop"	),
 						rs.getInt(		"mob_sk1"	),
 						rs.getInt(		"mob_sk2"	), 
-						rs.getInt(		"mob_sk3"	), 
-						rs.getInt(		"mob_sk4"	), 
-						rs.getInt(		"mob_sk5"	), 
+						rs.getInt(		"mob_sk3"	),
 						rs.getString(	"mob_sub"	), 
 						rs.getInt(		"mob_atk"	), 
 						rs.getInt(		"mob_def"	), 
-						rs.getInt(		"mob_hp"	)
+						rs.getInt(		"mob_hp"	),
+						rs.getInt(		"mob_exp"	)
 				);
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 	
-	public void setMob(Mob_bean mb) {
+	public void setMob(Mob_bean mb) throws SQLException, IOException {
 		System.out.println("- Mob_DAO setMob");
-		String sql = "INSERT INTO mob(mob_code, mob_name, mob_lv, mob_str, mob_dex, mob_prop, mob_sk1, mob_sk2, mob_sk3, mob_sk4, mob_sk5, mob_sub, mob_atk, mob_def, mob_hp) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO mob(mob_code, mob_name, mob_lv, mob_str, mob_dex, mob_prop, mob_sk1, mob_sk2, mob_sk3, mob_sub, mob_atk, mob_def, mob_hp, mob_exp) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
@@ -65,21 +63,20 @@ public class Mob_DAO {
 			pstmt.setInt(	7,	mb.getMob_sk1()		);
 			pstmt.setInt(	8,	mb.getMob_sk2()		);
 			pstmt.setInt(	9,	mb.getMob_sk3()		);
-			pstmt.setInt(	10,	mb.getMob_sk4()		);
-			pstmt.setInt(	11,	mb.getMob_sk5()		);
-			pstmt.setString(12,	mb.getMob_sub()		);
-			pstmt.setInt(	13,	mb.getMob_atk()		);
-			pstmt.setInt(	14,	mb.getMob_def()		);
-			pstmt.setInt(	15,	mb.getMob_hp()		);
+			pstmt.setString(10,	mb.getMob_sub()		);
+			pstmt.setInt(	11,	mb.getMob_atk()		);
+			pstmt.setInt(	12,	mb.getMob_def()		);
+			pstmt.setInt(	13,	mb.getMob_hp()		);
+			pstmt.setInt(	14,	mb.getMob_exp()		);
 			rs		= pstmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public void modifyMob(Mob_bean mb) {
+	public void modifyMob(Mob_bean mb) throws SQLException, IOException {
 		System.out.println("- Mob_DAO modifyMob");
-		String sql = "UPDATE mob SET mob_name = ?, mob_lv = ?, mob_str = ?, mob_dex = ?, mob_prop = ?, mob_sk1 = ?, mob_sk2 = ?, mob_sk3 = ?, mob_sk4 = ?, mob_sk5 = ?, mob_sub = ?, mob_atk = ?, mob_def = ?, mob_hp = ? WHERE mob_code = ?";
+		String sql = "UPDATE mob SET mob_name = ?, mob_lv = ?, mob_str = ?, mob_dex = ?, mob_prop = ?, mob_sk1 = ?, mob_sk2 = ?, mob_sk3 = ?, mob_sub = ?, mob_atk = ?, mob_def = ?, mob_hp = ?, mob_exp = ? WHERE mob_code = ?";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
@@ -91,28 +88,81 @@ public class Mob_DAO {
 			pstmt.setInt(	6,	mb.getMob_sk1()		);
 			pstmt.setInt(	7,	mb.getMob_sk2()		);
 			pstmt.setInt(	8,	mb.getMob_sk3()		);
-			pstmt.setInt(	9,	mb.getMob_sk4()		);
-			pstmt.setInt(	10,	mb.getMob_sk5()		);
-			pstmt.setString(11,	mb.getMob_sub()		);
-			pstmt.setInt(	12,	mb.getMob_atk()		);
-			pstmt.setInt(	13,	mb.getMob_def()		);
-			pstmt.setInt(	14,	mb.getMob_hp()		);
-			pstmt.setInt(	15,	mb.getMob_code()	);
+			pstmt.setString(9,	mb.getMob_sub()		);
+			pstmt.setInt(	10,	mb.getMob_atk()		);
+			pstmt.setInt(	11,	mb.getMob_def()		);
+			pstmt.setInt(	12,	mb.getMob_hp()		);
+			pstmt.setInt(	13,	mb.getMob_exp()		);
+			pstmt.setInt(	14,	mb.getMob_code()	);
 			rs		= pstmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public void deleteMob(String mob_code) {
+	public void deleteMob(int mob_code) throws SQLException, IOException {
 		System.out.println("- Mob_DAO deleteItem");
-		String sql = "DELETE FROM mob WHERE mob_code = '" + mob_code + "'";
+		String sql = "DELETE FROM mob WHERE mob_code = ?";
 		try {
 			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
 			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, mob_code);
 			pstmt.executeQuery();
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public Mob_bean getMob(int mob_code) throws SQLException, IOException {
+		System.out.println("- Mob_DAO getMob");
+		String sql = "SELECT * FROM mob WHERE mob_code = ?";
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, mob_code);
+			rs = pstmt.executeQuery();
+			Mob_bean mb = null;
+			while(rs.next()) {
+				mb = new Mob_bean(
+						rs.getInt("mob_code"),
+						rs.getString("mob_name"),
+						rs.getInt("mob_lv"),
+						rs.getInt("mob_str"),
+						rs.getInt("mob_dex"),
+						rs.getInt("mob_prop"),
+						rs.getInt("mob_sk1"),
+						rs.getInt("mob_sk2"),
+						rs.getInt("mob_sk3"),
+						rs.getString("mob_sub"),
+						rs.getInt("mob_atk"),
+						rs.getInt("mob_def"),
+						rs.getInt("mob_hp"),
+						rs.getInt("mob_exp")
+				);
+			}
+			return mb;
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public List<Integer> dropItem(int mob_code) throws SQLException, IOException {
+		System.out.println("- Mob_DAO dropItem");
+		String sql = "SELECT * FROM mob_item WHERE mob_code = ?";
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, mob_code);
+			rs = pstmt.executeQuery();
+			List<Integer> list = new ArrayList<>();
+			while(rs.next()) {
+				list.add(rs.getInt("item_code"));
+			}
+			return list;
+		} finally {
+			conn.close();
 		}
 	}
 }

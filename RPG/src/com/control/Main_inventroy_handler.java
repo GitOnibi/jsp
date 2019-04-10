@@ -1,17 +1,15 @@
 package com.control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Character;
-import com.bean.Equip;
 import com.dao.Character_DAO;
 import com.dao.Equip_DAO;
 import com.dev.Item_DAO;
@@ -21,7 +19,7 @@ public class Main_inventroy_handler implements Main_handler {
 	private String view = "/WEB-INF/view/main_inventory.jsp";
 	
 	@Override
-	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		System.out.println("- Main_inventroy_handler action");
 		
 		String user_id		= (String)request.getSession().getAttribute("user_id");

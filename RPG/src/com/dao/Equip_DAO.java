@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class Equip_DAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public List<Item_bean> getEquipList(String user_id, String char_name) {
+	public List<Item_bean> getEquipList(String user_id, String char_name) throws SQLException, IOException {
 		System.out.println("- Equip_DAO getEquipList");
 		List<Item_bean> list = new ArrayList<>();
 		
@@ -45,13 +46,12 @@ public class Equip_DAO {
 				list.add(temp);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 	
-	public void initEquip(int idx, String user_id, String char_name) {
+	public void initEquip(int idx, String user_id, String char_name) throws SQLException, IOException {
 		System.out.println("- Equip_DAO initEquip");
 		String sql	= "INSERT INTO equip(idx, item_code, char_name, user_id) "
 					+ "VALUES(?, 0, ?, ?)";
@@ -62,12 +62,12 @@ public class Equip_DAO {
 			pstmt.setString(2, char_name);
 			pstmt.setString(3, user_id	);
 			pstmt.executeQuery();
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 	
-	public List<Item_bean> getEquipableList(String user_id, String char_name, int item_prop) {
+	public List<Item_bean> getEquipableList(String user_id, String char_name, int item_prop) throws SQLException, IOException {
 		System.out.println("- Equip_DAO getEquipableList");
 		String sql	= "SELECT * FROM inventory, item "
 					+ "WHERE inventory.item_code = item.item_code "
@@ -97,13 +97,12 @@ public class Equip_DAO {
 				list.add(data);
 			}
 			return list;
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
-		return null;
 	}
 	
-	public void updateEquipList(Equip equip) {
+	public void updateEquipList(Equip equip) throws SQLException, IOException {
 		System.out.println("- Equip_DAO updateEquipList");
 		String sql	= "UPDATE equip SET item_code = ? WHERE idx = ? AND user_id = ? AND char_name = ?";
 		
@@ -115,8 +114,8 @@ public class Equip_DAO {
 			pstmt.setString(	3,	equip.getUser_id()	);
 			pstmt.setString(	4,	equip.getChar_name());
 			pstmt.executeUpdate();
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 	}
 }

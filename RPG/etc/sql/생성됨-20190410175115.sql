@@ -1,0 +1,25 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 수요일-4월-10-2019   
+--------------------------------------------------------
+@C:\Users\huno\Desktop\CHARACTER.sql
+@C:\Users\huno\Desktop\DEV.sql
+@C:\Users\huno\Desktop\EQUIP.sql
+@C:\Users\huno\Desktop\INVENTORY.sql
+@C:\Users\huno\Desktop\ITEM.sql
+@C:\Users\huno\Desktop\MEMBER.sql
+@C:\Users\huno\Desktop\MOB.sql
+@C:\Users\huno\Desktop\MOB_ITEM.sql
+@C:\Users\huno\Desktop\NOTICE.sql
+@C:\Users\huno\Desktop\NOTICE_CONTENT.sql
+@C:\Users\huno\Desktop\SKILL.sql
+--@C:\Users\huno\Desktop\CHARACTER_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\DEV_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\EQUIP_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\INVENTORY_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\ITEM_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\MEMBER_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\MOB_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\MOB_ITEM_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\NOTICE_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\NOTICE_CONTENT_DATA_TABLE.csv
+--@C:\Users\huno\Desktop\SKILL_DATA_TABLE.csv

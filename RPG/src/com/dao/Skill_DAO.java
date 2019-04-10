@@ -37,7 +37,9 @@ public class Skill_DAO {
 				list.add(data);
 			}
 			return list;
-		} finally {}
+		} finally {
+			conn.close();
+		}
 	}
 	
 	public List<Skill> getHaveSkList(String char_name) throws SQLException, IOException {
@@ -62,6 +64,8 @@ public class Skill_DAO {
 				list.add(data);
 			}
 			return list;
-		} finally {}
+		} finally {
+			conn.close();
+		}
 	}
 }

@@ -15,7 +15,7 @@
 		</header>
 		<div id="contents">
 			<div>
-				<h1>글쓰기</h1>
+				<h1>수정하기</h1>
 				<form action="notice_modify.do" method="POST">
 					작성자: <input type="text" name="user_id" value="${sessionScope.user_id}" readonly/><br />
 					<c:forEach items="${cont}" var="row">

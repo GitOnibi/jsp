@@ -12,6 +12,7 @@ public class Character {
 	private int char_agi;
 	private int char_crt;
 	private int char_exp;
+	private int char_money;
 	
 	public Character() {
 		
@@ -24,7 +25,7 @@ public class Character {
 	}
 	
 	public Character(String user_id, String char_name, int char_lv, int char_str, int char_dex, int char_hp,
-			int char_atk, int char_def, int char_agi, int char_crt, int char_exp) {
+			int char_atk, int char_def, int char_agi, int char_crt, int char_exp, int char_money) {
 		this.user_id = user_id;
 		this.char_name = char_name;
 		this.char_lv = char_lv;
@@ -36,6 +37,7 @@ public class Character {
 		this.char_agi = char_agi;
 		this.char_crt = char_crt;
 		this.char_exp = char_exp;
+		this.char_money = char_money;
 	}
 
 	public String getUser_id() {
@@ -125,5 +127,11 @@ public class Character {
 	public void setChar_exp(int char_exp) {
 		this.char_exp = char_exp;
 	}
-	
+	public int getChar_money() {
+		return char_money;
+	}
+
+	public void setChar_money(int char_money) {
+		this.char_money = char_money;
+	}
 }

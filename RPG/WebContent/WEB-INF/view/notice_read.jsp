@@ -14,11 +14,13 @@
 		</header>
 		<div id="contents">
 			<div>
-				<c:forEach items="${cont}" var="row">
-				<p>${row.content}</p>
+				<h1>${nt.title}</h1>
 				<hr />
-				<a href="main_board.do">목록</a><a href="goto_modify.do?no=${row.number}">수정</a>
-				</c:forEach>
+				<p>${cont[0].content}</p>
+				<hr />
+				<p>조회수 : ${nt.read_cnt} / 작성자 : ${nt.user_id} / 최초작성일 : ${nt.regdate} / 최종수정일 : ${nt.moddate}</p>
+				<hr />
+				<a href="main_board.do">목록</a><a href="goto_modify.do?no=${cont[0].number}">수정</a>
 			</div>
 		</div>
 		<div id="footer">

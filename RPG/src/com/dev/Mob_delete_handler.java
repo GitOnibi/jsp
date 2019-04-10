@@ -11,7 +11,7 @@ public class Mob_delete_handler implements Dev_handler {
 	private String view = "/WEB-INF/dev/dev_mob.jsp";
 	
 	public String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mob_code = request.getParameter("mob_code");
+		int mob_code = Integer.parseInt(request.getParameter("mob_code"));
 		
 		Mob_DAO mdao = new Mob_DAO();
 		
