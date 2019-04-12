@@ -1,0 +1,8 @@
+"CODE","SKILL_NAME","SKILL_TYPE","SKILL_OPTION1","SKILL_OPTION2","SKILL_OPTION3","SKILL_OPTION4","SKILL_KIND"
+100003,"we","sword",2,0,0,0,"earth"
+100002,"dsadas","sword",2,35,5,6,"earth"
+200002,"d","spell",2,0,0,0,"fire"
+300002,"e","divine",0,0,0,3,"earth"
+200001,"b","spell",0,2,0,0,"wind"
+300001,"c","divine",0,0,3,0,"mind"
+100001,"a","sword",2,0,0,0,"earth"

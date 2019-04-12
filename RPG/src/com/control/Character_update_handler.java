@@ -2,7 +2,6 @@ package com.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Character;
 import com.dao.Character_DAO;
-import com.dao.Equip_DAO;
 import com.dao.Inven_DAO;
-import com.dev.Item_bean;
 import com.dev.Mob_DAO;
 import com.dev.Mob_bean;
 
@@ -31,11 +28,19 @@ public class Character_update_handler implements Main_handler {
 		int code	= Integer.parseInt(request.getParameter("code"));
 		String log	= request.getParameter("log"); 
 		
+		Character ch1 = null;
 		Mob_bean mb = mdao.getMob(code);
-		Character ch1 = cdao.getChar(user_id, char_name);
+		ch1 = cdao.getChar(user_id, char_name);
+		
+		int score = ch1.getChar_exp() + mb.getMob_exp();
+		int cnt = 1;
+		while(score >= 100) {
+			cnt++;
+			score -= cnt * 100;
+		}
 		
 		// 케릭터 정보 업데이트
-		int lv		= 1 + (ch1.getChar_exp() + mb.getMob_exp()) / 100;
+		int lv		= cnt;
 		int str		= 10 + lv * 2;
 		int dex		= 10 + lv * 1;
 		int atk		= str + dex / 10;

@@ -14,6 +14,7 @@ import com.dao.Character_DAO;
 import com.dao.Equip_DAO;
 import com.dev.Item_DAO;
 import com.dev.Item_bean;
+import com.dev.Item_bean2;
 
 public class Main_inventroy_handler implements Main_handler {
 	private String view = "/WEB-INF/view/main_inventory.jsp";
@@ -51,7 +52,8 @@ public class Main_inventroy_handler implements Main_handler {
 			
 			// 소지하고 있는 아이템 리스트
 			Item_DAO idao = new Item_DAO();
-			List<Item_bean> inven_list = idao.getInvenList(user_id, char_name);
+				//List<Item_bean> inven_list = idao.getInvenList(user_id, char_name);
+			List<Item_bean2> inven_list = idao.getInvenList2(user_id, char_name);
 			request.setAttribute("inven_list", inven_list);
 			
 			// 장착 가능한 무기 리스트

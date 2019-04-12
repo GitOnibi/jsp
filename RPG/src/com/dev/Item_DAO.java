@@ -74,6 +74,42 @@ public class Item_DAO {
 		}
 	}
 	
+	public List<Item_bean2> getInvenList2(String user_id, String char_name) throws SQLException, IOException {
+		System.out.println("- Item_DAO getInvenList");
+		String sql	= "SELECT inventory.item_code, item.item_name, item.item_atk, item.item_def, item.item_sub, item.item_prop, item.item_price, COUNT(inventory.item_code) AS item_count "
+					+ "FROM inventory, item "
+					+ "WHERE inventory.item_code = item.item_code "
+					+ "AND inventory.user_id = ? "
+					+ "AND inventory.char_name = ? "
+					+ "GROUP BY inventory.item_code, item.item_name, item.item_atk, item.item_def, item.item_sub, item.item_prop, item.item_price "
+					+ "ORDER BY inventory.item_code";
+		List<Item_bean2> list = new ArrayList<>();
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, char_name);
+			rs		= pstmt.executeQuery();
+			while(rs.next()) {
+				Item_bean2 temp = new Item_bean2(
+						rs.getInt(		"item_code"	),
+						rs.getString(	"item_name"	),
+						rs.getInt(		"item_atk"	), 
+						rs.getInt(		"item_def"	), 
+						rs.getString(	"item_sub"	), 
+						rs.getInt(		"item_prop"	),
+						rs.getInt(		"item_price"),
+						rs.getInt(		"item_count")
+				);
+				list.add(temp);
+			}
+			return list;
+		} finally {
+			conn.close();
+		}
+	}
+	
 	public void setItem(Item_bean ib) throws SQLException, IOException {
 		System.out.println("- Item_DAO setItem");
 		String sql = "INSERT INTO item(item_code, item_name, item_atk, item_def, item_sub, item_prop, item_price) VALUES(?,?,?,?,?,?,?)";
@@ -147,6 +183,37 @@ public class Item_DAO {
 				);
 			}
 			return temp;
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public List<Item_bean> getNpcItemList(int start_code, int end_code) throws SQLException, IOException {
+		System.out.println("- Item_DAO getNpcItemList");
+		String sql	= "SELECT * FROM item "
+					+ "WHERE item_code BETWEEN ? AND ? "
+					+ "ORDER BY item_code";
+		List<Item_bean> list = new ArrayList<>();
+		
+		try {
+			conn	= DriverManager.getConnection("jdbc:apache:commons:dbcp:rpg");
+			pstmt	= conn.prepareStatement(sql);
+			pstmt.setInt(1, start_code);
+			pstmt.setInt(2, end_code);
+			rs		= pstmt.executeQuery();
+			while(rs.next()) {
+				Item_bean temp = new Item_bean(
+						rs.getInt(		"item_code"	),
+						rs.getString(	"item_name"	),
+						rs.getInt(		"item_atk"	), 
+						rs.getInt(		"item_def"	), 
+						rs.getString(	"item_sub"	), 
+						rs.getInt(		"item_prop"	),
+						rs.getInt(		"item_price")
+				);
+				list.add(temp);
+			}
+			return list;
 		} finally {
 			conn.close();
 		}

@@ -3,11 +3,21 @@
 /* button */
 
 /* background-color */
-.bg_r {background-color:red;}
+.bg_r{background-color:red;}
 .bg_dr{background-color:darkred;}
 .bg_g{background-color:green;}
+.bg_lg{background-color:lightgreen;}
 .bg_b{background-color:blue;}
-.bg_lb{}
+.bg_lb{background-color:lightblue;}
+
+/* font-color */
+.tx_r{color:red;}
+.tx_dr{color:darkred;}
+.tx_g{color:green;}
+.tx_lg{color:lightgreen;}
+.tx_b{color:blue;}
+.tx_lb{color:lightblue;}
+
 
 /* margin */
 .m5{margin:5px;}

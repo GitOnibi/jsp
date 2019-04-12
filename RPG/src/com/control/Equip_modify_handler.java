@@ -20,6 +20,7 @@ public class Equip_modify_handler implements Main_handler {
 		String user_id		= (String)request.getSession().getAttribute("user_id");
 		String char_name	= (String)request.getSession().getAttribute("char_name");
 		String[] mcodes		= request.getParameterValues("modify_code");
+		String reqStr		= request.getParameter("reqStr");
 
 		try {	
 			// 장비변경실행
@@ -29,7 +30,7 @@ public class Equip_modify_handler implements Main_handler {
 				equip = new Equip(i + 1, Integer.parseInt(mcodes[i]), char_name, user_id);
 				edao.updateEquipList(equip);
 			}
-			return "main_inventory.do";
+			return reqStr + ".do";
 		} catch(RuntimeException e) {
 			return view;
 		}

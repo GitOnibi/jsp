@@ -41,10 +41,9 @@
 				</div>
 			</c:forEach>
 			<hr />
-
 		</div>
 		<div id="footer">
-			<jsp:include page="script.jsp" />
+			<%@ include file="script.jsp" %>
 		</div>
 	</div>
 </body>

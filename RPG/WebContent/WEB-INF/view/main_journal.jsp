@@ -11,7 +11,7 @@
 <body>
 	<div id="wrap">
 		<header id="header">
-			<jsp:include page="gnb.jsp" />
+			<%@ include file="gnb.jsp" %>
 		</header>
 		<div id="contents">
 
