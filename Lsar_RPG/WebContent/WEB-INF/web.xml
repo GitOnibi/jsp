@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Lsar_RPG</display-name>
+  <welcome-file-list>
+    <welcome-file>lsar.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>ConnectPool</servlet-name>
+    <servlet-class>main_cnt.Connect_Pool</servlet-class>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+  
+  <filter>
+  	<filter-name>LoginchkFilter</filter-name>
+  	<filter-class>filter_list.login_check</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginchkFilter</filter-name>
+  	<url-pattern>/mem_check.do</url-pattern>
+  	<url-pattern>/notice_wr.do</url-pattern>
+  </filter-mapping>
+  <!-- 
+  C:\Users\KR\Google 드라이브
+  D:\drive
+   -->
+  <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>main_cnt.Base_Control</servlet-class>
+    <init-param>
+      <param-name>ConfigFile</param-name>
+      <param-value>C:\Users\105\eclipse-workspace\Lsar_RPG\WebContent\WEB-INF\commandHandler.properties</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Game_control</servlet-name>
+    <servlet-class>main_cnt.Game_Cnt</servlet-class>
+    <init-param>
+      <param-name>ConfigFile</param-name>
+      <param-value>C:\Users\105\eclipse-workspace\Lsar_RPG\WebContent\WEB-INF\game_handler.properties</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Game_control</servlet-name>
+    <url-pattern>*.ls</url-pattern>
+  </servlet-mapping>
+</web-app>

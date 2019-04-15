@@ -34,7 +34,7 @@
     <servlet-class>main_cnt.Base_Control</servlet-class>
     <init-param>
       <param-name>ConfigFile</param-name>
-      <param-value>C:\Users\KR\Google 드라이브\Lsar_RPG\WebContent\WEB-INF\commandHandler.properties</param-value>
+      <param-value> C:\Users\KR\Google 드라이브\Lsar_RPG\WebContent\WEB-INF\commandHandler.properties</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -47,7 +47,7 @@
     <servlet-class>main_cnt.Game_Cnt</servlet-class>
     <init-param>
       <param-name>ConfigFile</param-name>
-      <param-value>C:\Users\KR\Google 드라이브\Lsar_RPG\WebContent\WEB-INF\game_handler.properties</param-value>
+      <param-value> C:\Users\KR\Google 드라이브\Lsar_RPG\WebContent\WEB-INF\game_handler.properties</param-value>
     </init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>

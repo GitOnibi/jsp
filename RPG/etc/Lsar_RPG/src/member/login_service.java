@@ -17,7 +17,17 @@ private member_DAO mem_dao = new member_DAO();
 			if(!mb.MatchPW(pw)) {
 				throw new RuntimeException();
 			}
-			System.out.println("로그이 완료");
+			System.out.println("로그인 완료");
+			data=mem_dao.getcharacter(id);
+			return data;
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	public avatar_model login(String id) {
+		try {
+			System.out.println("캐릭터 업데이트 시도");
+			avatar_model data=new avatar_model();
 			data=mem_dao.getcharacter(id);
 			return data;
 		}catch(SQLException e) {

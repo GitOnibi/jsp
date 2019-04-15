@@ -16,6 +16,10 @@
 		<td class="u_cont"> LV.${User.level}</td>
 	</tr>
 	<tr>
+		<td class="u_title">경험치 &nbsp;</td>
+		<td class="u_cont">${User.ex_p } / ${User.ex_now } </td>
+	</tr>
+	<tr>
 		<td class="u_title">국가 :</td>
 		<td class="u_cont"> ${User.national}</td>
 	</tr>
@@ -50,10 +54,6 @@
 	</tr>
 	<tr>
 		<td class="u_title">피로도 : </td>
-		<td class="u_cont">${User.fatigue}</td>
-	</tr>
-	<tr>
-		<td class="u_title">현재위치 : </td>
 		<td class="u_cont">${User.fatigue}%</td>
 	</tr>
 </table>

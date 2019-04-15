@@ -27,8 +27,68 @@ public class member_DAO {
 		}
 	}
 	
+	public void incre_ex(int ex_up,avatar_model data) {
+		int level=data.getLevel();
+		int ex_p=data.getEx_p();
+		int ex_now=data.getEx_now();
+		ex_now+=ex_up;
+		if(ex_p <= ex_now) {
+			while(ex_now<ex_p) {
+				level++;
+				ex_now-=ex_p;
+				ex_p= 100*(int)(Math.pow(2,level-1));
+			}
+		}
+		get_ex(level, ex_p, ex_now,data.getId());
+	}
+	
+	private int get_level(String id) {
+		int level=0;
+		String sql ="select m_level from avatar where m_id='"+id+"'";
+		try {
+			conn=DriverManager.getConnection("jdbc:apache:commons:dbcp:jkr");
+			ptmt=conn.prepareStatement(sql);
+			rs=ptmt.executeQuery();
+			if(rs.next()) {
+				level=rs.getInt("m_level");
+			}
+			return level;
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally {
+			try {
+				conn.close();
+				ptmt.close();
+				rs.close();
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return level;
+	}
 	public void get_ex(int level, int limit, int ex_p,String id) {
-		String sql="update avatar set ex_now="+ex_p+" , ex_p="+limit+" , m_level="+level+" where m_id='"+id+"'";
+		int hp_up=0;
+		int mp_up=0;
+		int dp_up=0;
+		int attack_up=0;
+		int def_up=0;
+		int fat=1;
+		if(level>get_level(id)) {
+			hp_up=(int)(Math.random()*10)+20;
+			mp_up=(int)(Math.random()*10)+10;
+			dp_up=(int)(Math.random()*10)+10;
+			attack_up=(int)(Math.random()*10)+5;
+			def_up=(int)(Math.random()*5)+4;
+			fat=0;
+		}
+		
+		String sql="update avatar set ex_now="+ex_p+" , ex_p="+limit;
+		sql += " , m_level="+level+ ", hp=hp+"+hp_up+" , mp=mp+"+mp_up;
+		sql += " , dp=dp+"+dp_up+" , attack=attack+"+attack_up+" , ";
+		sql += " def=def+"+def_up+" , fatigue=fatigue*"+fat;
+		sql += " where m_id='"+id+"'";
+		
 		try {
 			System.out.println("사냥 경험치업");
 			conn=DriverManager.getConnection("jdbc:apache:commons:dbcp:jkr");

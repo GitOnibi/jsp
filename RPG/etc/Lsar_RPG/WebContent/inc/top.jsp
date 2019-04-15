@@ -27,7 +27,7 @@
 			<a href="dungeon.ls">던전</a>
 		</td>
 		<td>
-			<a href="duel.ls">결투</a>
+			<a href="quest.ls">퀘스트</a>
 		</td>
 		<td>
 			<a href="affil.ls">소속</a>

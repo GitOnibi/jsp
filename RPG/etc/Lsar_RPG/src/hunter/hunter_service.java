@@ -2,6 +2,7 @@ package hunter;
 
 import java.sql.SQLException;
 
+import lsar.dao.quest_DAO;
 import monster.monster;
 import monster.monster_dao;
 
@@ -14,5 +15,10 @@ public class hunter_service {
 			return null;
 		
 		return mon;
+	}
+	public void quest_mon(String id,int no, int num) throws SQLException {
+		quest_DAO q_dao=new quest_DAO();
+		System.out.println(no);
+		q_dao.quest_mon(id,no,num);
 	}
 }
