@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="" id="frm">
+		<textarea id="cont" cols="100" rows="10"></textarea>
+		<input type="button" onclick="transform()" value="변환"/>
+	</form>
+	<div id="demo">
+		
+	</div>
+	
+	<script type="text/javascript">
+		var demo = document.querySelector("#demo");
+		var frm = document.querySelector("#frm");
+		var cont = document.querySelector("#cont");
+		var txt = "";
+		
+		function transform() {
+			txt += "<table border='1px'>";
+			var arr1 = cont.value.split("\n");
+			for(i = 0; i < arr1.length; i++) {
+				txt += "<tr>";
+				var arr2 = arr1[i].split("\t");
+				for(j = 0; j < arr2.length; j++) {
+					txt += "<td>" + arr2[j] + "</td>";
+				}
+				txt += "</tr>";
+			}
+			txt += "</table>";
+			demo.innerHTML = txt;
+		}
+	</script>
+</body>
+</html>

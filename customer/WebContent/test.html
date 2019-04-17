@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<textarea id="in"></textarea><button id="inBtn">붙여넣기</button>
+
+	<script type="text/javascript">
+		document.querySelector("#inBtn").addEventListener("click", function() {
+			document.querySelector("#in").value = window.clipboardData.getData("Text");
+		});
+	</script>
+</body>
+</html>

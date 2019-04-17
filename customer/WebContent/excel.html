@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	var IE=(document.all)?true:false;
+  	if(IE){
+  		$("#exc").click(function(){
+  			test();
+  		});
+  		
+  	}
+});
+function test(){
+	var excel=new ActiveXobject("Excel.Application");
+	excel.Visible = true;
+	var scfile=d$("#scfile").val();
+	var controlbook=excel.Workbooks.open(scfile);
+	var controlSheetNum=controlbook.Sheets.Count;
+	for(vari=1;i<=controlSheetNum; i++){
+		controlbook.WorkSheets(i);
+		alert(controlbook.WorkSheets(i).Name);
+	}
+	var workSheet=controlbook.WorkSheets("이름");
+	controlSheetNum=controlbook.Sheers.Count;
+	for(var i=1; i<=controlSheetNum;i++){
+		controlbook.WorkSheets(i);
+		controlbook.WorkSheets(i).activate();
+	}
+	for(var i=0; i<10;i++){ //셀에 데이터 입력시
+		controlbook.WorkSheets(1).Cells(4,1).Value=i;
+	}
+	for(var i=0; i<10; i++){//셀 데이터 가져오기
+		Celldata=controlbook.WorkSheets(1).Cells(4,1).Value;
+		alert(Celldata);
+	}
+	
+	//범위로 데이터 가져오기
+	Rangedata=controlbook.WorkSheets(1).Range("A1:B5").Value;
+	controlbook.WorkSheets(1).Range("C1:D5").Value=Rangedata;
+}
+</script>
+</head>
+<body>
+<input type="file" name="scfile" id="scfile">
+<button type="submit" name=exc id=exc>bt</button>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+* {margin:0;padding:0;}
+body, html {width:100%;height:100%;}
+::-webkit-scrollbar { display:none; }
+::-ms-scrollbar { display:none; }
+::-moz-scrollbar { display:none; }
+::scrollbar { display:none; }
+::-webkit-placeholder { color:#9e9e9e; opacity:0.5; }
+:-ms-input-placeholder { color:#9e9e9e; opacity:0.5; }
+::-moz-placeholder { color:#9e9e9e; opacity:0.5; }
+:-moz-placeholder { color:#9e9e9e; opacity:0.5; }
+::placeholder { color:#9e9e9e; opacity:0.5; }
+ul {list-style:none;}
+a {text-decoration:none;color:#000;}
+img{font-size:0;display:block;}
+/*button, input[type="button"], input[type="submit"] {background-color:#fff;border:none;text-decoration:none;}*/
+table{border-collapse:collapse;}
