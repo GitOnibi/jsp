@@ -34,7 +34,7 @@ public class Connection_Pool extends HttpServlet {
 		try {
 			String url		= "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user		= "onigawara";
-			String password	= "dbwls12";
+			String password	= "passwd";
 			ConnectionFactory conn = new DriverManagerConnectionFactory(url,user,password);			
 			PoolableConnectionFactory pool = new PoolableConnectionFactory(conn,null);	
 			GenericObjectPoolConfig<PoolableConnection> poolconf = new GenericObjectPoolConfig<PoolableConnection>();
